@@ -364,8 +364,24 @@ namespace GameStateEngine
 
                 if (StartEndSpriteBatchInDraw)
                 {
+                    /* SpriteSortMode.Immediate draws a sprite right away, whereas
+                     * SpriteSortMode.Deferred waits until spriteBatch.End().
+                     * When using RasterizerState.ScissorTestEnable = true, one can
+                     * set spriteBatch.GraphicsDevice.ScissorRectangle to crop the
+                     * draw. Note that Immediate will allow changes to the
+                     * ScissorRectangle for each draw, whereas Deferred takes the
+                     * last ScissorRectangle, so this requires multiple spriteBatch
+                     * Begin() and End() calls.
+                     * 
+                     * According to the answer of the following link:
+                     * https://gamedev.stackexchange.com/questions/82799/in-monogame-why-is-multiple-tile-drawing-slow-when-rendering-in-windowed-fulls
+                     * It is best to use the same texture as much as possible when
+                     * using Deferred, as it avoids a texture flush. This means
+                     * group draws to the same texture as much as possible.
+                     */
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
-                        null, null, null, null, DrawMatrix);
+                        null, null, new RasterizerState() { ScissorTestEnable = true },
+                        null, DrawMatrix);
 
                     spriteBatch.FillRectangle(GameRectangle, Color.CornflowerBlue);
                 }
