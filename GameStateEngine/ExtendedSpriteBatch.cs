@@ -40,6 +40,16 @@ namespace Common
         }
 
         /// <summary>
+        /// Draw texture to location with no tint
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="destinationRectangle"></param>
+        public void Draw(Texture2D texture, Vector2 destination)
+        {
+            this.Draw(texture, new Rectangle(destination.ToPoint(), texture.Bounds.Size), Color.White);
+        }
+
+        /// <summary>
         /// Draw a line between the two supplied points.
         /// </summary>
         /// <param name="start">Starting point.</param>
