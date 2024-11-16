@@ -53,12 +53,17 @@ namespace GameStateEngine
 
             this.Engine = Engine;
 
-            // Create a new content manager to load content used just by this level.
+            // Create a new content manager to load content used just by this state.
             Content = new ContentManager(Engine.Services, ContentRoot);
             LoadContent();
+
+            InitGameState(Engine);
         }
 
         protected abstract void LoadContent();
+
+        protected virtual void InitGameState(GameEngine gameEngine) { }
+        protected virtual void DeInitGameState(GameEngine gameEngine) { }
 
         public void Dispose()
         {
@@ -66,6 +71,8 @@ namespace GameStateEngine
             {
                 Content.Unload();
                 Content = null;
+
+                DeInitGameState(Engine);
             }
         }
     }
