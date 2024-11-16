@@ -10,6 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\ContentAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\RectangleExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\RectangleSliceExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedSpriteBatch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStateEngine\GameEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStateEngine\GameEngineSettings.cs" />
