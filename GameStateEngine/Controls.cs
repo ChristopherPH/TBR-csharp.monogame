@@ -85,8 +85,8 @@ namespace Common
         const float analogLimit = 0.5f;
 
 
-        public KeyboardState currentKeyboardState { get; private set; }
-        private KeyboardState previousKeyboardState;
+        public KeyboardState currentKeyboardState { get; private set; } = Keyboard.GetState();
+        private KeyboardState previousKeyboardState = Keyboard.GetState();
 
 
         /// <summary>

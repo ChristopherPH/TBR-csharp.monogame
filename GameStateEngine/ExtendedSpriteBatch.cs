@@ -126,14 +126,12 @@ namespace Common
 
             if (align.HasFlag(Alignment.Left))
                 origin.X += bounds.Width / 2 - (size.X * scale) / 2;
-
-            if (align.HasFlag(Alignment.Right))
+            else if (align.HasFlag(Alignment.Right))
                 origin.X -= bounds.Width / 2 - (size.X * scale) / 2;
 
             if (align.HasFlag(Alignment.Top))
                 origin.Y += bounds.Height / 2 - (size.Y * scale) / 2;
-
-            if (align.HasFlag(Alignment.Bottom))
+            else if (align.HasFlag(Alignment.Bottom))
                 origin.Y -= bounds.Height / 2 - (size.Y * scale) / 2;
 
             DrawString(font, text, pos, color, 0, origin, scale, SpriteEffects.None, 0);
