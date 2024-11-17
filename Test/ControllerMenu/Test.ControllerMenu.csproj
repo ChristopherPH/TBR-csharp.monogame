@@ -24,8 +24,11 @@
     <Compile Remove="Common\InputExtensions.cs" />
     <Compile Remove="Common\SettingsBase.cs" />
     <Compile Remove="Common\Timer.cs" />
-    <Compile Remove="Incrementor.cs" />
-    <Compile Remove="Interpolator - Copy.cs" />
+    <Compile Remove="Controller - Copy.cs" />
+    <Compile Remove="ControlProfile - Copy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ControllerMenuTest.csproj.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
@@ -35,5 +38,5 @@
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
-  <Import Project="..\GameStateEngine\GameStateEngine.projitems" Label="Shared" />
+  <Import Project="..\..\GameStateEngine\GameStateEngine.projitems" Label="Shared" />
 </Project>

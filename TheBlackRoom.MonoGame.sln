@@ -5,9 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GameStateEngine", "GameStateEngine\GameStateEngine.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBlackRoom.MonoGame.Test", "TheBlackRoom.MonoGame.Test\TheBlackRoom.MonoGame.Test.csproj", "{F37EEE67-6957-46CF-A3C1-30A1E5B0AC20}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5A45C856-D78A-4E21-B2DE-2B59194596BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBlackRoom.MonoGame.Test.ControllerMenu", "TheBlackRoom.MonoGame.Test.ControllerMenu\TheBlackRoom.MonoGame.Test.ControllerMenu.csproj", "{EF0C2495-0C09-4A2F-BB67-52F912F66BDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ControllerMenu", "Test\ControllerMenu\Test.ControllerMenu.csproj", "{BF12628F-B8B0-4679-8845-CFE8CF9853A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.GameEngine", "Test\GameEngine\Test.GameEngine.csproj", "{515143A9-56C0-4B80-AF3E-9DF2E051639E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,24 +17,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F37EEE67-6957-46CF-A3C1-30A1E5B0AC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F37EEE67-6957-46CF-A3C1-30A1E5B0AC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F37EEE67-6957-46CF-A3C1-30A1E5B0AC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F37EEE67-6957-46CF-A3C1-30A1E5B0AC20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF0C2495-0C09-4A2F-BB67-52F912F66BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF0C2495-0C09-4A2F-BB67-52F912F66BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF0C2495-0C09-4A2F-BB67-52F912F66BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF0C2495-0C09-4A2F-BB67-52F912F66BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF12628F-B8B0-4679-8845-CFE8CF9853A1} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
+		{515143A9-56C0-4B80-AF3E-9DF2E051639E} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A483EEA-3B0C-433A-9B66-60C58CAD1A8D}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		GameStateEngine\GameStateEngine.projitems*{515143a9-56c0-4b80-af3e-9df2e051639e}*SharedItemsImports = 5
 		GameStateEngine\GameStateEngine.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		GameStateEngine\GameStateEngine.projitems*{ef0c2495-0c09-4a2f-bb67-52f912f66bdb}*SharedItemsImports = 5
-		GameStateEngine\GameStateEngine.projitems*{f37eee67-6957-46cf-a3c1-30a1e5b0ac20}*SharedItemsImports = 5
+		GameStateEngine\GameStateEngine.projitems*{bf12628f-b8b0-4679-8845-cfe8cf9853a1}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
