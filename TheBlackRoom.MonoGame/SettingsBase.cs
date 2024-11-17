@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace Common
+namespace TheBlackRoom.MonoGame
 {
     public abstract class SettingsBase
     {

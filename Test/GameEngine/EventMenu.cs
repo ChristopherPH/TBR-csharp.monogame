@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 using System.Collections;
 using System.ComponentModel;
-using Common;
+using TheBlackRoom.MonoGame;
 
 namespace EventMenu
 {

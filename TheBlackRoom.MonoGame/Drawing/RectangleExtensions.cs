@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace GameStateEngine.Drawing
+namespace TheBlackRoom.MonoGame.Drawing
 {
     public static class RectangleExtensions
     {

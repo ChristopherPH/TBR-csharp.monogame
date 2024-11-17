@@ -1,8 +1,8 @@
-﻿using Common;
-using Common.MenuSystem;
-using Common.Misc;
-using Common.Interpolator;
-using GameStateEngine;
+﻿using TheBlackRoom.MonoGame;
+using TheBlackRoom.MonoGame.MenuSystem;
+using TheBlackRoom.MonoGame.Misc;
+using TheBlackRoom.MonoGame.Interpolator;
+using TheBlackRoom.MonoGame.GameStateEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

@@ -1,4 +1,4 @@
-﻿namespace Common.Interpolator
+﻿namespace TheBlackRoom.MonoGame.Interpolator
 {
     public interface IInterpolator
     {

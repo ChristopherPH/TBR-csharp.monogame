@@ -1,11 +1,7 @@
-﻿using Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace GameStateEngine
+namespace TheBlackRoom.MonoGame.GameStateEngine
 {
     public partial class GameEngineSettings : SettingsBase
     {

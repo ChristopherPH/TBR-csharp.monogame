@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Interpolator
+namespace TheBlackRoom.MonoGame.Interpolator
 {
     public abstract class InterpolatorCollectionBase : IInterpolator
     {

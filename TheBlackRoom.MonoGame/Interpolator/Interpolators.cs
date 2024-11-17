@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 
-namespace Common.Interpolator
+namespace TheBlackRoom.MonoGame.Interpolator
 {
     public class FloatInterpolator : InterpolatorBase<float>
     {

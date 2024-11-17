@@ -16,9 +16,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace IndependentResolutionRendering
+namespace TheBlackRoom.MonoGame.External
 {
-    static class Resolution
+    static class IndependentResolutionRendering
     {
         static private GraphicsDeviceManager _Device = null;
 

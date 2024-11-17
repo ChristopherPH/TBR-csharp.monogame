@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameStateEngine.Drawing
+namespace TheBlackRoom.MonoGame.Drawing
 {
     [Flags]
     public enum ContentAlignment

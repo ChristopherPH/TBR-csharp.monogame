@@ -1,6 +1,6 @@
-﻿using Common;
-using Common.MenuSystem;
-using GameStateEngine;
+﻿using TheBlackRoom.MonoGame;
+using TheBlackRoom.MonoGame.MenuSystem;
+using TheBlackRoom.MonoGame.GameStateEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Misc
+namespace TheBlackRoom.MonoGame.Misc
 {
     class GameStateEngineSettings : GameState
     {

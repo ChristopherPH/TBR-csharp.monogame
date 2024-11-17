@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GameStateEngine
+namespace TheBlackRoom.MonoGame.GameStateEngine
 {
     public class GameStateOperation
     {

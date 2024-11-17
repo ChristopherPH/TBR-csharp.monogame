@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using TheBlackRoom.MonoGame.External;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameStateEngine
+namespace TheBlackRoom.MonoGame.GameStateEngine
 {
     /// <summary>
     /// Common XNA/Monogame game, with:
@@ -60,12 +60,12 @@ namespace GameStateEngine
             Content.RootDirectory = "Content";
             GameEngineSettings = GameEngineSettings.LoadSettings(SettingsFile);
 
-            IndependentResolutionRendering.Resolution.Init(ref graphics);
+            IndependentResolutionRendering.Init(ref graphics);
 
             //Virtual Resolution (Game Resolution): 
             //  Amount of pixels for Draw() to draw on. This will be scaled to the Window resolution for display.
             //  Note: VirtualResolution doesn't need to be a valid resolution
-            IndependentResolutionRendering.Resolution.SetVirtualResolution(GameResolutionWidth, GameResolutionHeight);
+            IndependentResolutionRendering.SetVirtualResolution(GameResolutionWidth, GameResolutionHeight);
 
             GameRectangle = new Rectangle(0, 0, GameResolutionWidth, GameResolutionHeight);
 
@@ -94,20 +94,20 @@ namespace GameStateEngine
                     var y = (GraphicsDevice.DisplayMode.Height - Height) / 2;
                     Window.Position = new Point(x, y);
 
-                    IndependentResolutionRendering.Resolution.SetResolution(Width, Height, false);
+                    IndependentResolutionRendering.SetResolution(Width, Height, false);
                     break;
 
 
                 case VideoSettings.WindowModeTypes.Fullscreen:
                     Window.IsBorderless = false;
-                    IndependentResolutionRendering.Resolution.SetResolution(Width, Height, true);
+                    IndependentResolutionRendering.SetResolution(Width, Height, true);
                     break;
 
 
                 case VideoSettings.WindowModeTypes.WindowedFullscreen:
                     Window.IsBorderless = true;
                     Window.Position = new Point(0, 0);
-                    IndependentResolutionRendering.Resolution.SetResolution(
+                    IndependentResolutionRendering.SetResolution(
                         GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height, false);
                     break;
             }
@@ -360,7 +360,7 @@ namespace GameStateEngine
             
             if (gameRenderStates > 0)
             {
-                IndependentResolutionRendering.Resolution.BeginDraw();
+                IndependentResolutionRendering.BeginDraw();
 
                 if (StartEndSpriteBatchInDraw)
                 {
@@ -414,14 +414,14 @@ namespace GameStateEngine
             base.Draw(gameTime);
         }
 
-        protected Matrix DrawMatrix => IndependentResolutionRendering.Resolution.getTransformationMatrix();
+        protected Matrix DrawMatrix => IndependentResolutionRendering.getTransformationMatrix();
 
 
         protected Vector2 TranslateWindowToGame(Vector2 Location)
         {
             var vp = new Vector2(
-                IndependentResolutionRendering.Resolution.ViewportX, 
-                IndependentResolutionRendering.Resolution.ViewportY);
+                IndependentResolutionRendering.ViewportX, 
+                IndependentResolutionRendering.ViewportY);
 
             return Vector2.Transform(Location - vp, Matrix.Invert(DrawMatrix));
         }

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Common
+namespace TheBlackRoom.MonoGame
 {
     /// <summary>
     /// SpriteBatch that allows Lines and Rectangles to be drawn directly

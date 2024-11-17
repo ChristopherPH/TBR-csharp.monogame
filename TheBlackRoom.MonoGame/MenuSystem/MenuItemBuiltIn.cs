@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.MenuSystem
+namespace TheBlackRoom.MonoGame.MenuSystem
 {
     public class OpenMenu : MenuItem
     {

@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.Linq;
 
-namespace Common
+namespace TheBlackRoom.MonoGame.External
 {
     [XmlRoot("Dictionary")]
     public class SerializableDictionary<TKey, TValue>

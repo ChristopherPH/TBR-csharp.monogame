@@ -1,5 +1,4 @@
-﻿using Common.MenuSystem;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheBlackRoom.MonoGame.External;
+using TheBlackRoom.MonoGame.MenuSystem;
 
-namespace Common.Misc
+namespace TheBlackRoom.MonoGame.Misc
 {
     public class SimpleMenu : MenuBase
     {

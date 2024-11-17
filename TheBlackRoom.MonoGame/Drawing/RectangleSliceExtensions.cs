@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace GameStateEngine.Drawing
+namespace TheBlackRoom.MonoGame.Drawing
 {
     public static class RectangleSliceExtensions
     {
