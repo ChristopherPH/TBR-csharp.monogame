@@ -10,6 +10,7 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <RootNamespace>TheBlackRoom.MonoGame.Test.ControllerMenuTest</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Common\External\**" />
@@ -24,8 +25,11 @@
     <Compile Remove="Common\InputExtensions.cs" />
     <Compile Remove="Common\SettingsBase.cs" />
     <Compile Remove="Common\Timer.cs" />
-    <Compile Remove="Incrementor.cs" />
-    <Compile Remove="Interpolator - Copy.cs" />
+    <Compile Remove="Controller - Copy.cs" />
+    <Compile Remove="ControlProfile - Copy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ControllerMenuTest.csproj.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />

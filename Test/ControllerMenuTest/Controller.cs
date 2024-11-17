@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControllerMenuTest
+namespace TheBlackRoom.MonoGame.Test.ControllerMenuTest
 {
     public interface IController<Actions>
         where Actions : struct, IConvertible//, IEquatable<Action>

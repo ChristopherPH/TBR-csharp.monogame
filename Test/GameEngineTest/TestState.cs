@@ -1,20 +1,12 @@
-﻿using TheBlackRoom.MonoGame;
-using TheBlackRoom.MonoGame.MenuSystem;
-using TheBlackRoom.MonoGame.Misc;
-using TheBlackRoom.MonoGame.Interpolator;
-using TheBlackRoom.MonoGame.GameStateEngine;
+﻿using EventMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using System.Linq;
 using System;
-using Test.ControllerManager;
-using System.Collections;
-using System.ComponentModel;
-using EventMenu;
+using ControllerManager;
+using TheBlackRoom.MonoGame.GameStateEngine;
+using Particles;
 
-namespace Test
+namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
 {
     public class TestState : GameState
     {

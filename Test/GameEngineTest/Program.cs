@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ControllerMenuTest
+namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
 {
 #if WINDOWS || LINUX
     /// <summary>

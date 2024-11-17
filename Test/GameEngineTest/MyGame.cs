@@ -1,16 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ControllerManager;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Particles;
 using System;
-using Test.ControllerManager;
-using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.External;
 using TheBlackRoom.MonoGame.GameStateEngine;
 using TheBlackRoom.MonoGame.Interpolator;
 using TheBlackRoom.MonoGame.MenuSystem;
 using TheBlackRoom.MonoGame.Misc;
 
-namespace Test
+namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
 {
     public class MyGame : GameEngine
     {

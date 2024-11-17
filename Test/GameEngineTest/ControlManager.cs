@@ -1,17 +1,9 @@
-﻿using TheBlackRoom.MonoGame;
-using TheBlackRoom.MonoGame.MenuSystem;
-using TheBlackRoom.MonoGame.Misc;
-using TheBlackRoom.MonoGame.Interpolator;
-using TheBlackRoom.MonoGame.GameStateEngine;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using System.Linq;
 using System;
 using TheBlackRoom.MonoGame.External;
 
-namespace Test.ControllerManager
+namespace ControllerManager
 {
     public enum Controls
     {

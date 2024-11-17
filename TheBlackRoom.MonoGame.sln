@@ -5,13 +5,13 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5A45C856-D78A-4E21-B2DE-2B59194596BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.ControllerMenu", "Test\ControllerMenu\Test.ControllerMenu.csproj", "{BF12628F-B8B0-4679-8845-CFE8CF9853A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.GameEngine", "Test\GameEngine\Test.GameEngine.csproj", "{515143A9-56C0-4B80-AF3E-9DF2E051639E}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame", "TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.GameStateEngine", "TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.shproj", "{D4C27630-99D7-48B6-BEB2-AEC222D7BE7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineTest", "Test\GameEngineTest\GameEngineTest.csproj", "{B6D6661E-C8F6-45DC-832F-8358620FA838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerMenuTest", "Test\ControllerMenuTest\ControllerMenuTest.csproj", "{F78856C9-E605-4871-9E3C-E7BE6D891E34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,31 +19,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF12628F-B8B0-4679-8845-CFE8CF9853A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{515143A9-56C0-4B80-AF3E-9DF2E051639E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6D6661E-C8F6-45DC-832F-8358620FA838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6D6661E-C8F6-45DC-832F-8358620FA838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6D6661E-C8F6-45DC-832F-8358620FA838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6D6661E-C8F6-45DC-832F-8358620FA838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F78856C9-E605-4871-9E3C-E7BE6D891E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78856C9-E605-4871-9E3C-E7BE6D891E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78856C9-E605-4871-9E3C-E7BE6D891E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78856C9-E605-4871-9E3C-E7BE6D891E34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BF12628F-B8B0-4679-8845-CFE8CF9853A1} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
-		{515143A9-56C0-4B80-AF3E-9DF2E051639E} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
+		{B6D6661E-C8F6-45DC-832F-8358620FA838} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
+		{F78856C9-E605-4871-9E3C-E7BE6D891E34} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A483EEA-3B0C-433A-9B66-60C58CAD1A8D}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems*{515143a9-56c0-4b80-af3e-9df2e051639e}*SharedItemsImports = 5
-		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{515143a9-56c0-4b80-af3e-9df2e051639e}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
-		TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems*{bf12628f-b8b0-4679-8845-cfe8cf9853a1}*SharedItemsImports = 5
-		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{bf12628f-b8b0-4679-8845-cfe8cf9853a1}*SharedItemsImports = 5
+		TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
+		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems*{d4c27630-99d7-48b6-beb2-aec222d7be7b}*SharedItemsImports = 13
+		TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems*{f78856c9-e605-4871-9e3c-e7be6d891e34}*SharedItemsImports = 5
+		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{f78856c9-e605-4871-9e3c-e7be6d891e34}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

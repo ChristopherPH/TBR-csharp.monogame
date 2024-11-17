@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.GameStateEngine;
 
-namespace ControllerMenuTest
+namespace TheBlackRoom.MonoGame.Test.ControllerMenuTest
 {
     public class MyGame : GameEngine
     {
