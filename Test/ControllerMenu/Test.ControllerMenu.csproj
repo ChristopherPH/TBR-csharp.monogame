@@ -38,5 +38,6 @@
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
-  <Import Project="..\..\GameStateEngine\GameStateEngine.projitems" Label="Shared" />
+  <Import Project="..\..\TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems" Label="Shared" />
+  <Import Project="..\..\TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems" Label="Shared" />
 </Project>

@@ -1,6 +1,7 @@
 .vs/
 .vscode/
-GameStateEngine/*.user
+TheBlackRoom.MonoGame/*.user
+TheBlackRoom.MonoGame.GameStateEngine/*.user
 Test/GameEngine/Content/bin/
 Test/GameEngine/Content/obj/
 Test/GameEngine/bin/
