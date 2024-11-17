@@ -1,12 +1,9 @@
-﻿using EventMenu;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using ControllerManager;
 using TheBlackRoom.MonoGame.GameStateEngine;
-using Particles;
 
-namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
     public class TestState : GameState
     {

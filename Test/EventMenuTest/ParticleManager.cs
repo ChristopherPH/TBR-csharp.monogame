@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Particles
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
     public class ParticleManager
     {

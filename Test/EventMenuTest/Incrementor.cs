@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using TheBlackRoom.MonoGame;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
+#if WORK_IN_PROGRESS
     public interface Incrementor
     {
         void Update(double Units);
@@ -98,4 +99,5 @@ namespace Test
 
         public Color CurrentValue { get; private set; }
     }
+#endif
 }

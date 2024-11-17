@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using TheBlackRoom.MonoGame.External;
 
-namespace ControllerManager
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
     public enum Controls
     {

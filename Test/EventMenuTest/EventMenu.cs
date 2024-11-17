@@ -8,7 +8,7 @@ using System.Collections;
 using System.ComponentModel;
 using TheBlackRoom.MonoGame;
 
-namespace EventMenu
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
     public enum EventMenuItemActions
     {

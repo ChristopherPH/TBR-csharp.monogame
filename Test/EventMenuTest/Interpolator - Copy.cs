@@ -1,14 +1,15 @@
-﻿using Common;
-using Common.MenuSystem;
-using Common.Misc;
-using GameStateEngine;
+﻿using TheBlackRoom.MonoGame;
+using TheBlackRoom.MonoGame.MenuSystem;
+using TheBlackRoom.MonoGame.Misc;
+using TheBlackRoom.MonoGame.GameStateEngine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 
-namespace Test
+namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
+#if WORK_IN_PROGRESS
     public abstract class InterpolatorBase<T>
     {
         double _curTime = 0;
@@ -222,4 +223,5 @@ namespace Test
             return new Vector2(x, y);
         }
     }
+#endif
 }
