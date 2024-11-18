@@ -1,13 +1,11 @@
-﻿using Common;
-using GameStateEngine.Drawing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Xml.Schema;
+using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.System.Helpers.IListHelpers;
 
-namespace CrossfireRPG.GuiElements
+namespace TheBlackRoom.MonoGame.Gui
 {
     public class geListBox : geTextElement
     {

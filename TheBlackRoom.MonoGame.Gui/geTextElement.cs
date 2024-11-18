@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CrossfireRPG.GuiElements
+namespace TheBlackRoom.MonoGame.Gui
 {
     public abstract class geTextElement : geElement
     {

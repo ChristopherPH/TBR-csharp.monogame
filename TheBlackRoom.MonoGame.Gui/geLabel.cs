@@ -1,9 +1,8 @@
-﻿using Common;
-using GameStateEngine.Drawing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TheBlackRoom.MonoGame.Drawing;
 
-namespace CrossfireRPG.GuiElements
+namespace TheBlackRoom.MonoGame.Gui
 {
     public class geLabel : geTextElement
     {

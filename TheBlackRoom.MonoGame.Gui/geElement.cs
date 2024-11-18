@@ -1,7 +1,6 @@
-﻿using Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
-namespace CrossfireRPG.GuiElements
+namespace TheBlackRoom.MonoGame.Gui
 {
     public abstract class geElement
     {
