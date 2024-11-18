@@ -71,8 +71,6 @@ namespace TheBlackRoom.MonoGame.Gui
 
             var textBounds = textRect.AlignInside(bounds, alignment);
 
-            spriteBatch.DrawRectangle(textBounds, Color.Purple);
-
             spriteBatch.DrawString(font, text, textBounds.Location.ToVector2(), foreColour,
                 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
         }
