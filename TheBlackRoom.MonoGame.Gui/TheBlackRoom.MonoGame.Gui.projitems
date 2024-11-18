@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiPictureBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiTextElement.cs" />

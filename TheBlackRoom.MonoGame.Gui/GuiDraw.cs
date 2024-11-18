@@ -74,5 +74,26 @@ namespace TheBlackRoom.MonoGame.Gui
             spriteBatch.DrawString(font, text, textBounds.Location.ToVector2(), foreColour,
                 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
         }
+
+        /// <summary>
+        /// Common method to draw a picture inside a Gui Element
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="bounds">Gui Element Bounds</param>
+        /// <param name="picture">Gui Element Picture</param>
+        /// <param name="alignment">Gui Element Alignment within bounds</param>
+        public static void DrawPicture(ExtendedSpriteBatch spriteBatch,
+            Rectangle bounds, Texture2D picture, ContentAlignment alignment)
+        {
+            if ((spriteBatch == null) || spriteBatch.IsDisposed || bounds.IsEmpty)
+                return;
+
+            if (picture == null)
+                return;
+
+            var alignedRect = picture.Bounds.AlignInside(bounds, alignment);
+
+            spriteBatch.Draw(picture, alignedRect);
+        }
     }
 }
