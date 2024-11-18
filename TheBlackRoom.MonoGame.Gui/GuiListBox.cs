@@ -7,17 +7,23 @@ using TheBlackRoom.System.Helpers.IListHelpers;
 
 namespace TheBlackRoom.MonoGame.Gui
 {
-    public class geListBox : geTextElement
+    /// <summary>
+    /// ListBox Gui Element
+    /// </summary>
+    public class GuiListBox : GuiTextElement
     {
         private ListBoxWrapper<object> _listbox = new ListBoxWrapper<object>();
         
-        public geListBox()
+        public GuiListBox()
         {
             GetItemText = GetItemTextInternal;
             
             _listbox.ListItems = _Items;
         }
 
+        /// <summary>
+        /// Items contained within listbox
+        /// </summary>
         public List<object> Items
         {
             get => _Items;
@@ -31,6 +37,9 @@ namespace TheBlackRoom.MonoGame.Gui
         }
         private List<object> _Items = new List<object>();
 
+        /// <summary>
+        /// Height of each item within listbox
+        /// </summary>
         public float ItemHeight
         { 
             get => _ItemHeight;
@@ -39,16 +48,35 @@ namespace TheBlackRoom.MonoGame.Gui
                 if (_ItemHeight == value) return;
 
                 _ItemHeight = value;
-                _listbox.MaximumItemCount = ElementBounds.Height / RealItemHeight;
+                _listbox.MaximumItemCount = DrawBounds.Height / RealItemHeight;
                 _listbox.OnListItemsChanged();
             }
         }
         private float _ItemHeight = 0;
 
 
-        public ContentAlignment Alignment { get; set; } = ContentAlignment.MiddleLeft;
+        /// <summary>
+        /// Label alignment within bounds
+        /// </summary>
+        public ContentAlignment Alignment
+        {
+            get => _Alignment;
+            set
+            {
+                if (_Alignment == value) return;
+                _Alignment = value;
+                OnAlignmentChanged();
+            }
+        }
+        private ContentAlignment _Alignment = ContentAlignment.MiddleLeft;
+
         public string FormatString { get; set; } = string.Empty;
         public bool OwnerDraw { get; set; } = false;
+        public Func<object, string> GetItemText { get; set; }
+
+        public event EventHandler<DrawItemEventArgs> DrawItem;
+
+        public bool ShowScrollbar { get; set; } = true;
 
         public void NotifyListItemsChanged() => _listbox.OnListItemsChanged();
 
@@ -58,22 +86,19 @@ namespace TheBlackRoom.MonoGame.Gui
 
             _FontHeight = (Font == null) ? 0 : Font.MeasureString("Wy").Y;
 
-            _listbox.MaximumItemCount = ElementBounds.Height / RealItemHeight;
+            _listbox.MaximumItemCount = DrawBounds.Height / RealItemHeight;
         }
         
         float _FontHeight = 0;
 
         protected float RealItemHeight => (ItemHeight > 0) ? ItemHeight : _FontHeight;
 
-        protected override void DrawElement(ExtendedSpriteBatch spriteBatch)
+        protected override void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
-            if ((spriteBatch == null) || spriteBatch.IsDisposed || ElementBounds.IsEmpty)
-                return;
-
             if ((Font == null) || (Items == null) || (Items.Count == 0))
                 return;
 
-            var itemBounds = new Rectangle(ElementBounds.X, ElementBounds.Y, ElementBounds.Width, (int)RealItemHeight);
+            var itemBounds = new Rectangle(drawBounds.X, drawBounds.Y, drawBounds.Width, (int)RealItemHeight);
 
             if ((itemBounds.Width <= 0) || (itemBounds.Height <= 0))
                 return;
@@ -92,6 +117,9 @@ namespace TheBlackRoom.MonoGame.Gui
                 DrawItemInternal(spriteBatch, itemBounds, ix == _listbox.SelectedIndex, text, ForeColour, BackColour);
             }
 
+            if (!ShowScrollbar)
+                return;
+
             if (!_listbox.CanScroll)
                 return;
 
@@ -99,7 +127,7 @@ namespace TheBlackRoom.MonoGame.Gui
             var scrollBtnHeight = 40;
 
             //rect for entire ScrollBar
-            var scrollRect = new Rectangle(ElementBounds.Right - scrollBtnWidth, ElementBounds.Y, scrollBtnWidth, ElementBounds.Height);
+            var scrollRect = new Rectangle(drawBounds.Right - scrollBtnWidth, drawBounds.Y, scrollBtnWidth, drawBounds.Height);
 
             //rect for scroll up/down buttons
             var scrollUpRect = new Rectangle(scrollRect.X, scrollRect.Y, scrollBtnWidth, scrollBtnHeight);
@@ -114,13 +142,6 @@ namespace TheBlackRoom.MonoGame.Gui
             var ScrollSmallChange = (float)_listbox.ScrollParameters.GetScrollBarSmallChange(RealItemHeight);
             var ScrollLargeChange = (float)_listbox.ScrollParameters.GetScrollBarLargeChange(RealItemHeight);
             var ScrollValue = (float)_listbox.ScrollPosition.GetScrollBarValue(RealItemHeight);
-
-
-            //var offset = scrollBarRect.Height * ScrollValue / (ScrollMaximum - ScrollLargeChange + ScrollSmallChange);
-            //var len = scrollBarRect.Height * ScrollSmallChange / (ScrollMaximum - ScrollLargeChange + ScrollSmallChange);
-            //var scrollBarVal = new Rectangle(scrollRect.X, scrollBarRect.Y + offset, scrollBtnWidth, (int)(ScrollLargeChange * scale));
-            //var scrollBarVal = new Rectangle(scrollRect.X, scrollBarRect.Y + (int)offset, scrollBtnWidth, (int)len); //works, but not big enough
-
 
             //Rect for the bar
             var barHeight = scrollBarRect.Height * ScrollLargeChange / (ScrollMaximum - ScrollMinimum);
@@ -157,8 +178,19 @@ namespace TheBlackRoom.MonoGame.Gui
             if (item == null)
                 return null;
 
+            //Try to format the object based on a format string
             if (!string.IsNullOrEmpty(FormatString))
-                return string.Format(FormatString, item);
+            {
+                try
+                {
+                    return string.Format(FormatString, item);
+                }
+                catch (FormatException) { }
+            }
+
+            //If the item is already string, then return that
+            if (item is string s)
+                return s;
 
             return item.ToString();
         }
@@ -193,9 +225,10 @@ namespace TheBlackRoom.MonoGame.Gui
             }
         }
 
-        public Func<object, string> GetItemText { get; set; }
-
-        public event EventHandler<DrawItemEventArgs> DrawItem;
+        /// <summary>
+        /// Occurs when the Gui Element Alignment property has changed
+        /// </summary>
+        protected virtual void OnAlignmentChanged() { }
 
         public class DrawItemEventArgs : EventArgs
         {

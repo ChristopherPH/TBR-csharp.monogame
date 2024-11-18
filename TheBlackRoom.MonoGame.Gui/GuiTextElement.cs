@@ -1,11 +1,16 @@
-﻿using Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace TheBlackRoom.MonoGame.Gui
 {
-    public abstract class geTextElement : geElement
+    /// <summary>
+    /// Base class for a Gui Element containing text, defining the font and fore colour
+    /// </summary>
+    public abstract class GuiTextElement : GuiElement
     {
+        /// <summary>
+        /// Font of Gui Text Element
+        /// </summary>
         public SpriteFont Font
         {
             get => _Font;
@@ -18,6 +23,9 @@ namespace TheBlackRoom.MonoGame.Gui
         }
         private SpriteFont _Font = null;
 
+        /// <summary>
+        /// Foreground Colour of Gui Text Element
+        /// </summary>
         public Color ForeColour
         {
             get => _ForeColour;
@@ -30,7 +38,14 @@ namespace TheBlackRoom.MonoGame.Gui
         }
         private Color _ForeColour = Color.Black;
 
+        /// <summary>
+        /// Occurs when the Gui Text Element Font property has changed
+        /// </summary>
         protected virtual void OnFontChanged() { }
+
+        /// <summary>
+        /// Occurs when the Gui Text Element Foreground Colour property has changed
+        /// </summary>
         protected virtual void OnForeColourChanged() { }
     }
 }

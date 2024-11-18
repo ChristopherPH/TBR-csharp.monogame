@@ -9,9 +9,10 @@
     <Import_RootNamespace>TheBlackRoom.MonoGame.Gui</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)geElement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)geLabel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)geListBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)geTextElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiListBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiTextElement.cs" />
   </ItemGroup>
 </Project>
