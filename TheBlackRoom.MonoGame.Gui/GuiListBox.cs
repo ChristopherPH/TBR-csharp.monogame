@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using TheBlackRoom.MonoGame.Drawing;
-using TheBlackRoom.System.Helpers.IListHelpers;
+using TheBlackRoom.Core.Helpers.IListHelpers;
 
 namespace TheBlackRoom.MonoGame.Gui
 {
