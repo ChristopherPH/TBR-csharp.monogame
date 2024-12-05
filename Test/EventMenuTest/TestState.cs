@@ -108,8 +108,10 @@ namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
         ParticleManager pm = new ParticleManager();
         Random rand = new Random();
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             EventMenuControl.Update();
 
             foreach (EventMenuItemActions action in Enum.GetValues(typeof(EventMenuItemActions)))

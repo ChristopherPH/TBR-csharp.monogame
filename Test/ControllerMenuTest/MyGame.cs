@@ -29,7 +29,7 @@ namespace TheBlackRoom.MonoGame.Test.ControllerMenuTest
                 spriteBatch.DrawString(_font, s, new Vector2(102, 80), Color.Black);
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
             var c = controllerUtility.GetController();
             if (c != null)

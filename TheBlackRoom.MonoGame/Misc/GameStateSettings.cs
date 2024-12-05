@@ -34,7 +34,7 @@ namespace TheBlackRoom.MonoGame.Misc
             SettingsMenu.Draw(spriteBatch, _font, MenuRect, true);
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
             var rc = SettingsMenu.Update(gameTime, out object MenuAction);
 
@@ -84,7 +84,7 @@ namespace TheBlackRoom.MonoGame.Misc
             }
 
             if (!SettingsMenu.IsMenuActive)
-                Operation = GameStateOperation.CompleteState;
+                CompleteState();
         }
 
         protected override void LoadContent()

@@ -162,12 +162,14 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             }
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             inputManager.Update(PlayerIndex.One);
             
-            if ((this.stateTimer > introTimer.Delay) || inputManager.IsActionTriggered(0))
-                Operation = GameStateOperation.ChangeToState(new MenuState());
+            if ((this.stateTime > introTimer.Delay) || inputManager.IsActionTriggered(0))
+                ChangeToState(new MenuState());
 
             Interpolators.Update(gameTime.ElapsedGameTime.TotalMilliseconds);
         }
@@ -196,17 +198,19 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
                 ExtendedSpriteBatch.Alignment.Center, Color.Black, 3.0f);
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             inputManager.Update(PlayerIndex.One);
 
             if (inputManager.IsActionTriggered(0))
             {
-                Operation = GameStateOperation.AddState(pauseState);
+                AddState(pauseState);
             }
 
             if (pauseState.QuitGame)
-                Operation = GameStateOperation.CompleteState;
+                CompleteState();
         }
 
         protected override void LoadContent()
@@ -265,8 +269,10 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             MainMenu.Draw(spriteBatch, _font, new Rectangle(40, 40, 600, 600), true);
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             var rc = MainMenu.Update(gameTime, out object MenuAction);
 
             if (rc.HasFlag(MenuBase.MenuResult.PerformedAction) && (MenuAction != null))
@@ -274,12 +280,12 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
                 switch ((GameMenuOptions)MenuAction)
                 {
                     case GameMenuOptions.NewGame:
-                        Operation = GameStateOperation.AddState(new ThisIsTheGame());
+                        AddState(new ThisIsTheGame());
                         MainMenu.CloseMenu();
                         break;
 
                     case GameMenuOptions.Options:
-                        Operation = GameStateOperation.AddState(new GameStateEngineSettings());
+                        AddState(new GameStateEngineSettings());
                         break;
 
                     case GameMenuOptions.StopMusic:
@@ -295,7 +301,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
                         break;
 
                     case GameMenuOptions.Exit:
-                        Operation = GameStateOperation.CompleteState;
+                        CompleteState();
                         break;
                 }
                 MenuAction = null;
@@ -344,8 +350,10 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             MainMenu.Draw(spriteBatch, _font, new Rectangle(40, 40, 600, 600), true);
         }
 
-        public override void Update(GameTime gameTime, ref GameStateOperation Operation)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             var rc = MainMenu.Update(gameTime, out object MenuAction);
 
             if (rc.HasFlag(MenuBase.MenuResult.PerformedAction) && (MenuAction != null))
@@ -357,7 +365,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
                         break;
 
                     case GameMenuOptions.Options:
-                        Operation = GameStateOperation.AddState(new GameStateEngineSettings());
+                        AddState(new GameStateEngineSettings());
                         break;
 
                     case GameMenuOptions.QuitGame:
@@ -369,7 +377,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             }
 
             if (!MainMenu.IsMenuActive)
-                Operation = GameStateOperation.CompleteState;
+                CompleteState();
         }
 
         protected override void LoadContent()
