@@ -21,5 +21,5 @@
     <Exec Command="dotnet tool restore" />
   </Target>
   <Import Project="..\..\TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems" Label="Shared" />
-  <Import Project="..\..\TheBlackRoom.MonoGame.GameStateEngine\TheBlackRoom.MonoGame.GameStateEngine.projitems" Label="Shared" />
+  <Import Project="..\..\TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems" Label="Shared" />
 </Project>
