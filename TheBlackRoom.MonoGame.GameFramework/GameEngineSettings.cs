@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace TheBlackRoom.MonoGame.GameStateEngine
+namespace TheBlackRoom.MonoGame.GameFramework
 {
     public partial class GameEngineSettings : SettingsBase
     {

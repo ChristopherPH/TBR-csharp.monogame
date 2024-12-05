@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using TheBlackRoom.MonoGame.External;
 
-namespace TheBlackRoom.MonoGame.GameStateEngine
+namespace TheBlackRoom.MonoGame.GameFramework
 {
     /// <summary>
     /// Common XNA/Monogame game, with:

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.External;
 
-namespace TheBlackRoom.MonoGame.GameStateEngine
+namespace TheBlackRoom.MonoGame.GameFramework
 {
     public partial class GameEngine
     {

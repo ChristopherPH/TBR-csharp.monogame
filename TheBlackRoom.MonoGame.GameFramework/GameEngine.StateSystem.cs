@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TheBlackRoom.MonoGame.GameStateEngine
+namespace TheBlackRoom.MonoGame.GameFramework
 {
     public partial class GameEngine
     {

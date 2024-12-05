@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using System;
 
-namespace TheBlackRoom.MonoGame.GameStateEngine
+namespace TheBlackRoom.MonoGame.GameFramework
 {
     /// <summary>
     /// Game State class that can be added to a Game Engine, allowing
