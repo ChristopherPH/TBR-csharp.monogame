@@ -1,11 +1,9 @@
-﻿using TheBlackRoom.MonoGame.External;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Collections.Generic;
-using System.Linq;
+using System;
+using TheBlackRoom.MonoGame.External;
 
 namespace TheBlackRoom.MonoGame.GameStateEngine
 {
@@ -27,27 +25,23 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
     /// - Input Manager / remapper
     /// - Mouse / Gamepad / keyboard support
     /// </summary>
-    public abstract class GameEngine : Game
+    public abstract partial class GameEngine : Game
     {
         protected abstract int GameResolutionWidth { get; }
         protected abstract int GameResolutionHeight { get; }
-        protected abstract GameState InitialGameState { get; }
         protected abstract string DefaultSpriteFontContentPath { get; }
-
         protected virtual string SettingsFile { get; } = "settings.xml";
         protected GameEngineSettings GameEngineSettings { get; } 
         protected virtual bool StartEndSpriteBatchInDraw { get; } = true;
 
-        public Rectangle GameRectangle { get; private set; }
+        
         public SpriteFont DefaultFont { get; private set; }
 
         SoundEffectInstance musicDefaultInstance;
         Song musicDefaultSong;
 
-        GraphicsDeviceManager graphics;
+        
         protected ExtendedSpriteBatch spriteBatch;
-        private Stack<GameState> gameStates = new Stack<GameState>();
-        private int gameRenderStates = 0;
 
         Timer fpsTimer = new Timer(500);
         double framerate = 0;
@@ -56,74 +50,18 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
 
         public GameEngine()
         {
-            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             GameEngineSettings = GameEngineSettings.LoadSettings(SettingsFile);
 
-            IndependentResolutionRendering.Init(ref graphics);
-
-            //Virtual Resolution (Game Resolution): 
-            //  Amount of pixels for Draw() to draw on. This will be scaled to the Window resolution for display.
-            //  Note: VirtualResolution doesn't need to be a valid resolution
-            IndependentResolutionRendering.SetVirtualResolution(GameResolutionWidth, GameResolutionHeight);
-
-            GameRectangle = new Rectangle(0, 0, GameResolutionWidth, GameResolutionHeight);
-
-            SetResolution(GameEngineSettings.Video.Width,
+            InitVideo(GameEngineSettings.Video.Width,
                 GameEngineSettings.Video.Height,
                 GameEngineSettings.Video.WindowMode,
-                GameEngineSettings.Video.VSync, false);
+                GameEngineSettings.Video.VSync);
 
             SetVolume(GameEngineSettings.Audio.MasterVolume, 
                 GameEngineSettings.Audio.MusicVolume, false);
 
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-        }
-
-        public void SetResolution(int Width, int Height, VideoSettings.WindowModeTypes WindowMode, bool VSync, bool SaveSettings)
-        {
-            this.IsFixedTimeStep = VSync;
-            graphics.SynchronizeWithVerticalRetrace = VSync;
-
-            switch (WindowMode)
-            {
-                case VideoSettings.WindowModeTypes.Windowed:
-                    Window.IsBorderless = false;
-
-                    var x = (GraphicsDevice.DisplayMode.Width - Width) / 2;
-                    var y = (GraphicsDevice.DisplayMode.Height - Height) / 2;
-                    Window.Position = new Point(x, y);
-
-                    IndependentResolutionRendering.SetResolution(Width, Height, false);
-                    break;
-
-
-                case VideoSettings.WindowModeTypes.Fullscreen:
-                    Window.IsBorderless = false;
-                    IndependentResolutionRendering.SetResolution(Width, Height, true);
-                    break;
-
-
-                case VideoSettings.WindowModeTypes.WindowedFullscreen:
-                    Window.IsBorderless = true;
-                    Window.Position = new Point(0, 0);
-                    IndependentResolutionRendering.SetResolution(
-                        GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height, false);
-                    break;
-            }
-
-            //TODO: Ensure video changed successfully before saving
-
-
-            if (SaveSettings)
-            {
-                GameEngineSettings.Video.Width = Width;
-                GameEngineSettings.Video.Height = Height;
-                GameEngineSettings.Video.WindowMode = WindowMode;
-                GameEngineSettings.Video.VSync = VSync;
-
-                GameEngineSettings.SaveSettings(SettingsFile);
-            }
         }
 
         public void SetVolume(int MasterVolume, int MusicVolume, bool SaveSettings)
@@ -254,12 +192,12 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
             base.Initialize();
 
             //set up the initial state AFTER everything else has been initialized
-            var stateInstance = InitialGameState;
+            InitGameStates();
+        }
 
-            stateInstance.SetupState(this);
-            gameStates.Push(stateInstance);
-            gameRenderStates = 1;
-            stateInstance.OnStateStarted(false);
+        protected override void OnActivated(object sender, EventArgs args)
+        {
+            base.OnActivated(sender, args);
         }
 
         /// <summary>
@@ -268,6 +206,8 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
         /// </summary>
         protected override void LoadContent()
         {
+            base.LoadContent();
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new ExtendedSpriteBatch(GraphicsDevice);
 
@@ -281,7 +221,12 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
         /// </summary>
         protected override void UnloadContent()
         {
+            base.UnloadContent();
+
             // TODO: Unload any non ContentManager content here
+
+            spriteBatch?.Dispose();
+            spriteBatch = null;
         }
 
         /// <summary>
@@ -291,61 +236,14 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (gameStates.Count == 0)
+            base.Update(gameTime);
+
+            if (!UpdateGameStates(gameTime))
             {
-                gameRenderStates = 0;
                 StopMusic();
                 Exit();
                 return;
             }
-
-            var CurrentState = gameStates.Peek();
-            GameStateOperation Operation = null;
-
-            CurrentState.Update(gameTime, ref Operation);
-
-            //save state time, run state update logic
-            CurrentState.stateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            if (Operation != null)
-            {
-                if (Operation.CompleteCurrentState)
-                {
-                    //complete the state and remove it
-                    CurrentState.OnStateStopped(false);
-                    gameStates.Pop();
-                    CurrentState.Dispose();
-
-                    //go back to prev state if not moving to next state
-                    if ((Operation.StateToPush == null) && (gameStates.Count > 0))
-                        gameStates.Peek().OnStateStarted(true);
-                }
-                else if (Operation.StateToPush != null)
-                {
-                    //state is still running and we are moving to next state, pause current state
-                    CurrentState.OnStateStopped(true);
-                }
-
-                //move to next state
-                if (Operation.StateToPush != null)
-                {
-                    gameStates.Push(Operation.StateToPush);
-                    Operation.StateToPush.SetupState(this);
-                    Operation.StateToPush.OnStateStarted(false);
-                }
-
-                //our states have changed, determine how many states to render
-                gameRenderStates = 0;
-
-                foreach (var state in gameStates)
-                {
-                    gameRenderStates++;
-                    if (!state.RenderPreviousState)
-                        break;
-                }
-            }
-
-            base.Update(gameTime);
         }
 
 
@@ -364,33 +262,12 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
 
                 if (StartEndSpriteBatchInDraw)
                 {
-                    /* SpriteSortMode.Immediate draws a sprite right away, whereas
-                     * SpriteSortMode.Deferred waits until spriteBatch.End().
-                     * When using RasterizerState.ScissorTestEnable = true, one can
-                     * set spriteBatch.GraphicsDevice.ScissorRectangle to crop the
-                     * draw. Note that Immediate will allow changes to the
-                     * ScissorRectangle for each draw, whereas Deferred takes the
-                     * last ScissorRectangle, so this requires multiple spriteBatch
-                     * Begin() and End() calls.
-                     * 
-                     * According to the answer of the following link:
-                     * https://gamedev.stackexchange.com/questions/82799/in-monogame-why-is-multiple-tile-drawing-slow-when-rendering-in-windowed-fulls
-                     * It is best to use the same texture as much as possible when
-                     * using Deferred, as it avoids a texture flush. This means
-                     * group draws to the same texture as much as possible.
-                     */
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
-                        null, null, new RasterizerState() { ScissorTestEnable = true },
-                        null, DrawMatrix);
+                    BeginBatchDraw();
 
                     spriteBatch.FillRectangle(GameRectangle, Color.CornflowerBlue);
                 }
 
-                //draw states back to front
-                foreach (var state in gameStates.Take(gameRenderStates).Reverse())
-                {
-                    state.Draw(gameTime, spriteBatch, GameRectangle);
-                }
+                DrawGameStates(gameTime);
 
                 //draw fps
                 if (ShowGraphicsInfo)
@@ -408,22 +285,12 @@ namespace TheBlackRoom.MonoGame.GameStateEngine
                 }
 
                 if (StartEndSpriteBatchInDraw)
-                    spriteBatch.End();
+                {
+                    EndBatchDraw();
+                }
             }
 
             base.Draw(gameTime);
-        }
-
-        protected Matrix DrawMatrix => IndependentResolutionRendering.getTransformationMatrix();
-
-
-        protected Vector2 TranslateWindowToGame(Vector2 Location)
-        {
-            var vp = new Vector2(
-                IndependentResolutionRendering.ViewportX, 
-                IndependentResolutionRendering.ViewportY);
-
-            return Vector2.Transform(Location - vp, Matrix.Invert(DrawMatrix));
         }
     }
 }
