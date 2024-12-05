@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.External;
 using TheBlackRoom.MonoGame.MenuSystem;
 
@@ -152,12 +153,12 @@ namespace TheBlackRoom.MonoGame.Misc
             ItemRect.Offset(2, 2);
 
             spriteBatch.DrawString(spriteFont, MenuTitle, ItemRect,
-                ExtendedSpriteBatch.Alignment.Center, Color.Black, 1.5f);
+                Alignment.Center, Color.Black, 1.5f);
 
             ItemRect.Offset(-2, -2);
 
             spriteBatch.DrawString(spriteFont, MenuTitle, ItemRect,
-                ExtendedSpriteBatch.Alignment.Center, Color.DarkTurquoise, 1.5f);
+                Alignment.Center, Color.DarkTurquoise, 1.5f);
         }
 
         protected override void DrawItem(ExtendedSpriteBatch spriteBatch, SpriteFont spriteFont, Rectangle MenuRect, 
@@ -173,7 +174,7 @@ namespace TheBlackRoom.MonoGame.Misc
             }
 
             spriteBatch.DrawString(spriteFont, CurrentItem.Text, ItemRect, 
-                ExtendedSpriteBatch.Alignment.Center, c, scale);
+                Alignment.Center, c, scale);
         }
 
         protected override void DrawChoice(ExtendedSpriteBatch spriteBatch, SpriteFont spriteFont, Rectangle MenuRect,
@@ -194,7 +195,7 @@ namespace TheBlackRoom.MonoGame.Misc
 
             var r = new Rectangle(ItemRect.X, ItemRect.Y, (int)size.X, ItemRect.Height);
             spriteBatch.DrawString(spriteFont, CurrentItem.Text, r,
-                ExtendedSpriteBatch.Alignment.Center, c, scale);
+                Alignment.Center, c, scale);
 
             int x = ItemRect.Left + (int)size.X + PixelsBetweenChoices;
 
@@ -218,7 +219,7 @@ namespace TheBlackRoom.MonoGame.Misc
                     r = new Rectangle(x, ItemRect.Y, (int)size.X, ItemRect.Height);
 
                     spriteBatch.DrawString(spriteFont, choice.Text, r,
-                        ExtendedSpriteBatch.Alignment.Center, c, scale);
+                        Alignment.Center, c, scale);
 
                     x += (int)size.X + PixelsBetweenChoices;
                 }
@@ -252,7 +253,7 @@ namespace TheBlackRoom.MonoGame.Misc
                 r = new Rectangle(x, ItemRect.Y, (int)size.X, ItemRect.Height);
 
                 spriteBatch.DrawString(spriteFont, SelectedChoice.Text, r,
-                    ExtendedSpriteBatch.Alignment.Center, c, scale);
+                    Alignment.Center, c, scale);
 
                 x += (int)size.X + PixelsBetweenChoices;
 

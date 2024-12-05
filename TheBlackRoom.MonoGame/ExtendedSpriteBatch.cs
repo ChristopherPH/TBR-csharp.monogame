@@ -22,32 +22,12 @@ namespace TheBlackRoom.MonoGame
             this.WhiteTexture.SetData(new Color[] { Color.White });
         }
 
-
-        /// <summary>
-        /// Draw texture to location with no tint
-        /// </summary>
-        /// <param name="texture"></param>
-        /// <param name="destinationRectangle"></param>
-        public void Draw(Texture2D texture, Rectangle destinationRectangle)
-        {
-            this.Draw(texture, destinationRectangle, Color.White);
-        }
-
         public void DrawPixel(Vector2 Position, Color color, float Scale = 1)
         {
             this.Draw(this.WhiteTexture, Position, null, color, 
                 0f, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0);
         }
 
-        /// <summary>
-        /// Draw texture to location with no tint
-        /// </summary>
-        /// <param name="texture"></param>
-        /// <param name="destinationRectangle"></param>
-        public void Draw(Texture2D texture, Vector2 destination)
-        {
-            this.Draw(texture, new Rectangle(destination.ToPoint(), texture.Bounds.Size), Color.White);
-        }
 
         /// <summary>
         /// Draw a line between the two supplied points.
@@ -112,29 +92,6 @@ namespace TheBlackRoom.MonoGame
             Alpha = Math.Min(1.0f, Alpha);
             Alpha = Math.Max(0.0f, Alpha);
             this.Draw(this.WhiteTexture, rectangle, color * Alpha);
-        }
-
-        [Flags]
-        public enum Alignment { Center = 0, Left = 1, Right = 2, Top = 4, Bottom = 8 }
-
-        public void DrawString(SpriteFont font, string text, Rectangle bounds, Alignment align, Color color, float scale = 1.0f)
-        {
-            var size = font.MeasureString(text);
-            var pos = new Vector2(bounds.Left + bounds.Width / 2,
-                             bounds.Top + bounds.Height / 2);
-            var origin = size * 0.5f;
-
-            if (align.HasFlag(Alignment.Left))
-                origin.X += bounds.Width / 2 - (size.X * scale) / 2;
-            else if (align.HasFlag(Alignment.Right))
-                origin.X -= bounds.Width / 2 - (size.X * scale) / 2;
-
-            if (align.HasFlag(Alignment.Top))
-                origin.Y += bounds.Height / 2 - (size.Y * scale) / 2;
-            else if (align.HasFlag(Alignment.Bottom))
-                origin.Y -= bounds.Height / 2 - (size.Y * scale) / 2;
-
-            DrawString(font, text, pos, color, 0, origin, scale, SpriteEffects.None, 0);
         }
 
         public void DrawPoly(Vector2[] Verticies, Color color, float Thickness = 1.0f)

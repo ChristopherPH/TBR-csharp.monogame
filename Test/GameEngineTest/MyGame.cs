@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.External;
 using TheBlackRoom.MonoGame.GameFramework;
 using TheBlackRoom.MonoGame.Interpolator;
@@ -195,7 +196,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
         {
             //spriteBatch.FillRectangle(GameRectangle, Color.Green);
             spriteBatch.DrawString(_font, "Playing Game", GameRectangle,
-                ExtendedSpriteBatch.Alignment.Center, Color.Black, 3.0f);
+                Alignment.Center, Color.Black, 3.0f);
         }
 
         public override void Update(GameTime gameTime)
