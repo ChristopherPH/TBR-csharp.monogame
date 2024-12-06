@@ -18,12 +18,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interpolator\InterpolatorBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interpolator\InterpolatorCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interpolator\Interpolators.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Misc\GameStateSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MenuSystem\MenuBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MenuSystem\MenuItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MenuSystem\MenuItemBuiltIn.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MenuSystem\MenuItemCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Misc\SimpleMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Stock\SimpleMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)External\IndependentResolutionRendering.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)External\SerializableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SettingsBase.cs" />

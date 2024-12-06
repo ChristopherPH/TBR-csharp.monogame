@@ -1,17 +1,12 @@
-﻿using TheBlackRoom.MonoGame;
-using TheBlackRoom.MonoGame.MenuSystem;
-using TheBlackRoom.MonoGame.GameFramework;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TheBlackRoom.MonoGame.MenuSystem;
+using TheBlackRoom.MonoGame.Stock;
 
-namespace TheBlackRoom.MonoGame.Misc
+namespace TheBlackRoom.MonoGame.GameFramework.Stock
 {
-    class GameStateEngineSettings : GameState
+    public class GameStateEngineSettings : GameState
     {
         SpriteFont _font;
         SimpleMenu SettingsMenu = new SimpleMenu(string.Empty, new MenuItem[]

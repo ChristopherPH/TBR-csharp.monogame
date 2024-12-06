@@ -1,8 +1,8 @@
 ﻿using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.MenuSystem;
-using TheBlackRoom.MonoGame.Misc;
 using TheBlackRoom.MonoGame.Interpolator;
 using TheBlackRoom.MonoGame.GameFramework;
+using TheBlackRoom.MonoGame.Stock;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

@@ -5,9 +5,10 @@ using System;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.External;
 using TheBlackRoom.MonoGame.GameFramework;
+using TheBlackRoom.MonoGame.GameFramework.Stock;
 using TheBlackRoom.MonoGame.Interpolator;
 using TheBlackRoom.MonoGame.MenuSystem;
-using TheBlackRoom.MonoGame.Misc;
+using TheBlackRoom.MonoGame.Stock;
 
 namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
 {
