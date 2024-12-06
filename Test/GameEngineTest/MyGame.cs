@@ -69,8 +69,8 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
 
             var curvepos = curi.Interpolate();
             //spriteBatch.DrawEquilateralTriangle(curvepos, 20, Color.Black, -30, 5);
-            // spriteBatch.DrawString(_font, string.Format("{0} {1}", (int)curvepos.X, (int)curvepos.Y), 
-            //    curvepos + new Vector2(40, -10), 
+            // spriteBatch.DrawString(_font, string.Format("{0} {1}", (int)curvepos.X, (int)curvepos.Y),
+            //    curvepos + new Vector2(40, -10),
             //    Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             spriteBatch.DrawString(_font, "Testing", curvepos + new Vector2(2, 2), textshadow, rot, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -93,8 +93,8 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             //var c_end = Color.Wheat;
 
             DrawFade(spriteBatch, 25, 400, 100, "No Premultiply", c_start, c_end, false);
-            DrawFade(spriteBatch, 25, 510, 100, "Premultiplied (pre lerp)", 
-                Color.FromNonPremultiplied(c_start.ToVector4()), 
+            DrawFade(spriteBatch, 25, 510, 100, "Premultiplied (pre lerp)",
+                Color.FromNonPremultiplied(c_start.ToVector4()),
                 Color.FromNonPremultiplied(c_end.ToVector4()), false);
             DrawFade(spriteBatch, 25, 620, 100, "Premultiplied (post lerp)", c_start, c_end, true);
 
@@ -131,10 +131,10 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
               var tmp4 = Color.FromNonPremultiplied(new Color(Color.Red, 64).ToVector4());
               var tmp25 = Color.Red * 0.25f;
 
-              spriteBatch.FillRectangle(new Rectangle(200, 400, 200, 200), 
+              spriteBatch.FillRectangle(new Rectangle(200, 400, 200, 200),
                   Color.FromNonPremultiplied(
                   Color.Lerp(new Color(Color.Red, 64), new Color(Color.Blue, 192), 0.5f).ToVector4()));
-            
+
             spriteBatch.FillRectangle(new Rectangle(0, 600, 200, 200), Color.Red * .25f);
             spriteBatch.FillRectangle(new Rectangle(400, 600, 200, 200), Color.Blue * .75f);
             spriteBatch.FillRectangle(new Rectangle(200, 600, 200, 200), Color.Lerp(Color.Red * .25f, Color.Blue * .75f, 0.5f));
@@ -168,7 +168,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             base.Update(gameTime);
 
             inputManager.Update(PlayerIndex.One);
-            
+
             if ((this.stateTime > introTimer.Delay) || inputManager.IsActionTriggered(0))
                 ChangeToState(new MenuState());
 
@@ -277,7 +277,7 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
             var rc = MainMenu.Update(gameTime, out object MenuAction);
 
             if (rc.HasFlag(MenuBase.MenuResult.PerformedAction) && (MenuAction != null))
-            { 
+            {
                 switch ((GameMenuOptions)MenuAction)
                 {
                     case GameMenuOptions.NewGame:
