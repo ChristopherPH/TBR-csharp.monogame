@@ -2,7 +2,7 @@
 .vscode/
 TheBlackRoom.MonoGame/*.user
 TheBlackRoom.MonoGame.GameFramework/*.user
-TheBlackRoom.MonoGame.Gui/*.user
+TheBlackRoom.MonoGame.GuiFramework/*.user
 Test/EventMenuTest/Content/bin/
 Test/EventMenuTest/Content/obj/
 Test/EventMenuTest/bin/

@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControllerMenuTest", "Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMenuTest", "Test\EventMenuTest\EventMenuTest.csproj", "{0F9181D4-540C-42A5-9E38-31323F477AF8}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.Gui", "TheBlackRoom.MonoGame.Gui\TheBlackRoom.MonoGame.Gui.shproj", "{D6C0C05A-9AA3-4640-8AA9-34AE5CB1F7D2}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.GuiFramework", "TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.shproj", "{D6C0C05A-9AA3-4640-8AA9-34AE5CB1F7D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,7 +54,7 @@ Global
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{d4c27630-99d7-48b6-beb2-aec222d7be7b}*SharedItemsImports = 13
-		TheBlackRoom.MonoGame.Gui\TheBlackRoom.MonoGame.Gui.projitems*{d6c0c05a-9aa3-4640-8aa9-34ae5cb1f7d2}*SharedItemsImports = 13
+		TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.projitems*{d6c0c05a-9aa3-4640-8aa9-34ae5cb1f7d2}*SharedItemsImports = 13
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{f78856c9-e605-4871-9e3c-e7be6d891e34}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{f78856c9-e605-4871-9e3c-e7be6d891e34}*SharedItemsImports = 5
 	EndGlobalSection

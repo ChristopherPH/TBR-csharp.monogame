@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.Core.Helpers.IListHelpers;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
     /// ListBox Gui Element

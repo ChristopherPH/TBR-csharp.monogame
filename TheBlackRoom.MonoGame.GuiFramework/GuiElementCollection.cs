@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
     /// Collection of Gui Elements

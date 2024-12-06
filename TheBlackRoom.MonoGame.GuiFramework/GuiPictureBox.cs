@@ -1,30 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
-    /// Label Gui Element
+    /// PictureBox Gui Element
     /// </summary>
-    public class GuiLabel : GuiTextElement
+    public class GuiPictureBox : GuiTextElement
     {
         /// <summary>
-        /// Label Text
+        /// Picture Texture
         /// </summary>
-        public string Text
+        public Texture2D Picture
         {
-            get => _Text;
+            get => _Picture;
             set
             {
-                if (_Text == value) return;
-                _Text = value;
-                OnTextChanged();
+                if (_Picture == value) return;
+                _Picture = value;
+                OnPictureChanged();
             }
         }
-        private string _Text = string.Empty;
+        private Texture2D _Picture = null;
 
         /// <summary>
-        /// Label alignment within bounds
+        /// Picture alignment within bounds
         /// </summary>
         public ContentAlignment Alignment
         {
@@ -41,14 +42,15 @@ namespace TheBlackRoom.MonoGame.Gui
 
         protected override void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
-            GuiDraw.DrawLabel(spriteBatch, drawBounds, Font,
-                Text, Alignment, ForeColour);
+            if (Picture == null) return;
+
+            GuiDraw.DrawPicture(spriteBatch, drawBounds, Picture, Alignment);
         }
 
         /// <summary>
-        /// Occurs when the Gui Element Text property has changed
+        /// Occurs when the Gui Element Picture property has changed
         /// </summary>
-        protected virtual void OnTextChanged() { }
+        protected virtual void OnPictureChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Alignment property has changed

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
     /// Base class for a Gui Element containing text, defining the font and fore colour

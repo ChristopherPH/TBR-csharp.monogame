@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
     /// Provides methods used to draw common portions of Gui Elements

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.Gui
+namespace TheBlackRoom.MonoGame.GuiFramework
 {
     /// <summary>
     /// Base class for a Gui Element, defining the element bounds and background colour

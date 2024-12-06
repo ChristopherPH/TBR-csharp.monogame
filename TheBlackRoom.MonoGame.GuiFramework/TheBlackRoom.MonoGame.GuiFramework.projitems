@@ -6,7 +6,7 @@
     <SharedGUID>d6c0c05a-9aa3-4640-8aa9-34ae5cb1f7d2</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>TheBlackRoom.MonoGame.Gui</Import_RootNamespace>
+    <Import_RootNamespace>TheBlackRoom.MonoGame.GuiFramework</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GuiElementCollection.cs" />
