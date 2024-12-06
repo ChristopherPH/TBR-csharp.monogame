@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TheBlackRoom.MonoGame;
+using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.GuiFramework;
 
 namespace GuiFrameworkDemo
@@ -12,6 +13,7 @@ namespace GuiFrameworkDemo
         private ExtendedSpriteBatch _spriteBatch;
         private SpriteFont _headerFont;
         private SpriteFont _textFont;
+        private GuiListBox _listBox;
 
         public Game1()
         {
@@ -47,9 +49,34 @@ namespace GuiFrameworkDemo
                 BorderThickness = 10,
                 DrawBorder = true,
                 Bounds = new Rectangle(10, 10, 200, 100),
-                Alignment = TheBlackRoom.MonoGame.Drawing.ContentAlignment.MiddleCenter,
+                Alignment = ContentAlignment.MiddleCenter,
+            });
             });
 
+            _listBox = new GuiListBox()
+            {
+                Font = _textFont,
+                ForeColour = Color.White,
+                BackColour = Color.Firebrick,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 10,
+                DrawBorder = true,
+                Bounds = new Rectangle(310, 10, 200, 400),
+                Alignment = ContentAlignment.MiddleLeft,
+                Items = new System.Collections.Generic.List<object>
+                {
+                    "Zero",
+                    "One",
+                    "Two",
+                },
+                ItemHeight = 50,
+                SelectedIndex = 1,
+                ShowScrollbar = true,
+                FormatString = "- {0} -",
+            };
+            _listBox.NotifyListItemsChanged();
+
+            guiElements.Add(_listBox);
         }
 
         protected override void Update(GameTime gameTime)
