@@ -37,7 +37,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
 
                 if (_Bounds == tmpValue) return;
                 _Bounds = tmpValue;
-                OnElementBoundsChanged();
+                OnBoundsChanged();
             }
         }
         private Rectangle _Bounds = Rectangle.Empty;
@@ -183,7 +183,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// <summary>
         /// Occurs when the Gui Element Bounds property has changed
         /// </summary>
-        protected virtual void OnElementBoundsChanged() {}
+        protected virtual void OnBoundsChanged() {}
 
         /// <summary>
         /// Occurs when the Gui Element Background Colour property has changed
