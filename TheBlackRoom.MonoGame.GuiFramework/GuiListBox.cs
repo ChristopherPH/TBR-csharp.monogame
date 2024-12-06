@@ -16,8 +16,6 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         
         public GuiListBox()
         {
-            GetItemText = GetItemTextInternal;
-            
             _listbox.ListItems = _Items;
         }
 
@@ -70,14 +68,35 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         }
         private ContentAlignment _Alignment = ContentAlignment.MiddleLeft;
 
+        /// <summary>
+        /// FormatString to apply to items in list, use {0} to reference list item
+        /// </summary>
         public string FormatString { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Flag indicating that DrawItem event should be used to draw list item
+        /// </summary>
         public bool OwnerDraw { get; set; } = false;
+
+        /// <summary>
+        /// Function to retrive string for list item, enabled when FormatString is
+        /// empty, used when FormatString is not sufficient
+        /// </summary>
         public Func<object, string> GetItemText { get; set; }
 
+        /// <summary>
+        /// Event raised when OwnerDraw=true to draw list item
+        /// </summary>
         public event EventHandler<DrawItemEventArgs> DrawItem;
 
+        /// <summary>
+        /// Flag indicating scrollbar should be shown
+        /// </summary>
         public bool ShowScrollbar { get; set; } = true;
 
+        /// <summary>
+        /// To be called when items are added or removed from the list
+        /// </summary>
         public void NotifyListItemsChanged() => _listbox.OnListItemsChanged();
 
         protected override void OnFontChanged()
@@ -109,7 +128,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
                 if (item == null)
                     continue;
 
-                var text = GetItemText(item);
+                var text = GetItemText != null ? GetItemText(item) : GetItemTextInternal(item);
 
                 if (string.IsNullOrEmpty(text))
                     continue;
