@@ -3,6 +3,10 @@
 TheBlackRoom.MonoGame/*.user
 TheBlackRoom.MonoGame.GameFramework/*.user
 TheBlackRoom.MonoGame.GuiFramework/*.user
+Test/ControllerMenuTest/Content/bin/
+Test/ControllerMenuTest/Content/obj/
+Test/ControllerMenuTest/bin/
+Test/ControllerMenuTest/obj/
 Test/EventMenuTest/Content/bin/
 Test/EventMenuTest/Content/obj/
 Test/EventMenuTest/bin/
@@ -11,7 +15,7 @@ Test/GameEngineTest/Content/bin/
 Test/GameEngineTest/Content/obj/
 Test/GameEngineTest/bin/
 Test/GameEngineTest/obj/
-Test/ControllerMenuTest/Content/bin/
-Test/ControllerMenuTest/Content/obj/
-Test/ControllerMenuTest/bin/
-Test/ControllerMenuTest/obj/
+Test/GuiFrameworkDemo/Content/bin/
+Test/GuiFrameworkDemo/Content/obj/
+Test/GuiFrameworkDemo/bin/
+Test/GuiFrameworkDemo/obj/

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMenuTest", "Test\Event
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.GuiFramework", "TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.shproj", "{D6C0C05A-9AA3-4640-8AA9-34AE5CB1F7D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiFrameworkDemo", "Test\GuiFrameworkDemo\GuiFrameworkDemo.csproj", "{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{0F9181D4-540C-42A5-9E38-31323F477AF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F9181D4-540C-42A5-9E38-31323F477AF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9181D4-540C-42A5-9E38-31323F477AF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{B6D6661E-C8F6-45DC-832F-8358620FA838} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
 		{F78856C9-E605-4871-9E3C-E7BE6D891E34} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
 		{0F9181D4-540C-42A5-9E38-31323F477AF8} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
+		{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541} = {5A45C856-D78A-4E21-B2DE-2B59194596BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A483EEA-3B0C-433A-9B66-60C58CAD1A8D}
@@ -53,6 +60,8 @@ Global
 		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{b6d6661e-c8f6-45dc-832f-8358620fa838}*SharedItemsImports = 5
+		TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.projitems*{bfaa471e-daaa-412f-b75b-cfbf4ea2d541}*SharedItemsImports = 5
+		TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems*{bfaa471e-daaa-412f-b75b-cfbf4ea2d541}*SharedItemsImports = 5
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{d4c27630-99d7-48b6-beb2-aec222d7be7b}*SharedItemsImports = 13
 		TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.projitems*{d6c0c05a-9aa3-4640-8aa9-34ae5cb1f7d2}*SharedItemsImports = 13
 		TheBlackRoom.MonoGame.GameFramework\TheBlackRoom.MonoGame.GameFramework.projitems*{f78856c9-e605-4871-9e3c-e7be6d891e34}*SharedItemsImports = 5
