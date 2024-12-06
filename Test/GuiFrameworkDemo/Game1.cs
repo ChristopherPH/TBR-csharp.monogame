@@ -41,39 +41,74 @@ namespace GuiFrameworkDemo
 
             guiElements.Add(new GuiLabel()
             {
-                Text = "Demo",
-                Font = _headerFont,
-                ForeColour = Color.White,
+                //GuiElement Properties
+                Name = "lblCenter",
+                Bounds = new Rectangle(10, 10, 200, 100),
                 BackColour = Color.Firebrick,
+                DrawBorder = true,
                 BorderColour = Color.DarkGray,
                 BorderThickness = 10,
-                DrawBorder = true,
-                Bounds = new Rectangle(10, 10, 200, 100),
+
+                //GuiTextElement Properties
+                Font = _headerFont,
+                ForeColour = Color.White,
+
+                //GuiLabel Properties
+                Text = "Center",
                 Alignment = ContentAlignment.MiddleCenter,
+                Padding = Padding.Empty,
             });
+
+            guiElements.Add(new GuiLabel()
+            {
+                Name = "lblPadding",
+                Bounds = new Rectangle(10, 120, 200, 100),
+
+                BackColour = Color.Firebrick,
+                DrawBorder = true,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 10,
+
+                Font = _headerFont,
+                ForeColour = Color.White,
+
+                Text = "Padding",
+                Alignment = ContentAlignment.BottomRight,
+                Padding = new Padding(0, 0, 20, 5),
             });
 
             _listBox = new GuiListBox()
             {
+                //GuiElement Properties
+                Name = "lbBasic",
+                Bounds = new Rectangle(310, 10, 200, 400),
+                BackColour = Color.Firebrick,
+                DrawBorder = true,
+                BorderThickness = 10,
+                BorderColour = Color.DarkGray,
+
+                //GuiTextElement Properties
                 Font = _textFont,
                 ForeColour = Color.White,
-                BackColour = Color.Firebrick,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 10,
-                DrawBorder = true,
-                Bounds = new Rectangle(310, 10, 200, 400),
-                Alignment = ContentAlignment.MiddleLeft,
+
+                //GuiListBox Properties
                 Items = new System.Collections.Generic.List<object>
                 {
                     "Zero",
                     "One",
                     "Two",
                 },
+
                 ItemHeight = 50,
-                SelectedIndex = 1,
-                ShowScrollbar = true,
+                Alignment = ContentAlignment.MiddleLeft,
                 FormatString = "- {0} -",
+                OwnerDraw = false,
+                GetItemText = null,
+                ShowScrollbar = true,
+                SelectedIndex = 1,
             };
+
+            _listBox.Items.Add("Three");
             _listBox.NotifyListItemsChanged();
 
             guiElements.Add(_listBox);
