@@ -114,12 +114,27 @@ namespace GuiFrameworkDemo
             guiElements.Add(_listBox);
         }
 
+        KeyboardState _LastState = Keyboard.GetState();
+
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            var keyState = Keyboard.GetState();
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keyState.IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
+
+            if (keyState.IsKeyDown(Keys.Down) && _LastState.IsKeyUp(Keys.Down))
+                _listBox.SelectionDown();
+            else if (keyState.IsKeyDown(Keys.Up) && _LastState.IsKeyUp(Keys.Up))
+                _listBox.SelectionUp();
+            else if (keyState.IsKeyDown(Keys.Home) && _LastState.IsKeyUp(Keys.Home))
+                _listBox.SelectionTop();
+            else if (keyState.IsKeyDown(Keys.End) && _LastState.IsKeyUp(Keys.End))
+                _listBox.SelectionBottom();
+
+            _LastState = keyState;
 
             base.Update(gameTime);
         }
