@@ -84,7 +84,8 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// <param name="picture">Gui Element Picture</param>
         /// <param name="alignment">Gui Element Alignment within bounds</param>
         public static void DrawPicture(ExtendedSpriteBatch spriteBatch,
-            Rectangle bounds, Texture2D picture, ContentAlignment alignment)
+            Rectangle bounds, Texture2D picture, ScaleModes scaleMode,
+            ContentAlignment alignment)
         {
             if ((spriteBatch == null) || spriteBatch.IsDisposed || bounds.IsEmpty)
                 return;
@@ -92,9 +93,26 @@ namespace TheBlackRoom.MonoGame.GuiFramework
             if (picture == null)
                 return;
 
-            var alignedRect = picture.Bounds.AlignInside(bounds, alignment);
+            var drawRect = Rectangle.Empty;
 
-            spriteBatch.Draw(picture, alignedRect);
+            switch (scaleMode)
+            {
+                default:
+                case ScaleModes.Crop:
+                    drawRect = picture.Bounds.AlignInside(bounds, alignment);
+                    break;
+
+                case ScaleModes.ScaleToFit:
+                    drawRect = bounds;
+                    break;
+
+                case ScaleModes.ScaleAspect:
+                    var scaledRect = picture.Bounds.ScaleAspect(bounds);
+                    drawRect = scaledRect.AlignInside(bounds, alignment);
+                    break;
+            }
+
+            spriteBatch.Draw(picture, drawRect);
         }
     }
 }

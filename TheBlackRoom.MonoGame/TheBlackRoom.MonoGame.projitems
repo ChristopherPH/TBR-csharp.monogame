@@ -9,6 +9,7 @@
     <Import_RootNamespace>TheBlackRoom.MonoGame</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\ScaleModes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Padding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteBatchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)External\Controls.cs" />
