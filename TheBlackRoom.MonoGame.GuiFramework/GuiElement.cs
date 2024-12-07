@@ -114,10 +114,20 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         public Point Location => Bounds.Location;
 
         /// <summary>
+        /// Updates the Gui Element
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public virtual void Update(GameTime gameTime)
+        {
+
+        }
+
+        /// <summary>
         /// Draws the Gui Element to the spriteBatch
         /// </summary>
+        /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
-        public void Draw(ExtendedSpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, ExtendedSpriteBatch spriteBatch)
         {
             if ((spriteBatch == null) || spriteBatch.IsDisposed || Bounds.IsEmpty)
                 return;
@@ -138,7 +148,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
             {
                 GuiDraw.DrawElementBackground(spriteBatch, tmpBounds, BackColour);
 
-                DrawGuiElement(spriteBatch, tmpBounds);
+                DrawGuiElement(gameTime, spriteBatch, tmpBounds);
             }
 
             if (DrawBorder)
@@ -152,7 +162,8 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// </summary>
         /// <param name="spriteBatch"></param>
         /// <param name="drawBounds">Rectangle within element bounds to draw Gui Element</param>
-        protected abstract void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
+        protected abstract void DrawGuiElement(GameTime gameTime,
+            ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
         /// <summary>
         /// Returns the area within the Gui Element border for drawing

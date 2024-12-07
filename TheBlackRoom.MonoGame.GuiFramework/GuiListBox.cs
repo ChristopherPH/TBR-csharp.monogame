@@ -112,7 +112,8 @@ namespace TheBlackRoom.MonoGame.GuiFramework
 
         protected float RealItemHeight => (ItemHeight > 0) ? ItemHeight : _FontHeight;
 
-        protected override void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
+        protected override void DrawGuiElement(GameTime gameTime,
+            ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
             if ((Font == null) || (Items == null) || (Items.Count == 0))
                 return;

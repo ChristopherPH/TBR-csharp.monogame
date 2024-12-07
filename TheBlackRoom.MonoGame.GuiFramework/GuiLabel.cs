@@ -54,7 +54,8 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         private Padding _Padding = Padding.Empty;
 
 
-        protected override void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
+        protected override void DrawGuiElement(GameTime gameTime,
+            ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
             //Shrink the bounds by padding
             drawBounds.Shrink(Padding.Left, Padding.Top, Padding.Right, Padding.Bottom);

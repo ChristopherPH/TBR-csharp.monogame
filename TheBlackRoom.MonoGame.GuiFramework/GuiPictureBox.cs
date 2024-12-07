@@ -40,7 +40,8 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         private ContentAlignment _Alignment = ContentAlignment.MiddleCenter;
 
 
-        protected override void DrawGuiElement(ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
+        protected override void DrawGuiElement(GameTime gameTime,
+            ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
             if (Picture == null) return;
 
