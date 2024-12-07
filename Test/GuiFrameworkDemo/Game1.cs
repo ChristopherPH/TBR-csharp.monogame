@@ -151,7 +151,7 @@ namespace GuiFrameworkDemo
                 e.spriteBatch.FillRectangle(e.itemBounds,
                     e.selected ? Color.DarkGreen : Color.WhiteSmoke);
                 e.spriteBatch.DrawString(lbOwnerDraw.Font, e.itemText, e.itemBounds,
-                    Alignment.Center, Color.Black);
+                    ContentAlignment.MiddleCenter, Color.Black);
             };
 
             guiElements.Add(lbOwnerDraw);

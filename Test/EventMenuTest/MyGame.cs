@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.External;
 using TheBlackRoom.MonoGame.GameFramework;
@@ -217,7 +218,7 @@ namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
             spriteBatch.DrawString(_font, "Testing", new Vector2(28, 248), Color.Wheat, -0.5f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.DrawString(_font, "Press a button to start",
                 new Rectangle(0, GameRectangle.Bottom - 100, GameRectangle.Width, 100),
-                Alignment.Center, Color.Black, _scale);
+                ContentAlignment.MiddleCenter, Color.Black, _scale);
         }
 
         public override void Update(GameTime gameTime)
@@ -271,7 +272,7 @@ namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
         {
             //spriteBatch.FillRectangle(GameRectangle, Color.Green);
             spriteBatch.DrawString(_font, "Playing Game", GameRectangle,
-                Alignment.Center, Color.Black, 3.0f);
+                ContentAlignment.MiddleCenter, Color.Black, 3.0f);
         }
 
         public override void Update(GameTime gameTime)

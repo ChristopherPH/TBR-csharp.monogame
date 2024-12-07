@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.GameFramework;
 
@@ -87,7 +88,7 @@ namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
             Rectangle GameRectangle)
         {
             spriteBatch.DrawString(_font, "Test State", GameRectangle,
-                Alignment.Center, Color.Black, 3.0f);
+                ContentAlignment.MiddleCenter, Color.Black, 3.0f);
 
             foreach (var m in menu.MenuItems)
             {
@@ -100,7 +101,7 @@ namespace TheBlackRoom.MonoGame.Tests.EventMenuTest
                     spriteBatch.DrawRectangle(r, Color.Aqua, 4);
                 }
                 spriteBatch.DrawString(_font, m.Text, r,
-                    Alignment.Center, Color.White);
+                    ContentAlignment.MiddleCenter, Color.White);
             }
 
             pm.Draw(gameTime, spriteBatch);
