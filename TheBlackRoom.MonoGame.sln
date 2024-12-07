@@ -19,6 +19,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.GuiFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiFrameworkDemo", "Test\GuiFrameworkDemo\GuiFrameworkDemo.csproj", "{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE05BD2F-52F8-4A41-AF27-EF6A454850D1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
