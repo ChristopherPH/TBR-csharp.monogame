@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System;
+using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.External;
 
@@ -281,7 +282,7 @@ namespace TheBlackRoom.MonoGame.GameFramework
                             graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 
                             graphics.IsFullScreen, framerate),
                         GameRectangle,
-                        Alignment.Top | Alignment.Right,
+                        ContentAlignment.TopRight,
                         Color.Black);
                 }
 
