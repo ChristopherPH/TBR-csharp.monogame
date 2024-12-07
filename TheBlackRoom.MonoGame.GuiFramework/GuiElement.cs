@@ -187,6 +187,35 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         }
 
         /// <summary>
+        /// Checks if the Gui Element bounds contains the given position
+        /// </summary>
+        /// <param name="value">position to check</param>
+        /// <returns>true if the Gui Element contains the given position</returns>
+        public bool HitTest(Vector2 value) => Bounds.Contains(value);
+
+        /// <summary>
+        /// Checks if the Gui Element bounds contains the given point
+        /// </summary>
+        /// <param name="value">point to check</param>
+        /// <returns>true if the Gui Element contains the given point</returns>
+        public bool HitTest(Point value) => Bounds.Contains(value);
+
+        /// <summary>
+        /// Checks if the Gui Element bounds contains the given co-ordinates
+        /// </summary>
+        /// <param name="x">x co-ordinate to check</param>
+        /// <param name="y">y co-ordinate to check</param>
+        /// <returns>true if the Gui Element contains the given co-ordinates</returns>
+        public bool HitTest(float x, float y) => Bounds.Contains(x, y);
+
+        /// <summary>
+        /// Checks if the Gui Element bounds contains the given rectangle
+        /// </summary>
+        /// <param name="value">position to check</param>
+        /// <returns>true if the Gui Element contains the given position</returns>
+        public bool HitTest(Rectangle value) => Bounds.Contains(value);
+
+        /// <summary>
         /// Occurs when the Gui Element Name property has changed
         /// </summary>
         protected virtual void OnNameChanged() {}
