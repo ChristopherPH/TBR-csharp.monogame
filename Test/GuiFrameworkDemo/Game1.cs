@@ -82,7 +82,7 @@ namespace GuiFrameworkDemo
             {
                 //GuiElement Properties
                 Name = "lbBasic",
-                Bounds = new Rectangle(310, 10, 200, 400),
+                Bounds = new Rectangle(310, 10, 200, 300),
                 BackColour = Color.Firebrick,
                 DrawBorder = true,
                 BorderThickness = 10,
@@ -119,7 +119,7 @@ namespace GuiFrameworkDemo
             {
                 //GuiElement Properties
                 Name = "lbOwnerDraw",
-                Bounds = new Rectangle(520, 10, 200, 400),
+                Bounds = new Rectangle(520, 10, 200, 300),
                 BackColour = Color.Firebrick,
                 DrawBorder = true,
                 BorderThickness = 10,
@@ -155,6 +155,70 @@ namespace GuiFrameworkDemo
             };
 
             guiElements.Add(lbOwnerDraw);
+
+
+            guiElements.Add(new GuiPictureBox()
+            {
+                //GuiElement Properties
+                Name = "pbTileTL",
+                Bounds = new Rectangle(10, 250, 100, 100),
+                DrawBorder = true,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 1,
+
+                //GuiPictureBox Properties
+                Alignment = ContentAlignment.BottomRight,
+                Picture = Content.Load<Texture2D>("avatar"),
+                ScaleMode = ScaleModes.Crop,
+            });
+
+
+            guiElements.Add(new GuiPictureBox()
+            {
+                //GuiElement Properties
+                Name = "pbTileBL",
+                Bounds = new Rectangle(10, 375, 40, 40),
+                DrawBorder = true,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 1,
+
+                //GuiPictureBox Properties
+                Alignment = ContentAlignment.TopLeft,
+                Picture = Content.Load<Texture2D>("avatar"),
+                ScaleMode = ScaleModes.Crop,
+            });
+
+
+            guiElements.Add(new GuiPictureBox()
+            {
+                //GuiElement Properties
+                Name = "pbTileTR",
+                Bounds = new Rectangle(120, 250, 140, 100),
+                DrawBorder = true,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 1,
+
+                //GuiPictureBox Properties
+                Alignment = ContentAlignment.TopCenter,
+                Picture = Content.Load<Texture2D>("avatar"),
+                ScaleMode = ScaleModes.ScaleToFit,
+            });
+
+
+            guiElements.Add(new GuiPictureBox()
+            {
+                //GuiElement Properties
+                Name = "pbTileBR",
+                Bounds = new Rectangle(120, 375, 140, 100),
+                DrawBorder = true,
+                BorderColour = Color.DarkGray,
+                BorderThickness = 1,
+
+                //GuiPictureBox Properties
+                Alignment = ContentAlignment.TopRight,
+                Picture = Content.Load<Texture2D>("avatar"),
+                ScaleMode = ScaleModes.ScaleAspect,
+            });
         }
 
         KeyboardState _LastKeyboardState = Keyboard.GetState();
@@ -206,7 +270,9 @@ namespace GuiFrameworkDemo
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null,
+                new RasterizerState() { ScissorTestEnable = true }, null, null);
+
             guiElements.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
