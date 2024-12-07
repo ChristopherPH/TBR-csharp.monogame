@@ -157,29 +157,46 @@ namespace GuiFrameworkDemo
             guiElements.Add(lbOwnerDraw);
         }
 
-        KeyboardState _LastState = Keyboard.GetState();
+        KeyboardState _LastKeyboardState = Keyboard.GetState();
+        MouseState _LastMouseState = Mouse.GetState();
 
         protected override void Update(GameTime gameTime)
         {
-            var keyState = Keyboard.GetState();
+            var keyboardState = Keyboard.GetState();
+            var mouseState = Mouse.GetState();
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keyState.IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || keyboardState.IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
 
-            if (keyState.IsKeyDown(Keys.Down) && _LastState.IsKeyUp(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down) && _LastKeyboardState.IsKeyUp(Keys.Down))
                 _listBox.SelectionDown();
-            else if (keyState.IsKeyDown(Keys.Up) && _LastState.IsKeyUp(Keys.Up))
+            else if (keyboardState.IsKeyDown(Keys.Up) && _LastKeyboardState.IsKeyUp(Keys.Up))
                 _listBox.SelectionUp();
-            else if (keyState.IsKeyDown(Keys.Home) && _LastState.IsKeyUp(Keys.Home))
+            else if (keyboardState.IsKeyDown(Keys.Home) && _LastKeyboardState.IsKeyUp(Keys.Home))
                 _listBox.SelectionTop();
-            else if (keyState.IsKeyDown(Keys.End) && _LastState.IsKeyUp(Keys.End))
+            else if (keyboardState.IsKeyDown(Keys.End) && _LastKeyboardState.IsKeyUp(Keys.End))
                 _listBox.SelectionBottom();
 
-            _LastState = keyState;
+            if (mouseState.LeftButton.HasFlag(ButtonState.Pressed) && !_LastMouseState.LeftButton.HasFlag(ButtonState.Pressed))
+            {
+                var p = new Point(mouseState.X, mouseState.Y);
+                var element = guiElements.GetElementAt(p);
+                if (element != null)
+                {
+                    System.Diagnostics.Debug.Print($"Cicked on {element.Name} at {p}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Print($"Cicked on {p}");
+                }
+            }
 
             guiElements.Update(gameTime);
+
+            _LastKeyboardState = keyboardState;
+            _LastMouseState = mouseState;
 
             base.Update(gameTime);
         }
