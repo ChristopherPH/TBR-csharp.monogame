@@ -151,7 +151,7 @@ namespace GuiFrameworkDemo
                 e.spriteBatch.FillRectangle(e.itemBounds,
                     e.selected ? Color.DarkGreen : Color.WhiteSmoke);
                 e.spriteBatch.DrawString(lbOwnerDraw.Font, e.itemText, e.itemBounds,
-                    ContentAlignment.MiddleCenter, Color.Black);
+                    ContentAlignment.MiddleCenter, Color.Black, e.selected ? 1.2f : 1.0f);
             };
 
             guiElements.Add(lbOwnerDraw);
@@ -179,6 +179,8 @@ namespace GuiFrameworkDemo
 
             _LastState = keyState;
 
+            guiElements.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -188,7 +190,7 @@ namespace GuiFrameworkDemo
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            guiElements.Draw(_spriteBatch);
+            guiElements.Draw(gameTime, _spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
