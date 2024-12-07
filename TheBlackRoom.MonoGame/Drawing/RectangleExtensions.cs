@@ -14,8 +14,8 @@ namespace TheBlackRoom.MonoGame.Drawing
         /// <returns>Scaled rectangle</returns>
         public static Rectangle ScaleAspect(this Rectangle SrcRect, Rectangle Bounds, out float scaleFactor)
         {
-            var scaleHeight = Bounds.Height / SrcRect.Height;
-            var scaleWidth = Bounds.Width / SrcRect.Width;
+            var scaleHeight = (float)Bounds.Height / (float)SrcRect.Height;
+            var scaleWidth = (float)Bounds.Width / (float)SrcRect.Width;
             scaleFactor = Math.Min(scaleHeight, scaleWidth);
 
             var height = SrcRect.Height * scaleFactor;
