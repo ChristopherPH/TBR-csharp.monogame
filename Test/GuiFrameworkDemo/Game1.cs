@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.Drawing;
+using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.GuiFramework;
 
 namespace GuiFrameworkDemo
@@ -112,6 +113,48 @@ namespace GuiFrameworkDemo
             _listBox.NotifyListItemsChanged();
 
             guiElements.Add(_listBox);
+
+
+            var lbOwnerDraw = new GuiListBox()
+            {
+                //GuiElement Properties
+                Name = "lbOwnerDraw",
+                Bounds = new Rectangle(520, 10, 200, 400),
+                BackColour = Color.Firebrick,
+                DrawBorder = true,
+                BorderThickness = 10,
+                BorderColour = Color.DarkGray,
+
+                //GuiTextElement Properties
+                Font = _textFont,
+                ForeColour = Color.White,
+
+                //GuiListBox Properties
+                Items = new System.Collections.Generic.List<object>
+                {
+                    "Zero",
+                    "One",
+                    "Two",
+                },
+
+                ItemHeight = 50,
+                Alignment = ContentAlignment.MiddleLeft,
+                ShowScrollbar = true,
+                SelectedIndex = 1,
+
+                OwnerDraw = true,
+            };
+
+            lbOwnerDraw.GetItemText = (o) => $"{o} {o}";
+            lbOwnerDraw.DrawItem += (s, e) =>
+            {
+                e.spriteBatch.FillRectangle(e.itemBounds,
+                    e.selected ? Color.DarkGreen : Color.WhiteSmoke);
+                e.spriteBatch.DrawString(lbOwnerDraw.Font, e.itemText, e.itemBounds,
+                    Alignment.Center, Color.Black);
+            };
+
+            guiElements.Add(lbOwnerDraw);
         }
 
         KeyboardState _LastState = Keyboard.GetState();
