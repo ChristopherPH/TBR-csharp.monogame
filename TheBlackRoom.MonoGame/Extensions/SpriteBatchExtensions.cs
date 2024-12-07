@@ -27,35 +27,6 @@ namespace TheBlackRoom.MonoGame.Extensions
             spriteBatch.Draw(texture, position, Color.White);
         }
 
-        private static void AlignString(SpriteFont font, string text, Rectangle bounds,
-            Alignment align, float scale, out Vector2 position, out Vector2 origin)
-        {
-            var size = font.MeasureString(text);
-
-            position = new Vector2(bounds.Left + bounds.Width / 2,
-                bounds.Top + bounds.Height / 2);
-
-            origin = size * 0.5f;
-
-            if (align.HasFlag(Alignment.Left))
-                origin.X += bounds.Width / 2 - (size.X * scale) / 2;
-            else if (align.HasFlag(Alignment.Right))
-                origin.X -= bounds.Width / 2 - (size.X * scale) / 2;
-
-            if (align.HasFlag(Alignment.Top))
-                origin.Y += bounds.Height / 2 - (size.Y * scale) / 2;
-            else if (align.HasFlag(Alignment.Bottom))
-                origin.Y -= bounds.Height / 2 - (size.Y * scale) / 2;
-        }
-
-        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font,
-            string text, Rectangle bounds, Alignment align, Color color, float scale = 1.0f)
-        {
-            AlignString(font, text, bounds, align, scale, out var pos, out var origin);
-
-            spriteBatch.DrawString(font, text, pos, color, 0, origin, scale, SpriteEffects.None, 0);
-        }
-
         /// <summary>
         /// Draws text, aligned within a rectangle
         /// </summary>
@@ -79,6 +50,22 @@ namespace TheBlackRoom.MonoGame.Extensions
 
             //Do draw
             spriteBatch.DrawString(spriteFont, text, position, color);
+        }
+
+        /// <summary>
+        /// Draws text, aligned within a rectangle, with scaling
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="spriteFont">A font.</param>
+        /// <param name="text">The text which will be drawn.</param>
+        /// <param name="bounds">The drawing location on screen.</param>
+        /// <param name="textAlign">Alignment of text within bounds</param>
+        /// <param name="color">A color mask.</param>
+        /// <param name="scale">A scaling of this string.</param>
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont spriteFont,
+            string text, Rectangle bounds, ContentAlignment textAlign, Color color, float scale)
+        {
+            DrawString(spriteBatch, spriteFont, text, bounds, textAlign, color, textAlign, 0f, scale);
         }
 
         /// <summary>
@@ -122,7 +109,4 @@ namespace TheBlackRoom.MonoGame.Extensions
                 scale, spriteEffects, layerDepth);
         }
     }
-
-    [Flags]
-    public enum Alignment { Center = 0, Left = 1, Right = 2, Top = 4, Bottom = 8 }
 }
