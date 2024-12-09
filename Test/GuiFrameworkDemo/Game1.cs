@@ -5,6 +5,7 @@ using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.GuiFramework;
+using TheBlackRoom.MonoGame.GuiFramework.Borders;
 
 namespace GuiFrameworkDemo
 {
@@ -40,15 +41,15 @@ namespace GuiFrameworkDemo
             _headerFont = Content.Load<SpriteFont>("headerFont");
             _textFont = Content.Load<SpriteFont>("textFont");
 
+            var thickBorder = new GuiSolidBorder(Color.DarkGray, 10);
+
             guiElements.Add(new GuiLabel()
             {
                 //GuiElement Properties
                 Name = "lblCenter",
                 Bounds = new Rectangle(10, 10, 200, 100),
                 BackColour = Color.Firebrick,
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 10,
+                Border = thickBorder,
 
                 //GuiTextElement Properties
                 Font = _headerFont,
@@ -66,9 +67,7 @@ namespace GuiFrameworkDemo
                 Bounds = new Rectangle(10, 120, 200, 100),
 
                 BackColour = Color.Firebrick,
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 10,
+                Border = thickBorder,
 
                 Font = _headerFont,
                 ForeColour = Color.White,
@@ -84,9 +83,7 @@ namespace GuiFrameworkDemo
                 Name = "lbBasic",
                 Bounds = new Rectangle(310, 10, 200, 300),
                 BackColour = Color.Firebrick,
-                DrawBorder = true,
-                BorderThickness = 10,
-                BorderColour = Color.DarkGray,
+                Border = thickBorder,
 
                 //GuiTextElement Properties
                 Font = _textFont,
@@ -121,9 +118,7 @@ namespace GuiFrameworkDemo
                 Name = "lbOwnerDraw",
                 Bounds = new Rectangle(520, 10, 200, 300),
                 BackColour = Color.Firebrick,
-                DrawBorder = true,
-                BorderThickness = 10,
-                BorderColour = Color.DarkGray,
+                Border = thickBorder,
 
                 //GuiTextElement Properties
                 Font = _textFont,
@@ -157,14 +152,14 @@ namespace GuiFrameworkDemo
             guiElements.Add(lbOwnerDraw);
 
 
+            var thinBorder = new GuiSolidBorder(Color.DarkGray, 1);
+
             guiElements.Add(new GuiPictureBox()
             {
                 //GuiElement Properties
                 Name = "pbTileTL",
                 Bounds = new Rectangle(10, 250, 100, 100),
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 1,
+                Border = thinBorder,
 
                 //GuiPictureBox Properties
                 Alignment = ContentAlignment.BottomRight,
@@ -178,9 +173,7 @@ namespace GuiFrameworkDemo
                 //GuiElement Properties
                 Name = "pbTileBL",
                 Bounds = new Rectangle(10, 375, 40, 40),
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 1,
+                Border = thinBorder,
 
                 //GuiPictureBox Properties
                 Alignment = ContentAlignment.TopLeft,
@@ -194,9 +187,7 @@ namespace GuiFrameworkDemo
                 //GuiElement Properties
                 Name = "pbTileTR",
                 Bounds = new Rectangle(120, 250, 140, 100),
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 1,
+                Border = thinBorder,
 
                 //GuiPictureBox Properties
                 Alignment = ContentAlignment.TopCenter,
@@ -210,9 +201,7 @@ namespace GuiFrameworkDemo
                 //GuiElement Properties
                 Name = "pbTileBR",
                 Bounds = new Rectangle(120, 375, 140, 100),
-                DrawBorder = true,
-                BorderColour = Color.DarkGray,
-                BorderThickness = 1,
+                Border = thinBorder,
 
                 //GuiPictureBox Properties
                 Alignment = ContentAlignment.TopRight,
