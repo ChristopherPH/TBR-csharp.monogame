@@ -10,7 +10,7 @@ namespace TheBlackRoom.MonoGame
     public class ExtendedSpriteBatch : SpriteBatch
     {
         /// <summary>
-        /// The texture used when drawing rectangles, lines and other 
+        /// The texture used when drawing rectangles, lines and other
         /// primitives. This is a 1x1 white texture created at runtime.
         /// </summary>
         protected Texture2D WhiteTexture { get; private set; }
@@ -22,9 +22,17 @@ namespace TheBlackRoom.MonoGame
             this.WhiteTexture.SetData(new Color[] { Color.White });
         }
 
-        public void DrawPixel(Vector2 Position, Color color, float Scale = 1)
+        /// <summary>
+        /// Draws a pixel at the given position
+        /// </summary>
+        /// <param name="Position"></param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Scale"></param>
+        public void DrawPixel(Vector2 Position, Color color, float Scale = 1.0f)
         {
-            this.Draw(this.WhiteTexture, Position, null, color, 
+            this.Draw(this.WhiteTexture, Position, null, color,
                 0f, new Vector2(0, 0), new Vector2(Scale, Scale), SpriteEffects.None, 0);
         }
 
@@ -34,7 +42,9 @@ namespace TheBlackRoom.MonoGame
         /// </summary>
         /// <param name="start">Starting point.</param>
         /// <param name="end">End point.</param>
-        /// <param name="color">The draw color.</param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
         public void DrawLine(Vector2 start, Vector2 end, Color color, float Thickness = 1.0f)
         {
             float length = (end - start).Length();
@@ -42,7 +52,7 @@ namespace TheBlackRoom.MonoGame
 
             this.Draw(this.WhiteTexture, start, null,color, rotation,
                 new Vector2(0, (float)this.WhiteTexture.Height / 2),
-                new Vector2(length, Thickness), 
+                new Vector2(length, Thickness),
                 SpriteEffects.None, 0);
         }
 
@@ -50,7 +60,9 @@ namespace TheBlackRoom.MonoGame
         /// Draw a rectangle.
         /// </summary>
         /// <param name="rectangle">The rectangle to draw.</param>
-        /// <param name="color">The draw color.</param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
         /// <param name="Border">thickness of lines</param>
         /// <param name="Inset">Rectangle is inside bounding box</param>
         public void DrawRectangle(Rectangle rectangle, Color color, int Border = 1, bool Inset = false)
@@ -75,7 +87,9 @@ namespace TheBlackRoom.MonoGame
         /// Fill a rectangle.
         /// </summary>
         /// <param name="rectangle">The rectangle to fill.</param>
-        /// <param name="color">The fill color.</param>
+        /// <param name="color">The fill color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
         public void FillRectangle(Rectangle rectangle, Color color)
         {
             this.Draw(this.WhiteTexture, rectangle, color);
@@ -85,7 +99,9 @@ namespace TheBlackRoom.MonoGame
         /// Fill a rectangle with alpha
         /// </summary>
         /// <param name="rectangle">The rectangle to fill.</param>
-        /// <param name="color">The fill color.</param>
+        /// <param name="color">The fill color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
         /// <param name="Alpha">0.0f to 1.0f</param>
         public void FillRectangle(Rectangle rectangle, Color color, float Alpha)
         {
@@ -94,6 +110,14 @@ namespace TheBlackRoom.MonoGame
             this.Draw(this.WhiteTexture, rectangle, color * Alpha);
         }
 
+        /// <summary>
+        /// Draws a polygon
+        /// </summary>
+        /// <param name="Verticies"></param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Thickness"></param>
         public void DrawPoly(Vector2[] Verticies, Color color, float Thickness = 1.0f)
         {
             if ((Verticies == null) || (Verticies.Length <= 1))
@@ -106,6 +130,16 @@ namespace TheBlackRoom.MonoGame
             DrawLine(Verticies[i - 1], Verticies[0], color, Thickness);
         }
 
+        /// <summary>
+        /// Draws a equilateral triangle
+        /// </summary>
+        /// <param name="Location"></param>
+        /// <param name="Radius"></param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Angle"></param>
+        /// <param name="Thickness"></param>
         public void DrawEquilateralTriangle(Vector2 Location, float Radius, Color color, float Angle, float Thickness = 1.0f)
         {
             Angle = (float)(Math.PI / 180) * Angle;
@@ -136,7 +170,15 @@ namespace TheBlackRoom.MonoGame
             this.DrawLine(top, bl, color, Thickness);
         }
 
-
+        /// <summary>
+        /// Draws a triangle
+        /// </summary>
+        /// <param name="Rectangle"></param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Angle"></param>
+        /// <param name="Thickness"></param>
         public void DrawTriangle(Rectangle Rectangle, Color color, float Angle, float Thickness = 1.0f)
         {
             Angle = (float)(Math.PI / 180) * Angle;
@@ -146,7 +188,7 @@ namespace TheBlackRoom.MonoGame
             var bl = new Vector2(Rectangle.Left, Rectangle.Bottom);
             var br = new Vector2(Rectangle.Right, Rectangle.Bottom);
             var top = new Vector2(Rectangle.Left + len / 2, Rectangle.Top);
-            
+
             /*
             this.DrawLine(bl, br, color, Thickness);
             this.DrawLine(br, top, color, Thickness);
@@ -202,7 +244,15 @@ namespace TheBlackRoom.MonoGame
             return texture;
         }
 
-
+        /// <summary>
+        /// Dras a circle
+        /// </summary>
+        /// <param name="Radius"></param>
+        /// <param name="Location"></param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Thickness"></param>
         public void DrawCircle(int Radius, Vector2 Location, Color color, int Thickness = 1)
         {
             Texture2D circle = CreateCircle(Radius, Thickness);
