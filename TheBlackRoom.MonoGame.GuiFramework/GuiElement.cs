@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using TheBlackRoom.MonoGame.Drawing;
+using TheBlackRoom.MonoGame.GuiFramework.Interfaces;
 
 namespace TheBlackRoom.MonoGame.GuiFramework
 {
@@ -58,50 +59,9 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         private Color _BackColour = Color.Transparent;
 
         /// <summary>
-        /// Flag to indicate a border is drawn around the Gui Element
+        /// Border adornment to draw around Gui Element
         /// </summary>
-        public bool DrawBorder
-        {
-            get => _DrawBorder;
-            set
-            {
-                if (_DrawBorder  == value) return;
-                _DrawBorder = value;
-                OnDrawBorderChanged();
-            }
-        }
-        private bool _DrawBorder = false;
-
-        /// <summary>
-        /// Colour of border around Gui Element
-        /// </summary>
-        public Color BorderColour
-        {
-            get => _BorderColour;
-            set
-            {
-                if (_BorderColour  == value) return;
-                _BorderColour = value;
-                OnBorderColourChanged();
-            }
-        }
-        private Color _BorderColour = Color.Black;
-
-        /// <summary>
-        /// Thickness of border around Gui Element
-        /// </summary>
-        public int BorderThickness
-        {
-            get => _BorderThickness;
-            set
-            {
-                var tmpValue = MathHelper.Max(value, 0);
-                if (_BorderThickness  == tmpValue) return;
-                _BorderThickness = tmpValue;
-                OnBorderThicknessChanged();
-            }
-        }
-        private int _BorderThickness = 1;
+        public IGuiBorder Border { get; set; } = null;
 
         /// <summary>
         /// Returns the size of the Gui Element
@@ -140,19 +100,16 @@ namespace TheBlackRoom.MonoGame.GuiFramework
             var oldScissorRectangle = spriteBatch.GraphicsDevice.ScissorRectangle;
             spriteBatch.GraphicsDevice.ScissorRectangle = Bounds;
 
-            //Only calculate drawBounds once
-            var tmpBounds = DrawBounds;
+            //Draw the background over the whole element
+            GuiDraw.DrawBackground(spriteBatch, Bounds, BackColour);
 
-            //Draw the background and element within the border if there is room
-            if (!tmpBounds.IsEmpty)
-            {
-                GuiDraw.DrawBackground(spriteBatch, tmpBounds, BackColour);
+            //Draw the element within the content area if there is room
+            if (!ContentBounds.IsEmpty)
+                DrawGuiElement(gameTime, spriteBatch, ContentBounds);
 
-                DrawGuiElement(gameTime, spriteBatch, tmpBounds);
-            }
-
-            if (DrawBorder)
-                GuiDraw.DrawBorder(spriteBatch, Bounds, BorderColour, BorderThickness);
+            //Draw the border around the content area
+            if (Border != null)
+                Border.Draw(gameTime, spriteBatch, Bounds);
 
             spriteBatch.GraphicsDevice.ScissorRectangle = oldScissorRectangle;
         }
@@ -166,23 +123,24 @@ namespace TheBlackRoom.MonoGame.GuiFramework
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
         /// <summary>
-        /// Returns the area within the Gui Element border for drawing
+        /// Returns the area within the Gui Element border, or Rectangle.Empty if no content area
         /// </summary>
-        protected Rectangle DrawBounds
+        protected virtual Rectangle ContentBounds
         {
             get
             {
-                //Determine if there is a border
-                var borderAmount = DrawBorder ? MathHelper.Max(0, BorderThickness) : 0;
+                //Start with full bounds
+                var contentBounds = Bounds;
 
                 //Shrink the bounds by the border amount
-                var drawBounds = Bounds;
-                drawBounds.Shrink(borderAmount);
+                if (Border != null)
+                    contentBounds.Shrink(Border.BorderThickness);
 
-                if (drawBounds.Width <= 0 || drawBounds.Height <= 0)
+                //If there is no content area, return
+                if (contentBounds.Width <= 0 || contentBounds.Height <= 0)
                     return Rectangle.Empty;
 
-                return drawBounds;
+                return contentBounds;
             }
         }
 

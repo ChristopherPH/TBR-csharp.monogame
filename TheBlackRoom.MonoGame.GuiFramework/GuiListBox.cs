@@ -46,7 +46,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
                 if (_ItemHeight == value) return;
 
                 _ItemHeight = value;
-                _listbox.MaximumItemCount = DrawBounds.Height / RealItemHeight;
+                _listbox.MaximumItemCount = ContentBounds.Height / RealItemHeight;
                 _listbox.OnListItemsChanged();
             }
         }
@@ -105,7 +105,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
 
             _FontHeight = (Font == null) ? 0 : Font.MeasureString("Wy").Y;
 
-            _listbox.MaximumItemCount = DrawBounds.Height / RealItemHeight;
+            _listbox.MaximumItemCount = ContentBounds.Height / RealItemHeight;
         }
         
         float _FontHeight = 0;

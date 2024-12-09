@@ -17,5 +17,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GuiLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiListBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiTextElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiSolidBorder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiAdornment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiBorder.cs" />
   </ItemGroup>
 </Project>
