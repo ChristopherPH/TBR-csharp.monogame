@@ -188,21 +188,6 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// </summary>
         protected virtual void OnBackColourChanged() {}
 
-        /// <summary>
-        /// Occurs when the Gui Element DrawBorder property has changed
-        /// </summary>
-        protected virtual void OnDrawBorderChanged() {}
-
-        /// <summary>
-        /// Occurs when the Gui Element Border Colour property has changed
-        /// </summary>
-        protected virtual void OnBorderColourChanged() {}
-
-        /// <summary>
-        /// Occurs when the Gui Element Border Thickness property has changed
-        /// </summary>
-        protected virtual void OnBorderThicknessChanged() {}
-
 
         public override string ToString()
         {
