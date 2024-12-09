@@ -28,6 +28,11 @@ namespace TheBlackRoom.MonoGame.Drawing
             srcRect.Inflate(amount, amount);
         }
 
+        public static void Inflate(this ref Rectangle srcRect, Padding padding)
+        {
+            srcRect.Inflate(padding.Left, padding.Top, padding.Right, padding.Bottom);
+        }
+
         public static void Shrink(this ref Rectangle srcRect, int leftAmount,
             int topAmount, int rightAmount, int bottomAmount)
         {
@@ -42,6 +47,11 @@ namespace TheBlackRoom.MonoGame.Drawing
         public static void Shrink(this ref Rectangle srcRect, int x, int y)
         {
             srcRect.Inflate(-x, -y);
+        }
+
+        public static void Shrink(this ref Rectangle srcRect, Padding padding)
+        {
+            srcRect.Inflate(-padding.Left, -padding.Top, -padding.Right, -padding.Bottom);
         }
 
         /// <summary>
