@@ -226,23 +226,23 @@ namespace GuiFrameworkDemo
             var rect = new Rectangle(310, 350, 400, 100);
 
             int thick = 5;
-            GuiDraw.DrawElementBorder(_spriteBatch, rect, Color.Black, thick);
+            GuiDraw.DrawBorder(_spriteBatch, rect, Color.Black, thick);
             rect.Shrink(thick);
 
             var leftRect = rect.SliceLeft(100, out rect);
-            GuiDraw.DrawElementBorder(_spriteBatch, leftRect, Color.Blue, thick);
+            GuiDraw.DrawBorder(_spriteBatch, leftRect, Color.Blue, thick);
 
             var rightRect = rect.SliceRightPercent(0.25f, out rect);
-            GuiDraw.DrawElementBorder(_spriteBatch, rightRect, Color.Purple, thick);
+            GuiDraw.DrawBorder(_spriteBatch, rightRect, Color.Purple, thick);
 
             var topRect = rect.SliceTopPercent(0.75f, out rect);
-            GuiDraw.DrawElementBorder(_spriteBatch, topRect, Color.Red, thick);
+            GuiDraw.DrawBorder(_spriteBatch, topRect, Color.Red, thick);
 
             var bottomRect = topRect.SliceBottom(50, out var innerRect);
             bottomRect.Shrink(thick);
-            GuiDraw.DrawElementBorder(_spriteBatch, bottomRect, Color.Yellow, thick);
+            GuiDraw.DrawBorder(_spriteBatch, bottomRect, Color.Yellow, thick);
 
-            GuiDraw.DrawElementBorder(_spriteBatch, rect, Color.Green, thick);
+            GuiDraw.DrawBorder(_spriteBatch, rect, Color.Green, thick);
         }
 
 

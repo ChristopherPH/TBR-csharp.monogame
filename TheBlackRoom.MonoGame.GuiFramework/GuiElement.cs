@@ -146,13 +146,13 @@ namespace TheBlackRoom.MonoGame.GuiFramework
             //Draw the background and element within the border if there is room
             if (!tmpBounds.IsEmpty)
             {
-                GuiDraw.DrawElementBackground(spriteBatch, tmpBounds, BackColour);
+                GuiDraw.DrawBackground(spriteBatch, tmpBounds, BackColour);
 
                 DrawGuiElement(gameTime, spriteBatch, tmpBounds);
             }
 
             if (DrawBorder)
-                GuiDraw.DrawElementBorder(spriteBatch, Bounds, BorderColour, BorderThickness);
+                GuiDraw.DrawBorder(spriteBatch, Bounds, BorderColour, BorderThickness);
 
             spriteBatch.GraphicsDevice.ScissorRectangle = oldScissorRectangle;
         }

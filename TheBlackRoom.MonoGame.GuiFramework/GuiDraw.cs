@@ -16,7 +16,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// <param name="spriteBatch"></param>
         /// <param name="bounds">Gui Element Bounds</param>
         /// <param name="backColour">Gui Element Background Colour</param>
-        public static void DrawElementBackground(ExtendedSpriteBatch spriteBatch,
+        public static void DrawBackground(ExtendedSpriteBatch spriteBatch,
             Rectangle bounds, Color backColour)
         {
             if ((spriteBatch == null) || spriteBatch.IsDisposed || bounds.IsEmpty)
@@ -35,7 +35,7 @@ namespace TheBlackRoom.MonoGame.GuiFramework
         /// <param name="bounds">Gui Element Bounds</param>
         /// <param name="borderColour">Gui Element Border Colour</param>
         /// <param name="borderThickness">Gui Element Border Thickness</param>
-        public static void DrawElementBorder(ExtendedSpriteBatch spriteBatch,
+        public static void DrawBorder(ExtendedSpriteBatch spriteBatch,
             Rectangle bounds, Color borderColour, int borderThickness)
         {
             if ((spriteBatch == null) || spriteBatch.IsDisposed || bounds.IsEmpty)
