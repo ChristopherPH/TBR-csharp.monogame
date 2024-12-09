@@ -71,8 +71,8 @@ namespace TheBlackRoom.MonoGame
             {
                 this.Draw(this.WhiteTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, Border), color); //top
                 this.Draw(this.WhiteTexture, new Rectangle(rectangle.Left, rectangle.Bottom - Border, rectangle.Width, Border), color); //bottom
-                this.Draw(this.WhiteTexture, new Rectangle(rectangle.Left, rectangle.Top, Border, rectangle.Height), color); //left
-                this.Draw(this.WhiteTexture, new Rectangle(rectangle.Right - Border, rectangle.Top, Border, rectangle.Height - Border), color); //right
+                this.Draw(this.WhiteTexture, new Rectangle(rectangle.Left, rectangle.Top + Border, Border, rectangle.Height - (Border * 2)), color); //left
+                this.Draw(this.WhiteTexture, new Rectangle(rectangle.Right - Border, rectangle.Top + Border, Border, rectangle.Height - (Border * 2)), color); //right
             }
             else
             {
