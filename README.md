@@ -49,9 +49,9 @@ Features:
 - Built-in audio resolution settings
 
 
-## TheBlackRoom.MonoGame.GuiFramework
+## TheBlackRoom.MonoGame.GuiToolkit
 
-A framework for creating a basic game user interface.
+A toolkit for creating a basic game user interface.
 
 Features:
 
