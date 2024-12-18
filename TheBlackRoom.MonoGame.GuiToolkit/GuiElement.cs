@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using TheBlackRoom.MonoGame.Drawing;
-using TheBlackRoom.MonoGame.GuiFramework.Interfaces;
+using TheBlackRoom.MonoGame.GuiToolkit.Interfaces;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit
 {

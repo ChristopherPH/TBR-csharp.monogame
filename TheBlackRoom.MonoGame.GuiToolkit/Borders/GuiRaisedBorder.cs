@@ -2,7 +2,7 @@
 using System;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
-using TheBlackRoom.MonoGame.GuiFramework.Interfaces;
+using TheBlackRoom.MonoGame.GuiToolkit.Interfaces;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit.Borders
 {
