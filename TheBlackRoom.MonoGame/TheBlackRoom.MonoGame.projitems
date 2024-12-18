@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ScaleModes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\Padding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)extensions\ColorExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\SpriteBatchExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)External\Controls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\ContentAlignment.cs" />
