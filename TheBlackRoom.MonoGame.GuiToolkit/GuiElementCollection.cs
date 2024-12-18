@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// Collection of Gui Elements

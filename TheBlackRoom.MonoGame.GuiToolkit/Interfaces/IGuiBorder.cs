@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.GuiFramework.Interfaces
+namespace TheBlackRoom.MonoGame.GuiToolkit.Interfaces
 {
     /// <summary>
     /// Gui Element Border Adornment

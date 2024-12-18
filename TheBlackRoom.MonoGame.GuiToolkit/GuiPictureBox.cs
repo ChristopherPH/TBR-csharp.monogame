@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// PictureBox Gui Element

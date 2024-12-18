@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// Panel Gui Element

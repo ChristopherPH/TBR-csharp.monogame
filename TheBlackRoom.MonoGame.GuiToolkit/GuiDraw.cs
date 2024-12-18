@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// Provides methods used to draw common portions of Gui Elements

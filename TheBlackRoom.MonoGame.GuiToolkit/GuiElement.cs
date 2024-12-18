@@ -2,7 +2,7 @@
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.GuiFramework.Interfaces;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// Base class for a Gui Element, defining the element bounds and background colour

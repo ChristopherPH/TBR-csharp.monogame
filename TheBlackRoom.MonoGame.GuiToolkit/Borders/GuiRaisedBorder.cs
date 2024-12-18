@@ -4,7 +4,7 @@ using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.GuiFramework.Interfaces;
 
-namespace TheBlackRoom.MonoGame.GuiFramework.Borders
+namespace TheBlackRoom.MonoGame.GuiToolkit.Borders
 {
     /// <summary>
     /// Gui Border that draws a raised border around a Gui Element

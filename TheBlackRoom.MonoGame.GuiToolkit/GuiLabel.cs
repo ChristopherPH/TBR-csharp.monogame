@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.GuiFramework
+namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
     /// Label Gui Element
