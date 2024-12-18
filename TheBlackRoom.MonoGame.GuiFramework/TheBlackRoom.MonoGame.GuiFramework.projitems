@@ -9,6 +9,7 @@
     <Import_RootNamespace>TheBlackRoom.MonoGame.GuiFramework</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Borders\Gui3DBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiRaisedBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElementCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
