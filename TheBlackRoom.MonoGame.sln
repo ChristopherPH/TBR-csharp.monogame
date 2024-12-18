@@ -17,7 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventMenuTest", "Test\Event
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheBlackRoom.MonoGame.GuiToolkit", "TheBlackRoom.MonoGame.GuiToolkit\TheBlackRoom.MonoGame.GuiToolkit.shproj", "{D6C0C05A-9AA3-4640-8AA9-34AE5CB1F7D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiFrameworkDemo", "Test\GuiFrameworkDemo\GuiFrameworkDemo.csproj", "{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiToolkitDemo", "Test\GuiToolkitDemo\GuiToolkitDemo.csproj", "{BFAA471E-DAAA-412F-B75B-CFBF4EA2D541}"
+EndProject
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE05BD2F-52F8-4A41-AF27-EF6A454850D1}"
 	ProjectSection(SolutionItems) = preProject

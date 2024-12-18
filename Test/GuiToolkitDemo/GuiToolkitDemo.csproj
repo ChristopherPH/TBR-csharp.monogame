@@ -30,6 +30,6 @@
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
-  <Import Project="..\..\TheBlackRoom.MonoGame.GuiFramework\TheBlackRoom.MonoGame.GuiFramework.projitems" Label="Shared" />
+  <Import Project="..\..\TheBlackRoom.MonoGame.GuiToolkit\TheBlackRoom.MonoGame.GuiToolkit.projitems" Label="Shared" />
   <Import Project="..\..\TheBlackRoom.MonoGame\TheBlackRoom.MonoGame.projitems" Label="Shared" />
 </Project>
