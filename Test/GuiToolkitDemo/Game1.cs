@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Input;
 using TheBlackRoom.MonoGame;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
-using TheBlackRoom.MonoGame.GuiFramework;
-using TheBlackRoom.MonoGame.GuiFramework.Borders;
+using TheBlackRoom.MonoGame.GuiToolkit;
+using TheBlackRoom.MonoGame.GuiToolkit.Borders;
 
-namespace GuiFrameworkDemo
+namespace GuiToolkitDemo
 {
     public class Game1 : Game
     {
