@@ -69,6 +69,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         }
         private Padding _Padding = Padding.Empty;
 
+        protected override void UpdateGuiElement(GameTime gameTime) { }
+
         protected override void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {

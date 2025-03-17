@@ -112,6 +112,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
 
         protected float RealItemHeight => (ItemHeight > 0) ? ItemHeight : _FontHeight;
 
+        protected override void UpdateGuiElement(GameTime gameTime) { }
+
         protected override void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
@@ -249,6 +251,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Alignment property has changed
         /// </summary>
         protected virtual void OnAlignmentChanged() { }
+
 
         public class DrawItemEventArgs : EventArgs
         {

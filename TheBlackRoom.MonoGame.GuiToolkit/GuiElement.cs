@@ -25,7 +25,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         private string _Name = string.Empty;
 
         /// <summary>
-        /// Gui Element Bounds
+        /// Gui Element Bounds (Bounding Box)
         /// </summary>
         public Rectangle Bounds
         {
@@ -77,10 +77,16 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Updates the Gui Element
         /// </summary>
         /// <param name="gameTime"></param>
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-
+            UpdateGuiElement(gameTime);
         }
+
+        /// <summary>
+        /// Occurs when the Gui Element is to be updated
+        /// </summary>
+        /// <param name="gameTime"></param>
+        protected abstract void UpdateGuiElement(GameTime gameTime);
 
         /// <summary>
         /// Draws the Gui Element to the spriteBatch
@@ -117,13 +123,14 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// <summary>
         /// Occurs when the Gui Element is to be drawn
         /// </summary>
+        /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
         /// <param name="drawBounds">Rectangle within element bounds to draw Gui Element</param>
         protected abstract void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
         /// <summary>
-        /// Returns the area within the Gui Element border, or Rectangle.Empty if no content area
+        /// Returns the content area within the Gui Element border, or Rectangle.Empty if no content area
         /// </summary>
         protected virtual Rectangle ContentBounds
         {
