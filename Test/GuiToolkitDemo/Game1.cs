@@ -24,7 +24,7 @@ namespace GuiToolkitDemo
             IsMouseVisible = true;
         }
 
-        GuiElementCollection guiElements = new GuiElementCollection();
+        GuiPanel guiElements;
 
         protected override void Initialize()
         {
@@ -42,6 +42,12 @@ namespace GuiToolkitDemo
             _textFont = Content.Load<SpriteFont>("textFont");
 
             var thickBorder = new GuiSolidBorder(Color.DarkGray, 10);
+
+            guiElements = new GuiPanel()
+            {
+                Size = new Point(_graphics.PreferredBackBufferWidth,
+                    _graphics.PreferredBackBufferHeight),
+            };
 
             guiElements.Add(new GuiLabel()
             {
