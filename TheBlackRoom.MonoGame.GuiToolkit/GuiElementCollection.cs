@@ -1,113 +1,78 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit
 {
     /// <summary>
-    /// Collection of Gui Elements
+    /// Base class for a Gui Element Collection, which can contain other Gui Elements
     /// </summary>
-    public class GuiElementCollection
+    public abstract class GuiElementCollection : GuiElement
     {
-        protected List<GuiElement> Elements { get; } = new List<GuiElement>();
-
-        public void Add(GuiElement element)
+        protected override void UpdateGuiElement(GameTime gameTime)
         {
-            if (element == null)
-                return;
-
-            var ix = Elements.Count;
-
-            OnElementAdding(ix, element);
-
-            Elements.Add(element);
-
-            OnElementAdded(ix, element);
-        }
-
-        public void Remove(GuiElement element)
-        {
-            if (element == null)
-                return;
-
-            var ix = Elements.IndexOf(element);
-            if (ix == -1)
-                return;
-
-            OnElementRemoving(ix, element);
-
-            Elements.RemoveAt(ix);
-
-            OnElementRemoved(ix, element);
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            foreach (GuiElement element in Elements)
+            //Update all elements in collection
+            foreach (GuiElement element in ChildElements)
             {
                 element?.Update(gameTime);
             }
         }
 
-        public void Draw(GameTime gameTime, ExtendedSpriteBatch spriteBatch)
+        protected override void DrawGuiElement(GameTime gameTime,
+            ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
-            if ((spriteBatch == null) || spriteBatch.IsDisposed)
-                return;
-
-            foreach (GuiElement element in Elements)
+            //Draw all elements in collection
+            foreach (GuiElement element in ChildElements)
             {
                 element?.Draw(gameTime, spriteBatch);
             }
         }
 
+        protected IEnumerable<GuiElement> ReversedChildElements =>
+            ((IEnumerable<GuiElement>)ChildElements).Reverse();
+
+        /// <summary>
+        /// Gets the child element at the given position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public GuiElement GetElementAt(Vector2 position)
         {
-            foreach (GuiElement element in Elements)
-                if (element?.HitTest(position) ?? false)
-                    return element;
+            //Iterate back to front for correct z-order
+            foreach (GuiElement element in ReversedChildElements)
+            {
+                if (!element.HitTest(position))
+                    continue;
+
+                //Found element, check if element is a collection
+                if (element is GuiElementCollection guiElementCollection)
+                {
+                    //Return child element if hittest succeeds
+                    var childElement = guiElementCollection.GetElementAt(position);
+                    if (childElement != null)
+                        return childElement;
+                }
+
+                //Return non collection element
+                return element;
+            }
 
             return null;
         }
 
-        public GuiElement GetElementAt(Point point)
-        {
-            foreach (GuiElement element in Elements)
-                if (element?.HitTest(point) ?? false)
-                    return element;
-
-            return null;
-        }
-
-        public GuiElement GetElementAt(float x, float y)
-        {
-            foreach (GuiElement element in Elements)
-                if (element?.HitTest(x, y) ?? false)
-                    return element;
-
-            return null;
-        }
+        /// <summary>
+        /// Gets the child element at the given point
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public GuiElement GetElementAt(Point point) => GetElementAt(point.ToVector2());
 
         /// <summary>
-        /// Occurs when the Gui Element will be added to the
-        /// Gui Element Collection
+        /// Gets the child element at the given coordinates
         /// </summary>
-        protected virtual void OnElementAdding(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element has been added to the
-        /// Gui Element Collection
-        /// </summary>
-        protected virtual void OnElementAdded(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element will be removed from the
-        /// Gui Element Collection
-        /// </summary>
-        protected virtual void OnElementRemoving(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element has been removed from the
-        /// Gui Element Collection
-        /// </summary>
-        protected virtual void OnElementRemoved(int index, GuiElement element) { }
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public GuiElement GetElementAt(float x, float y) => GetElementAt(new Vector2(x, y));
     }
 }

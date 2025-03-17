@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.GuiToolkit.Interfaces;
 
@@ -9,6 +10,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
     /// </summary>
     public abstract class GuiElement
     {
+        protected List<GuiElement> ChildElements { get; } = new List<GuiElement>();
+
         /// <summary>
         /// Name of Gui Element
         /// </summary>
@@ -64,14 +67,51 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public IGuiBorder Border { get; set; } = null;
 
         /// <summary>
-        /// Returns the size of the Gui Element
+        /// Size of the Gui Element
         /// </summary>
-        public Point Size => Bounds.Size;
+        public Point Size
+        {
+            get => _Bounds.Size;
+            set
+            {
+                var tmpValue = value;
+                if ((tmpValue.X <= 0) || (tmpValue.Y <= 0))
+                    tmpValue = Point.Zero;
+
+                if (_Bounds.Size == tmpValue) return;
+                _Bounds.Size = tmpValue;
+                OnBoundsChanged();
+            }
+        }
 
         /// <summary>
-        /// Returns the location of the Gui Element
+        /// Location of the Gui Element
         /// </summary>
-        public Point Location => Bounds.Location;
+        public Point Location
+        {
+            get => _Bounds.Location;
+            set
+            {
+                if (_Bounds.Location == value) return;
+                _Bounds.Location = value;
+                OnBoundsChanged();
+            }
+        }
+
+        /// <summary>
+        /// Parent Gui Element of the Gui Element
+        /// </summary>
+        public GuiElement ParentElement
+        {
+            get => _ParentElement;
+            private set
+            {
+                if (_ParentElement == value) return;
+                _ParentElement = value;
+                OnParentElementChanged();
+            }
+        }
+        private GuiElement _ParentElement = null;
 
         /// <summary>
         /// Updates the Gui Element
@@ -95,7 +135,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// <param name="spriteBatch"></param>
         public void Draw(GameTime gameTime, ExtendedSpriteBatch spriteBatch)
         {
-            if ((spriteBatch == null) || spriteBatch.IsDisposed || Bounds.IsEmpty)
+            if ((spriteBatch == null) || spriteBatch.IsDisposed || ScreenBounds.IsEmpty)
                 return;
 
             //NOTE: This only works when using SpriteSortMode.Immediate
@@ -104,18 +144,18 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             //      Draw() call would need to be wrapped in its own
             //      spritebatch.Begin()/End() calls.
             var oldScissorRectangle = spriteBatch.GraphicsDevice.ScissorRectangle;
-            spriteBatch.GraphicsDevice.ScissorRectangle = Bounds;
+            spriteBatch.GraphicsDevice.ScissorRectangle = ScreenBounds;
 
             //Draw the background over the whole element
-            GuiDraw.DrawBackground(spriteBatch, Bounds, BackColour);
+            GuiDraw.DrawBackground(spriteBatch, ScreenBounds, BackColour);
 
             //Draw the element within the content area if there is room
-            if (!ContentBounds.IsEmpty)
-                DrawGuiElement(gameTime, spriteBatch, ContentBounds);
+            if (!ScreenContentBounds.IsEmpty)
+                DrawGuiElement(gameTime, spriteBatch, ScreenContentBounds);
 
             //Draw the border around the content area
             if (Border != null)
-                Border.Draw(gameTime, spriteBatch, Bounds);
+                Border.Draw(gameTime, spriteBatch, ScreenBounds);
 
             spriteBatch.GraphicsDevice.ScissorRectangle = oldScissorRectangle;
         }
@@ -129,10 +169,12 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         protected abstract void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
+
         /// <summary>
-        /// Returns the content area within the Gui Element border, or Rectangle.Empty if no content area
+        /// Returns the content area within the Gui Element border,
+        /// or Rectangle.Empty if no content area
         /// </summary>
-        protected virtual Rectangle ContentBounds
+        public virtual Rectangle ContentBounds
         {
             get
             {
@@ -152,18 +194,58 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         }
 
         /// <summary>
+        /// Gets the offset to adjust the Gui Element bounds to the screen location
+        /// </summary>
+        protected Point ScreenOffset
+        {
+            get
+            {
+                if (ParentElement == null)
+                    return Point.Zero;
+
+                return ParentElement.ScreenOffset + ParentElement.ContentBounds.Location;
+            }
+        }
+
+        /// <summary>
+        /// Gui Element Bounds, adjusted to the screen location
+        /// </summary>
+        protected virtual Rectangle ScreenBounds
+        {
+            get
+            {
+                var bounds = Bounds;
+                bounds.Offset(ScreenOffset);
+                return bounds;
+            }
+        }
+
+        /// <summary>
+        /// Gui Element Content Bounds, adjusted to the screen location
+        /// </summary>
+        protected virtual Rectangle ScreenContentBounds
+        {
+            get
+            {
+                var bounds = ContentBounds;
+                bounds.Offset(ScreenOffset);
+                return bounds;
+            }
+        }
+
+        /// <summary>
         /// Checks if the Gui Element bounds contains the given position
         /// </summary>
         /// <param name="value">position to check</param>
         /// <returns>true if the Gui Element contains the given position</returns>
-        public bool HitTest(Vector2 value) => Bounds.Contains(value);
+        public bool HitTest(Vector2 value) => ScreenBounds.Contains(value);
 
         /// <summary>
         /// Checks if the Gui Element bounds contains the given point
         /// </summary>
         /// <param name="value">point to check</param>
         /// <returns>true if the Gui Element contains the given point</returns>
-        public bool HitTest(Point value) => Bounds.Contains(value);
+        public bool HitTest(Point value) => ScreenBounds.Contains(value);
 
         /// <summary>
         /// Checks if the Gui Element bounds contains the given co-ordinates
@@ -171,14 +253,75 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// <param name="x">x co-ordinate to check</param>
         /// <param name="y">y co-ordinate to check</param>
         /// <returns>true if the Gui Element contains the given co-ordinates</returns>
-        public bool HitTest(float x, float y) => Bounds.Contains(x, y);
+        public bool HitTest(float x, float y) => ScreenBounds.Contains(x, y);
 
         /// <summary>
         /// Checks if the Gui Element bounds contains the given rectangle
         /// </summary>
         /// <param name="value">position to check</param>
         /// <returns>true if the Gui Element contains the given position</returns>
-        public bool HitTest(Rectangle value) => Bounds.Contains(value);
+        public bool HitTest(Rectangle value) => ScreenBounds.Contains(value);
+
+
+        /// <summary>
+        /// Adds a child element to the Gui Element
+        /// Note that the element is not drawn or updated by default
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>true if element added</returns>
+        protected bool AddChildElement(GuiElement element)
+        {
+            if (element == null)
+                return false;
+
+            //Element already added to this element
+            if (element.ParentElement == this)
+                return false;
+
+            //Element already added to another element, remove it
+            if (element.ParentElement != null)
+                element.ParentElement.RemoveChildElement(element);
+
+            //Add element
+            var ix = ChildElements.Count;
+
+            OnElementAdding(ix, element);
+
+            ChildElements.Add(element);
+            element.ParentElement = this;
+
+            OnElementAdded(ix, element);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Removes a child element from the Gui Element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>true if the child removed</returns>
+        protected bool RemoveChildElement(GuiElement element)
+        {
+            if (element == null)
+                return false;
+
+            //Get index of element
+            var ix = ChildElements.IndexOf(element);
+
+            //Element not added to this element
+            if (ix == -1)
+                return false;
+
+            //Remove element
+            OnElementRemoving(ix, element);
+
+            ChildElements.RemoveAt(ix);
+            element.ParentElement = null;
+
+            OnElementRemoved(ix, element);
+
+            return true;
+        }
 
         /// <summary>
         /// Occurs when the Gui Element Name property has changed
@@ -194,6 +337,35 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Background Colour property has changed
         /// </summary>
         protected virtual void OnBackColourChanged() {}
+
+        /// <summary>
+        /// Occurs when the Gui Element Parent property has changed
+        /// </summary>
+        protected virtual void OnParentElementChanged() { }
+
+        /// <summary>
+        /// Occurs when the Gui Element will be added to the
+        /// child element collection
+        /// </summary>
+        protected virtual void OnElementAdding(int index, GuiElement element) { }
+
+        /// <summary>
+        /// Occurs when the Gui Element has been added to the
+        /// child element collection
+        /// </summary>
+        protected virtual void OnElementAdded(int index, GuiElement element) { }
+
+        /// <summary>
+        /// Occurs when the Gui Element will be removed from the
+        /// child element collection
+        /// </summary>
+        protected virtual void OnElementRemoving(int index, GuiElement element) { }
+
+        /// <summary>
+        /// Occurs when the Gui Element has been removed from the
+        /// child element collection
+        /// </summary>
+        protected virtual void OnElementRemoved(int index, GuiElement element) { }
 
 
         public override string ToString()
