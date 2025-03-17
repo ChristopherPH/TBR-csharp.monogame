@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace TheBlackRoom.MonoGame.GuiToolkit
+﻿namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
 {
     /// <summary>
     /// Panel Gui Element

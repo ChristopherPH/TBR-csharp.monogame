@@ -1,46 +1,30 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 
-namespace TheBlackRoom.MonoGame.GuiToolkit
+namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
 {
     /// <summary>
-    /// PictureBox Gui Element
+    /// Label Gui Element
     /// </summary>
-    public class GuiPictureBox : GuiTextElement
+    public class GuiLabel : GuiTextElement
     {
         /// <summary>
-        /// Picture Texture
+        /// Label Text
         /// </summary>
-        public Texture2D Picture
+        public string Text
         {
-            get => _Picture;
+            get => _Text;
             set
             {
-                if (_Picture == value) return;
-                _Picture = value;
-                OnPictureChanged();
+                if (_Text == value) return;
+                _Text = value;
+                OnTextChanged();
             }
         }
-        private Texture2D _Picture = null;
+        private string _Text = string.Empty;
 
         /// <summary>
-        /// Picture alignment within bounds
-        /// </summary>
-        public ScaleModes ScaleMode
-        {
-            get => _ScaleMode;
-            set
-            {
-                if (_ScaleMode == value) return;
-                _ScaleMode = value;
-                OnScaleModeChanged();
-            }
-        }
-        private ScaleModes _ScaleMode = ScaleModes.Crop;
-
-        /// <summary>
-        /// Picture alignment within bounds
+        /// Label alignment within bounds
         /// </summary>
         public ContentAlignment Alignment
         {
@@ -74,27 +58,20 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         protected override void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
         {
-            if (Picture == null) return;
-
             //Shrink the bounds by padding
             drawBounds.Shrink(Padding.Left, Padding.Top, Padding.Right, Padding.Bottom);
 
             if (drawBounds.Width <= 0 || drawBounds.Height <= 0)
                 return;
 
-            GuiDraw.DrawPicture(spriteBatch, drawBounds, Picture,
-                ScaleMode, Alignment);
+            GuiDraw.DrawLabel(spriteBatch, drawBounds, Font,
+                Text, Alignment, ForeColour);
         }
 
         /// <summary>
-        /// Occurs when the Gui Element Picture property has changed
+        /// Occurs when the Gui Element Text property has changed
         /// </summary>
-        protected virtual void OnPictureChanged() { }
-
-        /// <summary>
-        /// Occurs when the Gui Element ScaleMode property has changed
-        /// </summary>
-        protected virtual void OnScaleModeChanged() { }
+        protected virtual void OnTextChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Alignment property has changed

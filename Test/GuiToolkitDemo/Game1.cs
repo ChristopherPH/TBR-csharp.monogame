@@ -6,6 +6,7 @@ using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.Extensions;
 using TheBlackRoom.MonoGame.GuiToolkit;
 using TheBlackRoom.MonoGame.GuiToolkit.Borders;
+using TheBlackRoom.MonoGame.GuiToolkit.Elements;
 
 namespace GuiToolkitDemo
 {

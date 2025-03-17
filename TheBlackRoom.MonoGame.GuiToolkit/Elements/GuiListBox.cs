@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.Core.Helpers.IListHelpers;
 
-namespace TheBlackRoom.MonoGame.GuiToolkit
+namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
 {
     /// <summary>
     /// ListBox Gui Element
@@ -13,7 +13,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
     public class GuiListBox : GuiTextElement
     {
         private ListBoxWrapper<object> _listbox = new ListBoxWrapper<object>();
-        
+
         public GuiListBox()
         {
             _listbox.ListItems = _Items;
@@ -39,7 +39,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Height of each item within listbox
         /// </summary>
         public float ItemHeight
-        { 
+        {
             get => _ItemHeight;
             set
             {
@@ -107,7 +107,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
 
             _listbox.MaximumItemCount = ContentBounds.Height / RealItemHeight;
         }
-        
+
         float _FontHeight = 0;
 
         protected float RealItemHeight => (ItemHeight > 0) ? ItemHeight : _FontHeight;
