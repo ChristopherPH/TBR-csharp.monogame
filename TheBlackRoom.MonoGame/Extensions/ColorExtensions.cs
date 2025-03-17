@@ -6,6 +6,18 @@ namespace TheBlackRoom.MonoGame.Extensions
     public static class ColorExtensions
     {
         /// <summary>
+        /// Translate a non-premultipled alpha Microsoft.Xna.Framework.Color to a
+        /// Microsoft.Xna.Framework.Color that contains premultiplied alpha.
+        /// </summary>
+        /// <param name="color">Non premultiplied color to translate</param>
+        /// <param name="alpha">Amount of alpha (0f/Trasparent - 1.0f/Opaque)</param>
+        public static Color FromNonPremultiplied(this Color color, float alpha)
+        {
+            return Color.FromNonPremultiplied(color.R, color.G, color.B,
+                (int)Math.Round(255 * alpha));
+        }
+
+        /// <summary>
         /// Darkens a color by the given percentage
         /// </summary>
         /// <param name="color">Color to darken</param>
