@@ -230,7 +230,6 @@ namespace TheBlackRoom.MonoGame.Tests.GameEngineTest
     {
         public enum GameMenuOptions
         {
-            QuitGame,
             NewGame,
             Exit,
             Options,
