@@ -61,10 +61,13 @@ namespace TheBlackRoom.MonoGame.Extensions
         /// <param name="bounds">The drawing location on screen.</param>
         /// <param name="textAlign">Alignment of text within bounds</param>
         /// <param name="color">A color mask.</param>
-        /// <param name="scale">A scaling of this string.</param>
+        /// <param name="scale">A scale factor for this string, 1.0f is no scale.</param>
         public static void DrawString(this SpriteBatch spriteBatch, SpriteFont spriteFont,
             string text, Rectangle bounds, ContentAlignment textAlign, Color color, float scale)
         {
+            if (scale <= 0f)
+                throw new ArgumentException("Scale must be larger than 0", nameof(scale));
+
             DrawString(spriteBatch, spriteFont, text, bounds, textAlign, color, textAlign, 0f, scale);
         }
 
@@ -79,7 +82,7 @@ namespace TheBlackRoom.MonoGame.Extensions
         /// <param name="color">A color mask.</param>
         /// <param name="originAlign">Alignment of the origin, used as a reference point for scaling and rotating</param>
         /// <param name="rotation">A rotation of this string.</param>
-        /// <param name="scale">A scaling of this string.</param>
+        /// <param name="scale">A scale factor for this string, 1.0f is no scale.</param>
         /// <param name="spriteEffects">Modificators for drawing. Can be combined.</param>
         /// <param name="layerDepth">A depth of the layer of this string.</param>
         public static void DrawString(this SpriteBatch spriteBatch, SpriteFont spriteFont,
