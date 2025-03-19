@@ -25,7 +25,7 @@ namespace GuiToolkitDemo
             IsMouseVisible = true;
         }
 
-        GuiPanel guiElements;
+        GuiLayout guiLayout;
 
         protected override void Initialize()
         {
@@ -44,13 +44,13 @@ namespace GuiToolkitDemo
 
             var thickBorder = new GuiSolidBorder(Color.DarkGray, 10);
 
-            guiElements = new GuiPanel()
+            guiLayout = new GuiLayout()
             {
                 Size = new Point(_graphics.PreferredBackBufferWidth,
                     _graphics.PreferredBackBufferHeight),
             };
 
-            guiElements.Add(new GuiLabel()
+            guiLayout.Add(new GuiLabel()
             {
                 //GuiElement Properties
                 Name = "lblCenter",
@@ -68,7 +68,7 @@ namespace GuiToolkitDemo
                 Padding = Padding.Empty,
             });
 
-            guiElements.Add(new GuiLabel()
+            guiLayout.Add(new GuiLabel()
             {
                 Name = "lblPadding",
                 Bounds = new Rectangle(10, 120, 200, 100),
@@ -116,7 +116,7 @@ namespace GuiToolkitDemo
             _listBox.Items.Add("Three");
             _listBox.NotifyListItemsChanged();
 
-            guiElements.Add(_listBox);
+            guiLayout.Add(_listBox);
 
 
             var lbOwnerDraw = new GuiListBox()
@@ -156,12 +156,12 @@ namespace GuiToolkitDemo
                     ContentAlignment.MiddleCenter, Color.Black, e.selected ? 1.2f : 1.0f);
             };
 
-            guiElements.Add(lbOwnerDraw);
+            guiLayout.Add(lbOwnerDraw);
 
 
             var thinBorder = new GuiSolidBorder(Color.DarkGray, 1);
 
-            guiElements.Add(new GuiPictureBox()
+            guiLayout.Add(new GuiPictureBox()
             {
                 //GuiElement Properties
                 Name = "pbTileTL",
@@ -175,7 +175,7 @@ namespace GuiToolkitDemo
             });
 
 
-            guiElements.Add(new GuiPictureBox()
+            guiLayout.Add(new GuiPictureBox()
             {
                 //GuiElement Properties
                 Name = "pbTileBL",
@@ -189,7 +189,7 @@ namespace GuiToolkitDemo
             });
 
 
-            guiElements.Add(new GuiPictureBox()
+            guiLayout.Add(new GuiPictureBox()
             {
                 //GuiElement Properties
                 Name = "pbTileTR",
@@ -203,7 +203,7 @@ namespace GuiToolkitDemo
             });
 
 
-            guiElements.Add(new GuiPictureBox()
+            guiLayout.Add(new GuiPictureBox()
             {
                 //GuiElement Properties
                 Name = "pbTileBR",
@@ -267,7 +267,7 @@ namespace GuiToolkitDemo
             if (mouseState.LeftButton.HasFlag(ButtonState.Pressed) && !_LastMouseState.LeftButton.HasFlag(ButtonState.Pressed))
             {
                 var p = new Point(mouseState.X, mouseState.Y);
-                var element = guiElements.GetElementAt(p);
+                var element = guiLayout.GetElementAt(p);
                 if (element != null)
                 {
                     System.Diagnostics.Debug.Print($"Cicked on {element.Name} at {p}");
@@ -278,7 +278,7 @@ namespace GuiToolkitDemo
                 }
             }
 
-            guiElements.Update(gameTime);
+            guiLayout.Update(gameTime);
 
             _LastKeyboardState = keyboardState;
             _LastMouseState = mouseState;
@@ -294,7 +294,7 @@ namespace GuiToolkitDemo
             _spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null,
                 new RasterizerState() { ScissorTestEnable = true }, null, null);
 
-            guiElements.Draw(gameTime, _spriteBatch);
+            guiLayout.Draw(gameTime, _spriteBatch);
 
             DrawRectangleSlices(_spriteBatch);
 
