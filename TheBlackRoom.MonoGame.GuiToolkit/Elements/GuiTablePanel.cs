@@ -5,26 +5,26 @@ using System.Linq;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
 {
-    public class GuilElementTableData
-    {
-        public int MinimumWidth { get; set; } = -1;
-        public int MaximumWidth { get; set; } = -1;
-        public int MinimumHeight { get; set; } = -1;
-        public int MaximumHeight { get; set; } = -1;
-        public int Column { get; set; } = -1;
-        public int Row { get; set; } = -1;
-        public int ColumnSpan { get; set; } = 1;
-        public int RowSpan { get; set; } = 1;
-    }
-
     public class GuiTablePanel : GuiElementCollection
     {
         private List<int> _ColumnWidths = new List<int>();
         private List<int> _RowHeights = new List<int>();
-        private Dictionary<GuiElement, GuilElementTableData> _ElementLookup = new Dictionary<GuiElement, GuilElementTableData>();
+        private List<int> _ColumnOffsets = new List<int>();
+        private List<int> _RowOffsets = new List<int>();
+        private Dictionary<GuiElement, GuiTablePanelElementInfo> _ElementLookup = new Dictionary<GuiElement, GuiTablePanelElementInfo>();
+        private List<GuiElementColumnStyle> ColumnStyles { get; } = new List<GuiElementColumnStyle>();
+        private List<GuiElementRowStyle> RowStyles { get; } = new List<GuiElementRowStyle>();
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public GuiTablePanel() { }
 
+        /// <summary>
+        /// Constructor with Column and Row Styles
+        /// </summary>
+        /// <param name="ColumnStyles">Column styles</param>
+        /// <param name="RowStyles">Row styles</param>
         public GuiTablePanel(IEnumerable<GuiElementColumnStyle> ColumnStyles,
             IEnumerable<GuiElementRowStyle> RowStyles)
         {
@@ -37,9 +37,48 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             LayoutTable();
         }
 
-        public List<GuiElementColumnStyle> ColumnStyles { get; } = new List<GuiElementColumnStyle>();
-        public List<GuiElementRowStyle> RowStyles { get; } = new List<GuiElementRowStyle>();
+        /// <summary>
+        /// Colour of Grid Lines
+        /// </summary>
+        public Color GridLineColour
+        {
+            get => _GridLineColour;
+            set
+            {
+                if (_GridLineColour == value) return;
+                _GridLineColour = value;
+            }
+        }
+        private Color _GridLineColour = Color.Transparent;
 
+        /// <summary>
+        /// Thickness of Grid Lines
+        /// </summary>
+        public int GridLineThickness
+        {
+            get => _GridLineThickness;
+            set
+            {
+                if (_GridLineThickness == value) return;
+                _GridLineThickness = value;
+            }
+        }
+        private int _GridLineThickness = 1;
+
+        /// <summary>
+        /// Returns the number of columns in the table panel
+        /// </summary>
+        public int ColumnCount => _ColumnWidths.Count;
+
+        /// <summary>
+        /// Returns the number of rows in the table panel
+        /// </summary>
+        public int RowCount => _RowHeights.Count;
+
+        /// <summary>
+        /// Adds a column to the table panel
+        /// </summary>
+        /// <param name="columnStyle">Style of column to add</param>
         public void AddColumn(GuiElementColumnStyle columnStyle)
         {
             if (columnStyle == null)
@@ -50,6 +89,10 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             LayoutTable();
         }
 
+        /// <summary>
+        /// Adds a row to the table panel
+        /// </summary>
+        /// <param name="rowStyle">Style of row to add</param>
         public void AddRow(GuiElementRowStyle rowStyle)
         {
             if (rowStyle == null)
@@ -60,19 +103,24 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             LayoutTable();
         }
 
-
         /// <summary>
         /// Adds the specified Gui Element to the layout
         /// </summary>
         /// <param name="element">Gui element to add</param>
-        public void Add(GuiElement element, int column, int row)
+        /// <param name="column">Cell column</param>
+        /// <param name="row">Cell row</param>
+        /// <param name="columnSpan">Cell column span</param>
+        /// <param name="rowSpan">Cell row span</param>
+        public void Add(GuiElement element, int column, int row, int columnSpan = 1, int rowSpan = 1)
         {
             if (AddCollectionElement(element))
             {
-                _ElementLookup[element] = new GuilElementTableData()
+                _ElementLookup[element] = new GuiTablePanelElementInfo()
                 {
                     Column = column,
-                    Row = row
+                    Row = row,
+                    ColumnSpan = columnSpan,
+                    RowSpan = rowSpan,
                 };
 
                 LayoutElements();
@@ -83,7 +131,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// Removes the specified Gui Element from the layout
         /// </summary>
         /// <param name="element">Gui element to remove</param>
-        public void Remove(GuiElement element, int column, int row)
+        public void Remove(GuiElement element)
         {
             if (RemoveCollectionElement(element))
             {
@@ -93,6 +141,130 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             }
         }
 
+        /// <summary>
+        /// Removes the specified Gui Element from the layout
+        /// </summary>
+        /// <param name="column">Cell column</param>
+        /// <param name="row">Cell row</param>
+        public GuiElement Remove(int column, int row)
+        {
+            var element = GetElement(column, row);
+
+            if (element != null)
+                Remove(element);
+
+            return element;
+        }
+
+        /// <summary>
+        /// Gets an element from the specified column and row
+        /// </summary>
+        /// <param name="column">Cell column</param>
+        /// <param name="row">Cell row</param>
+        /// <returns>Element</returns>
+        public GuiElement GetElement(int column, int row)
+        {
+            return _ElementLookup.FirstOrDefault(x => x.Value.Column == column && x.Value.Row == row).Key;
+        }
+
+        /// <summary>
+        /// Sets an element to the specified column and row
+        /// </summary>
+        /// <param name="element">Gui element to set</param>
+        /// <param name="column">Cell column</param>
+        /// <param name="row">Cell row</param>
+        /// <param name="columnSpan">Cell column span</param>
+        /// <param name="rowSpan">Cell row span</param>
+        public void SetCell(GuiElement element, int column, int row, int columnSpan = 1, int rowSpan = 1)
+        {
+            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            {
+                elementInfo.Column = column;
+                elementInfo.Row = row;
+                elementInfo.ColumnSpan = columnSpan;
+                elementInfo.RowSpan = rowSpan;
+
+                LayoutElements();
+            }
+        }
+
+        /// <summary>
+        /// Sets an element to the specified column and row span
+        /// </summary>
+        /// <param name="element">Gui element to set</param>
+        /// <param name="columnSpan">Cell column span</param>
+        /// <param name="rowSpan">Cell row span</param>
+        public void SetCellSpan(GuiElement element, int columnSpan, int rowSpan)
+        {
+            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            {
+                elementInfo.ColumnSpan = columnSpan;
+                elementInfo.RowSpan = rowSpan;
+
+                LayoutElements();
+            }
+        }
+
+        /// <summary>
+        /// Sets an element to the specified column span
+        /// </summary>
+        /// <param name="element">Gui element to set</param>
+        /// <param name="columnSpan">Cell column span</param>
+        public void SetColumnSpan(GuiElement element, int columnSpan)
+        {
+            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            {
+                elementInfo.ColumnSpan = columnSpan;
+
+                LayoutElements();
+            }
+        }
+
+        /// <summary>
+        /// Sets an element to the specified  row span
+        /// </summary>
+        /// <param name="element">Gui element to set</param>
+        /// <param name="rowSpan">Cell row span</param>
+        public void SetRowSpan(GuiElement element, int rowSpan)
+        {
+            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            {
+                elementInfo.RowSpan = rowSpan;
+
+                LayoutElements();
+            }
+        }
+
+        /// <summary>
+        /// Gets the bounds of the specified cell
+        /// </summary>
+        /// <param name="column">Cell column</param>
+        /// <param name="row">Cell row</param>
+        /// <returns>Cell bounds, or Rectangle.Empty on invalid cell</returns>
+        protected Rectangle GetCellBounds(int column, int row, int columnSpan = 1, int rowSpan = 1)
+        {
+            if ((column < 0) || (row < 0) ||
+                (rowSpan <= 0) || (columnSpan <= 0) ||
+                (column + columnSpan > _ColumnWidths.Count) ||
+                (row + rowSpan > _RowHeights.Count))
+            {
+                return Rectangle.Empty;
+            }
+
+            int width = 0, height = 0;
+
+            for (int c = 0; c < columnSpan; c++)
+                width += _ColumnWidths[column + c];
+
+            for (int r = 0; r < rowSpan; r++)
+                height += _RowHeights[row + r];
+
+            return new Rectangle(_ColumnOffsets[column], _RowOffsets[row], width, height);
+        }
+
+        /// <summary>
+        /// Updates the layout of the table panel, determines column and row widths
+        /// </summary>
         protected void LayoutTable()
         {
             int totalWidth = 0;
@@ -272,21 +444,41 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             _ColumnWidths = columnWidths;
             _RowHeights = rowHeights;
 
+            //Rebuild column and row offsets
+            _ColumnOffsets.Clear();
+            _RowOffsets.Clear();
+
+            int x = 0, y = 0;
+
+            for (int columnIndex = 0; columnIndex < _ColumnWidths.Count; x += _ColumnWidths[columnIndex], columnIndex++)
+                _ColumnOffsets.Add(x);
+            _ColumnOffsets.Add(x);
+
+            for (int rowIndex = 0; rowIndex < _RowHeights.Count; y += _RowHeights[rowIndex], rowIndex++)
+                _RowOffsets.Add(y);
+            _RowOffsets.Add(y);
+
             LayoutElements();
         }
 
+        /// <summary>
+        /// Updates the layout of the table panel, determines element bounds
+        /// </summary>
         protected void LayoutElements()
         {
-            //Update element bounds
-            for (int columnIndex = 0; columnIndex < _ColumnWidths.Count; columnIndex++)
+            //Change element bounds based on column and row
+            foreach (var element in ElementCollection)
             {
-                System.Diagnostics.Debug.Print($"Column: {columnIndex} {_ColumnWidths[columnIndex]}");
-            }
+                if (_ElementLookup.TryGetValue(element, out var elementInfo))
+                {
+                    var cellBounds = GetCellBounds(elementInfo.Column, elementInfo.Row,
+                        elementInfo.ColumnSpan, elementInfo.RowSpan);
 
-            //Update element bounds
-            for (int rowIndex = 0; rowIndex < _RowHeights.Count; rowIndex++)
-            {
-                System.Diagnostics.Debug.Print($"Row: {rowIndex} {_RowHeights[rowIndex]}");
+                    //TODO: Add anchor edges / alignment
+                    //TODO: Add cell padding
+
+                    element.Bounds = cellBounds;
+                }
             }
         }
 
@@ -295,26 +487,24 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         {
             base.DrawGuiElement(gameTime, spriteBatch, drawBounds);
 
-            var color = Color.Magenta;
-            var thick = 2;
-
-            int x = drawBounds.Left;
-            int y = drawBounds.Top;
+            //Determine if grid lines should be drawn
+            if ((GridLineColour == Color.Transparent) || (GridLineThickness <= 0))
+                return;
 
             //draw column lines
-            for (int columnIndex = 0; columnIndex < _ColumnWidths.Count; columnIndex++)
+            for (int columnIndex = 1; columnIndex <= _ColumnWidths.Count; columnIndex++)
             {
-                x += _ColumnWidths[columnIndex];
+                var x = drawBounds.Left + _ColumnOffsets[columnIndex];
 
-                spriteBatch.DrawLine(x, drawBounds.Top, x, drawBounds.Bottom, color, thick);
+                spriteBatch.DrawLine(x, drawBounds.Top, x, drawBounds.Bottom, GridLineColour, GridLineThickness);
             }
 
             //draw row lines
-            for (int rowIndex = 0; rowIndex < _RowHeights.Count; rowIndex++)
+            for (int rowIndex = 1; rowIndex <= _RowHeights.Count; rowIndex++)
             {
-                y += _RowHeights[rowIndex];
+                var y = drawBounds.Top + _RowOffsets[rowIndex];
 
-                spriteBatch.DrawLine(drawBounds.Left, y, drawBounds.Right, y, color, thick);
+                spriteBatch.DrawLine(drawBounds.Left, y, drawBounds.Right, y, GridLineColour, GridLineThickness);
             }
         }
 
@@ -323,6 +513,18 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             base.OnBoundsChanged();
 
             LayoutTable();
+        }
+
+        private class GuiTablePanelElementInfo
+        {
+            public int Column { get; set; } = -1;
+            public int Row { get; set; } = -1;
+
+            public int ColumnSpan { get; set; } = 1;
+            public int RowSpan { get; set; } = 1;
+
+            //TODO: Add anchor edges / alignment
+            //TODO: Add cell padding
         }
     }
 }
