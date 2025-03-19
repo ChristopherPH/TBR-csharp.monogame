@@ -11,7 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Borders\Gui3DBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiRaisedBorder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Elements\TablePanel\GuiTablePanelStyles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementColumnStyles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementRowStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElementCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
