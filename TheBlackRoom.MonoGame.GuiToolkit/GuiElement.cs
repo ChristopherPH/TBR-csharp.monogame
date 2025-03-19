@@ -10,8 +10,6 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
     /// </summary>
     public abstract class GuiElement
     {
-        protected List<GuiElement> ChildElements { get; } = new List<GuiElement>();
-
         /// <summary>
         /// Name of Gui Element
         /// </summary>
@@ -104,7 +102,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public GuiElement ParentElement
         {
             get => _ParentElement;
-            private set
+            internal set
             {
                 if (_ParentElement == value) return;
                 _ParentElement = value;
@@ -263,65 +261,6 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public bool HitTest(Rectangle value) => ScreenBounds.Contains(value);
 
 
-        /// <summary>
-        /// Adds a child element to the Gui Element
-        /// Note that the element is not drawn or updated by default
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns>true if element added</returns>
-        protected bool AddChildElement(GuiElement element)
-        {
-            if (element == null)
-                return false;
-
-            //Element already added to this element
-            if (element.ParentElement == this)
-                return false;
-
-            //Element already added to another element, remove it
-            if (element.ParentElement != null)
-                element.ParentElement.RemoveChildElement(element);
-
-            //Add element
-            var ix = ChildElements.Count;
-
-            OnElementAdding(ix, element);
-
-            ChildElements.Add(element);
-            element.ParentElement = this;
-
-            OnElementAdded(ix, element);
-
-            return true;
-        }
-
-        /// <summary>
-        /// Removes a child element from the Gui Element
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns>true if the child removed</returns>
-        protected bool RemoveChildElement(GuiElement element)
-        {
-            if (element == null)
-                return false;
-
-            //Get index of element
-            var ix = ChildElements.IndexOf(element);
-
-            //Element not added to this element
-            if (ix == -1)
-                return false;
-
-            //Remove element
-            OnElementRemoving(ix, element);
-
-            ChildElements.RemoveAt(ix);
-            element.ParentElement = null;
-
-            OnElementRemoved(ix, element);
-
-            return true;
-        }
 
         /// <summary>
         /// Occurs when the Gui Element Name property has changed
@@ -342,30 +281,6 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Parent property has changed
         /// </summary>
         protected virtual void OnParentElementChanged() { }
-
-        /// <summary>
-        /// Occurs when the Gui Element will be added to the
-        /// child element collection
-        /// </summary>
-        protected virtual void OnElementAdding(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element has been added to the
-        /// child element collection
-        /// </summary>
-        protected virtual void OnElementAdded(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element will be removed from the
-        /// child element collection
-        /// </summary>
-        protected virtual void OnElementRemoving(int index, GuiElement element) { }
-
-        /// <summary>
-        /// Occurs when the Gui Element has been removed from the
-        /// child element collection
-        /// </summary>
-        protected virtual void OnElementRemoved(int index, GuiElement element) { }
 
 
         public override string ToString()

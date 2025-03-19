@@ -8,19 +8,19 @@
         /// <summary>
         /// Adds the specified Gui Element to the panel
         /// </summary>
-        /// <param name="element"></param>
+        /// <param name="element">Gui element to add</param>
         public void Add(GuiElement element)
         {
-            AddChildElement(element);
+            AddCollectionElement(element);
         }
 
         /// <summary>
         /// Removes the specified Gui Element from the panel
         /// </summary>
-        /// <param name="element"></param>
+        /// <param name="element">Gui element to remove</param>
         public void Remove(GuiElement element)
         {
-            RemoveChildElement(element);
+            RemoveCollectionElement(element);
         }
     }
 }
