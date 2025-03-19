@@ -58,6 +58,22 @@ namespace TheBlackRoom.MonoGame
         }
 
         /// <summary>
+        /// Draw a line between the two supplied co-ordinates.
+        /// </summary>
+        /// <param name="x1">The x co-ordinate of the start point.</param>
+        /// <param name="y1">The y co-ordinate of the start point.</param>
+        /// <param name="x2">The x co-ordinate of the end point.</param>
+        /// <param name="y2">The y co-ordinate of the end point.</param>
+        /// <param name="color">The draw color.
+        /// If using alpha channel, use BlendState.NonPremultiplied
+        /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Thickness">Thickness of line"</param>
+        public void DrawLine(int x1, int y1, int x2, int y2, Color color, float Thickness = 1.0f)
+        {
+            DrawLine(new Vector2(x1, y1), new Vector2(x2, y2), color, Thickness);
+        }
+
+        /// <summary>
         /// Draw a rectangle.
         /// </summary>
         /// <param name="rectangle">The rectangle to draw.</param>
