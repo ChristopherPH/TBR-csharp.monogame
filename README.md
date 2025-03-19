@@ -51,7 +51,7 @@ Features:
 
 ## TheBlackRoom.MonoGame.GuiToolkit
 
-A toolkit for creating a basic game user interface.
+A toolkit for creating a basic game user interface. Provides a simple way to create and manage GUI elements.
 
 Features:
 
@@ -60,6 +60,11 @@ Features:
 
 Standard Elements:
 
-- PictureBox
 - Label
 - ListBox
+- Panel
+- PictureBox
+- TablePanel
+
+Element Adornments:
+- Borders: Solid, Raised, 3D
