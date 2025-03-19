@@ -11,9 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Borders\Gui3DBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiRaisedBorder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\TablePanel\GuiTablePanelStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElementCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiTablePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiPictureBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiLabel.cs" />
@@ -23,8 +25,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiSolidBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiAdornment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiBorder.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Elements\" />
   </ItemGroup>
 </Project>
