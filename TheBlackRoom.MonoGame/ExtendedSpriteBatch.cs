@@ -45,6 +45,7 @@ namespace TheBlackRoom.MonoGame
         /// <param name="color">The draw color.
         /// If using alpha channel, use BlendState.NonPremultiplied
         /// in spriteBatch.Begin() or use Color.FromNonPremultiplied()</param>
+        /// <param name="Thickness">Thickness of line"</param>
         public void DrawLine(Vector2 start, Vector2 end, Color color, float Thickness = 1.0f)
         {
             float length = (end - start).Length();
