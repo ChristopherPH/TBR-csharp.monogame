@@ -195,7 +195,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                 var contentBounds = Bounds;
 
                 //Shrink the bounds by the margin
-                contentBounds.Shrink(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom);
+                contentBounds.Shrink(Margin);
 
                 //Shrink the bounds by the border amount
                 if (Border != null)
@@ -243,7 +243,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                 var bounds = Bounds;
 
                 //Shrink the bounds by the margin
-                bounds.Shrink(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom);
+                bounds.Shrink(Margin);
 
                 //If there is no content area, return
                 if (bounds.Width <= 0 || bounds.Height <= 0)
