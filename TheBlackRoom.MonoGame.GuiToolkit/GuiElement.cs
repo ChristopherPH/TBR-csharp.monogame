@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using TheBlackRoom.MonoGame.Drawing;
 using TheBlackRoom.MonoGame.GuiToolkit.Interfaces;
 
@@ -160,7 +159,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             var oldScissorRectangle = spriteBatch.GraphicsDevice.ScissorRectangle;
             spriteBatch.GraphicsDevice.ScissorRectangle = ScreenBounds;
 
-            //Draw the background over the whole element
+            //Draw the background over the whole element, less the margin
             GuiDraw.DrawBackground(spriteBatch, ScreenBounds, BackColour);
 
             //Draw the element within the content area if there is room
