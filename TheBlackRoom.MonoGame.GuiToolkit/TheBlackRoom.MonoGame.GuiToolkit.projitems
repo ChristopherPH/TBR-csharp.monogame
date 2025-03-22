@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiTablePanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiDropShadowLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiPictureBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiLabel.cs" />
