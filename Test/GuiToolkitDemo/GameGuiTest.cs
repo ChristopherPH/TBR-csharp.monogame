@@ -199,45 +199,6 @@ namespace GuiToolkitDemo
                     Margin = new Padding(1),
                 });
             }
-
-            //Content
-            var guiContent = new GuiTablePanel(
-                [
-                    new GuiElementColumnStyleAbsolute(50),
-                    new GuiElementColumnStylePercent(50),
-                    new GuiElementColumnStylePercent(50),
-                    new GuiElementColumnStyleVariablePercent(100, 25, 75),
-                ],
-                [
-                    new GuiElementRowStyleAbsolute(50),
-                    new GuiElementRowStylePercent(50),
-                    new GuiElementRowStylePercent(50),
-                    new GuiElementRowStyleVariablePercent(100, 25, 75),
-                    new GuiElementRowStyleVariablePercent(100, 25, 75),
-                ])
-            {
-                Name = "content",
-                Bounds = new Rectangle(300, 20, 250, 350),
-                BackColour = Color.Yellow,
-            };
-
-            for (int x = 0; x < guiContent.ColumnCount; x++)
-                for (int y = 0; y < guiContent.RowCount; y++)
-                    guiContent.Add(new GuiLabel() {
-                        Text = $"{x} {y}",
-                        Font = _textFont,
-                        Border = new GuiSolidBorder(Color.Black, 1),
-                        Margin = new Padding(1),
-                        BackColour = Color.Snow,
-                    }, x, y);
-
-            guiContent.Remove(2, 2);
-            var e = guiContent.GetElement(2, 1);
-            if (e is GuiLabel lbl)
-                lbl.Text = "2 1\n+\n2 2";
-            guiContent.SetRowSpan(e, 2);
-
-            guiLayout.Add(guiContent);
         }
     }
 }
