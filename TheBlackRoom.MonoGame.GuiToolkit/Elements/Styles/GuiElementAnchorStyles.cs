@@ -18,6 +18,11 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         BottomLeft = Bottom | Left,
         BottomRight = Bottom | Right,
 
+        LeftTopBottom = Left | Top | Bottom,
+        RightTopBottom = Right | Top | Bottom,
+        TopLeftRight = Top | Left | Right,
+        BottomLeftRight = Bottom | Left | Right,
+
         All = Left | Top | Right | Bottom
     }
 
