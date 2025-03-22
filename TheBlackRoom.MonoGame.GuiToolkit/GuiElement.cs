@@ -180,23 +180,24 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             var oldBounds = _Bounds;
             var changed = false;
 
-            if ((size.X <= 0) || (size.Y <= 0))
-                size = Point.Zero;
-
+            //Update bounds
             _Bounds = new Rectangle(location, size);
 
+            //Notifiy location chaged
             if (location != oldBounds.Location)
             {
                 OnLocationChanged(oldBounds.Location);
                 changed = true;
             }
 
+            //Notify size changed
             if (size != oldBounds.Size)
             {
                 OnSizeChanged(oldBounds.Size);
                 changed = true;
             }
 
+            //Notify bounds changed
             if (changed)
                 OnBoundsChanged(oldBounds);
         }
