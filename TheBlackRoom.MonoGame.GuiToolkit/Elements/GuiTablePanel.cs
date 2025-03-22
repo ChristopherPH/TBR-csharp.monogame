@@ -509,9 +509,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             }
         }
 
-        protected override void OnBoundsChanged()
+        protected override void OnSizeChanged(Point oldSize)
         {
-            base.OnBoundsChanged();
+            base.OnSizeChanged(oldSize);
 
             LayoutTable();
         }

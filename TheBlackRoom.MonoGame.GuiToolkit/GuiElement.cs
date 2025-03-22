@@ -32,13 +32,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             get => _Bounds;
             set
             {
-                var tmpValue = value;
-                if ((tmpValue.Width <= 0) || (tmpValue.Height <= 0))
-                    tmpValue = Rectangle.Empty;
-
-                if (_Bounds == tmpValue) return;
-                _Bounds = tmpValue;
-                OnBoundsChanged();
+                Location = value.Location;
+                Size = value.Size;
             }
         }
         private Rectangle _Bounds = Rectangle.Empty;
@@ -107,8 +102,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                     tmpValue = Point.Zero;
 
                 if (_Bounds.Size == tmpValue) return;
+                var oldSize = _Bounds.Size;
                 _Bounds.Size = tmpValue;
-                OnBoundsChanged();
+                OnSizeChanged(oldSize);
             }
         }
 
@@ -121,8 +117,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             set
             {
                 if (_Bounds.Location == value) return;
+                var oldLocation = _Bounds.Location;
                 _Bounds.Location = value;
-                OnBoundsChanged();
+                OnLocationChanged(oldLocation);
             }
         }
 
@@ -322,9 +319,14 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         protected virtual void OnNameChanged() {}
 
         /// <summary>
-        /// Occurs when the Gui Element Bounds property has changed
+        /// Occurs when the Gui Element Size property has changed
         /// </summary>
-        protected virtual void OnBoundsChanged() {}
+        protected virtual void OnSizeChanged(Point oldSize) { }
+
+        /// <summary>
+        /// Occurs when the Gui Element Location property has changed
+        /// </summary>
+        protected virtual void OnLocationChanged(Point oldLocation) { }
 
         /// <summary>
         /// Occurs when the Gui Element Background Colour property has changed
