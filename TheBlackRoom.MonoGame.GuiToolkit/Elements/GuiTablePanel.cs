@@ -515,6 +515,13 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             LayoutTable();
         }
 
+        protected override void OnMarginChanged()
+        {
+            base.OnMarginChanged();
+
+            LayoutTable();
+        }
+
         private class GuiTablePanelElementInfo
         {
             public int Column { get; set; } = -1;
