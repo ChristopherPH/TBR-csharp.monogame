@@ -30,6 +30,9 @@ namespace GuiToolkitDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 1200;
+            _graphics.PreferredBackBufferHeight = 480;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -215,6 +218,67 @@ namespace GuiToolkitDemo
                 Picture = Content.Load<Texture2D>("avatar"),
                 ScaleMode = ScaleModes.ScaleAspect,
             });
+
+
+            //Show relative positioning
+            var relativePanel = new GuiPanel()
+            {
+                //GuiElement Properties
+                Name = "panel",
+                Bounds = new Rectangle(850, 50, 250, 300),
+                BackColour = Color.Firebrick,
+            };
+
+            relativePanel.Add(new GuiLabel(_textFont, "Dock\nLeft")
+            {
+                Bounds = relativePanel.DockLeft(75),
+                Border = thinBorder,
+            });
+
+            relativePanel.Add(new GuiLabel(_textFont, "Dock Top")
+            {
+                Bounds = relativePanel.DockTop(25),
+                Border = thinBorder,
+            });
+
+            relativePanel.Add(new GuiLabel(_textFont, "Dock\nRight")
+            {
+                Bounds = relativePanel.DockRight(75),
+                Border = thinBorder,
+            });
+
+            relativePanel.Add(new GuiLabel(_textFont, "Dock Bottom")
+            {
+                Bounds = relativePanel.DockBottom(25),
+                Border = thinBorder,
+            });
+
+            guiLayout.Add(relativePanel);
+
+            guiLayout.Add(new GuiLabel(_textFont, "Align\nLeft")
+            {
+                Bounds = relativePanel.AlignLeft(75),
+                Border = thinBorder,
+            });
+
+            guiLayout.Add(new GuiLabel(_textFont, "Align Top")
+            {
+                Bounds = relativePanel.AlignTop(25),
+                Border = thinBorder,
+            });
+
+            guiLayout.Add(new GuiLabel(_textFont, "Align\nRight")
+            {
+                Bounds = relativePanel.AlignRight(75),
+                Border = thinBorder,
+            });
+
+            guiLayout.Add(new GuiLabel(_textFont, "Align Bottom")
+            {
+                Bounds = relativePanel.AlignBottom(25),
+                Border = thinBorder,
+            });
+
         }
 
         void DrawRectangleSlices(ExtendedSpriteBatch spriteBatch)
