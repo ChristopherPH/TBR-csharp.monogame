@@ -10,7 +10,7 @@ using TheBlackRoom.MonoGame.GuiToolkit.Elements;
 
 namespace GuiToolkitDemo
 {
-    public class Game1 : Game
+    public class ElementTest : Game
     {
         private GraphicsDeviceManager _graphics;
         private ExtendedSpriteBatch _spriteBatch;
@@ -18,7 +18,7 @@ namespace GuiToolkitDemo
         private SpriteFont _textFont;
         private GuiListBox _listBox;
 
-        public Game1()
+        public ElementTest()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

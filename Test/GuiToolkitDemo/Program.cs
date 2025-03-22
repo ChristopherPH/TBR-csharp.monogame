@@ -1,2 +1,2 @@
-﻿using var game = new GuiToolkitDemo.Game1();
+﻿using var game = new GuiToolkitDemo.ElementTest();
 game.Run();
