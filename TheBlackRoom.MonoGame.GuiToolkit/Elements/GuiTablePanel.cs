@@ -303,7 +303,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             if (totalWidthPercent > 0f)
             {
                 //Determine amount of width leftover for percent columns
-                int variableWidth = Math.Max(0, ContentBounds.Width - totalWidth);
+                int variableWidth = Math.Max(0, ContentWidth - totalWidth);
 
                 int adjustWidth = 0;
                 float adjustWidthPercent = 0;
@@ -380,7 +380,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             if (totalHeightPercent > 0f)
             {
                 //Determine amount of height leftover for percent rows
-                int variableHeight = Math.Max(0, ContentBounds.Height - totalHeight);
+                int variableHeight = Math.Max(0, ContentHeight - totalHeight);
 
                 int adjustHeight = 0;
                 float adjustHeightPercent = 0;

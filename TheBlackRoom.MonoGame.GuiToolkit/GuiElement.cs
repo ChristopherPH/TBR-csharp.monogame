@@ -188,7 +188,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Returns the content area within the Gui Element border,
         /// or Rectangle.Empty if no content area
         /// </summary>
-        public virtual Rectangle ContentBounds
+        protected virtual Rectangle ContentBounds
         {
             get
             {
@@ -209,6 +209,16 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                 return contentBounds;
             }
         }
+
+        /// <summary>
+        /// Returns the width of the content area for the Gui Element
+        /// </summary>
+        public int ContentWidth => ContentBounds.Width;
+
+        /// <summary>
+        /// Returns the height of the content area for the Gui Element
+        /// </summary>
+        public int ContentHeight => ContentBounds.Height;
 
         /// <summary>
         /// Gets the offset to adjust the Gui Element bounds to the screen location
