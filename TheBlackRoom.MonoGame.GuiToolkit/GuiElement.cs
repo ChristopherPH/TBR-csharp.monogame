@@ -31,11 +31,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public Rectangle Bounds
         {
             get => _Bounds;
-            set
-            {
-                Location = value.Location;
-                Size = value.Size;
-            }
+            set => SetBounds(value.Location, value.Size);
         }
         private Rectangle _Bounds = Rectangle.Empty;
 
@@ -96,17 +92,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public Point Size
         {
             get => _Bounds.Size;
-            set
-            {
-                var tmpValue = value;
-                if ((tmpValue.X <= 0) || (tmpValue.Y <= 0))
-                    tmpValue = Point.Zero;
-
-                if (_Bounds.Size == tmpValue) return;
-                var oldSize = _Bounds.Size;
-                _Bounds.Size = tmpValue;
-                OnSizeChanged(oldSize);
-            }
+            set => SetBounds(Location, value);
         }
 
         /// <summary>
@@ -115,13 +101,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public Point Location
         {
             get => _Bounds.Location;
-            set
-            {
-                if (_Bounds.Location == value) return;
-                var oldLocation = _Bounds.Location;
-                _Bounds.Location = value;
-                OnLocationChanged(oldLocation);
-            }
+            set => SetBounds(value, Size);
         }
 
         /// <summary>
@@ -195,6 +175,31 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         protected abstract void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
+        protected void SetBounds(Point location, Point size)
+        {
+            var oldBounds = _Bounds;
+            var changed = false;
+
+            if ((size.X <= 0) || (size.Y <= 0))
+                size = Point.Zero;
+
+            _Bounds = new Rectangle(location, size);
+
+            if (location != oldBounds.Location)
+            {
+                OnLocationChanged(oldBounds.Location);
+                changed = true;
+            }
+
+            if (size != oldBounds.Size)
+            {
+                OnSizeChanged(oldBounds.Size);
+                changed = true;
+            }
+
+            if (changed)
+                OnBoundsChanged(oldBounds);
+        }
 
         /// <summary>
         /// Returns the content area within the Gui Element border,
@@ -317,6 +322,11 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Name property has changed
         /// </summary>
         protected virtual void OnNameChanged(string oldName) { }
+
+        /// <summary>
+        /// Occurs when the Gui Element Bounds property has changed
+        /// </summary>
+        protected virtual void OnBoundsChanged(Rectangle oldBounds) { }
 
         /// <summary>
         /// Occurs when the Gui Element Size property has changed
