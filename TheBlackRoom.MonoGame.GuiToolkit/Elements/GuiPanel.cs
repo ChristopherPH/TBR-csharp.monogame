@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
 {
@@ -7,13 +8,21 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
     /// </summary>
     public class GuiPanel : GuiElementCollection
     {
+        private Dictionary<GuiElement, GuiElementCollectionMetaData> _ElementMetaData
+            = new Dictionary<GuiElement, GuiElementCollectionMetaData>();
+
         /// <summary>
         /// Adds the specified Gui Element to the panel
         /// </summary>
         /// <param name="element">Gui element to add</param>
         public void Add(GuiElement element)
         {
-            AddCollectionElement(element);
+            if (AddCollectionElement(element))
+            {
+                _ElementMetaData[element] = new GuiElementCollectionMetaData
+                {
+                };
+            }
         }
 
         /// <summary>
@@ -22,7 +31,10 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <param name="element">Gui element to remove</param>
         public void Remove(GuiElement element)
         {
-            RemoveCollectionElement(element);
+            if (RemoveCollectionElement(element))
+            {
+                _ElementMetaData.Remove(element);
+            }
         }
 
         /// <summary>
@@ -70,5 +82,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         public Rectangle DockBottom(int Height) => new Rectangle(
                 0, ContentHeight - MathHelper.Min(MathHelper.Max(0, Height), ContentHeight),
                 ContentWidth, MathHelper.Min(MathHelper.Max(0, Height), ContentHeight));
+
+        private class GuiElementCollectionMetaData
+        {
+        }
     }
 }
