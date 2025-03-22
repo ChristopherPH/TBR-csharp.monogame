@@ -11,7 +11,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         private List<int> _RowHeights = new List<int>();
         private List<int> _ColumnOffsets = new List<int>();
         private List<int> _RowOffsets = new List<int>();
-        private Dictionary<GuiElement, GuiTablePanelElementInfo> _ElementLookup = new Dictionary<GuiElement, GuiTablePanelElementInfo>();
+        private Dictionary<GuiElement, GuiElementCollectionMetaData> _ElementMetaData
+            = new Dictionary<GuiElement, GuiElementCollectionMetaData>();
         private List<GuiElementColumnStyle> ColumnStyles { get; } = new List<GuiElementColumnStyle>();
         private List<GuiElementRowStyle> RowStyles { get; } = new List<GuiElementRowStyle>();
 
@@ -115,7 +116,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         {
             if (AddCollectionElement(element))
             {
-                _ElementLookup[element] = new GuiTablePanelElementInfo()
+                _ElementMetaData[element] = new GuiElementCollectionMetaData()
                 {
                     Column = column,
                     Row = row,
@@ -164,7 +165,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <returns>Element</returns>
         public GuiElement GetElement(int column, int row)
         {
-            return _ElementLookup.FirstOrDefault(x => x.Value.Column == column && x.Value.Row == row).Key;
+            return _ElementMetaData.FirstOrDefault(x => x.Value.Column == column && x.Value.Row == row).Key;
         }
 
         /// <summary>
@@ -177,7 +178,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <param name="rowSpan">Cell row span</param>
         public void SetCell(GuiElement element, int column, int row, int columnSpan = 1, int rowSpan = 1)
         {
-            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            if (_ElementMetaData.TryGetValue(element, out var elementInfo))
             {
                 elementInfo.Column = column;
                 elementInfo.Row = row;
@@ -196,7 +197,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <param name="rowSpan">Cell row span</param>
         public void SetCellSpan(GuiElement element, int columnSpan, int rowSpan)
         {
-            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            if (_ElementMetaData.TryGetValue(element, out var elementInfo))
             {
                 elementInfo.ColumnSpan = columnSpan;
                 elementInfo.RowSpan = rowSpan;
@@ -212,7 +213,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <param name="columnSpan">Cell column span</param>
         public void SetColumnSpan(GuiElement element, int columnSpan)
         {
-            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            if (_ElementMetaData.TryGetValue(element, out var elementInfo))
             {
                 elementInfo.ColumnSpan = columnSpan;
 
@@ -227,7 +228,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <param name="rowSpan">Cell row span</param>
         public void SetRowSpan(GuiElement element, int rowSpan)
         {
-            if (_ElementLookup.TryGetValue(element, out var elementInfo))
+            if (_ElementMetaData.TryGetValue(element, out var elementInfo))
             {
                 elementInfo.RowSpan = rowSpan;
 
@@ -469,7 +470,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             //Change element bounds based on column and row
             foreach (var element in ElementCollection)
             {
-                if (_ElementLookup.TryGetValue(element, out var elementInfo))
+                if (_ElementMetaData.TryGetValue(element, out var elementInfo))
                 {
                     var cellBounds = GetCellBounds(elementInfo.Column, elementInfo.Row,
                         elementInfo.ColumnSpan, elementInfo.RowSpan);
@@ -522,7 +523,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             LayoutTable();
         }
 
-        private class GuiTablePanelElementInfo
+        private class GuiElementCollectionMetaData
         {
             public int Column { get; set; } = -1;
             public int Row { get; set; } = -1;
