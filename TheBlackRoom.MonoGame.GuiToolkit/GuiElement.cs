@@ -18,8 +18,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             set
             {
                 if (_Name == value) return;
+                var oldName = _Name;
                 _Name = value;
-                OnNameChanged();
+                OnNameChanged(oldName);
             }
         }
         private string _Name = string.Empty;
@@ -312,11 +313,10 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public bool HitTest(Rectangle value) => ScreenBounds.Contains(value);
 
 
-
         /// <summary>
         /// Occurs when the Gui Element Name property has changed
         /// </summary>
-        protected virtual void OnNameChanged() {}
+        protected virtual void OnNameChanged(string oldName) { }
 
         /// <summary>
         /// Occurs when the Gui Element Size property has changed
@@ -331,7 +331,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// <summary>
         /// Occurs when the Gui Element Background Colour property has changed
         /// </summary>
-        protected virtual void OnBackColourChanged() {}
+        protected virtual void OnBackColourChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Margin property has changed
