@@ -60,6 +60,22 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         private Color _BackColour = Color.Transparent;
 
         /// <summary>
+        /// Interior margin (padding) of the Gui Element, inset from the bounds
+        /// to the border (if any).
+        /// </summary>
+        public Padding Margin
+        {
+            get => _Margin;
+            set
+            {
+                if (_Margin == value) return;
+                _Margin = value;
+                OnMarginChanged();
+            }
+        }
+        private Padding _Margin = Padding.Empty;
+
+        /// <summary>
         /// Border adornment to draw around Gui Element
         /// </summary>
         public IGuiBorder Border { get; set; } = null;
@@ -179,6 +195,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                 //Start with full bounds
                 var contentBounds = Bounds;
 
+                //Shrink the bounds by the margin
+                contentBounds.Shrink(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom);
+
                 //Shrink the bounds by the border amount
                 if (Border != null)
                     contentBounds.Shrink(Border.BorderThickness);
@@ -213,6 +232,14 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
             get
             {
                 var bounds = Bounds;
+
+                //Shrink the bounds by the margin
+                bounds.Shrink(Margin.Left, Margin.Top, Margin.Right, Margin.Bottom);
+
+                //If there is no content area, return
+                if (bounds.Width <= 0 || bounds.Height <= 0)
+                    return Rectangle.Empty;
+
                 bounds.Offset(ScreenOffset);
                 return bounds;
             }
@@ -276,6 +303,11 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Background Colour property has changed
         /// </summary>
         protected virtual void OnBackColourChanged() {}
+
+        /// <summary>
+        /// Occurs when the Gui Element Margin property has changed
+        /// </summary>
+        protected virtual void OnMarginChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Parent property has changed
