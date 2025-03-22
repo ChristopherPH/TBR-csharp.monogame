@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiEmptyElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementColumnStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementRowStyles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementAnchorStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElementCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiDraw.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiElement.cs" />
