@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using TheBlackRoom.MonoGame.Drawing;
 
 namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
@@ -8,6 +9,21 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
     /// </summary>
     public class GuiLabel : GuiTextElement
     {
+        public GuiLabel() { }
+
+        public GuiLabel(SpriteFont font, string text)
+        {
+            this.Font = font;
+            this.Text = text;
+        }
+
+        public GuiLabel(SpriteFont font, Color foreColour, string text)
+        {
+            this.Font = font;
+            this.ForeColour = foreColour;
+            this.Text = text;
+        }
+
         /// <summary>
         /// Label Text
         /// </summary>
