@@ -244,14 +244,19 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         /// <returns>Cell bounds, or Rectangle.Empty on invalid cell</returns>
         protected Rectangle GetCellBounds(int column, int row, int columnSpan = 1, int rowSpan = 1)
         {
+            //Check for valid column and row
             if ((column < 0) || (row < 0) ||
-                (rowSpan <= 0) || (columnSpan <= 0) ||
-                (column + columnSpan > _ColumnWidths.Count) ||
-                (row + rowSpan > _RowHeights.Count))
+                (column >= _ColumnWidths.Count) ||
+                (row >= _RowHeights.Count))
             {
                 return Rectangle.Empty;
             }
 
+            //adjust column and row spans to be within range
+            columnSpan = MathHelper.Min(MathHelper.Max(1, columnSpan), _ColumnWidths.Count - column);
+            rowSpan = MathHelper.Min(MathHelper.Max(1, rowSpan), _RowHeights.Count - row);
+
+            //calculate spanned column and row sizes
             int width = 0, height = 0;
 
             for (int c = 0; c < columnSpan; c++)
