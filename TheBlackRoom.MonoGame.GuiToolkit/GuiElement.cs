@@ -328,5 +328,51 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         {
             return Name ?? base.ToString();
         }
+
+        /// <summary>
+        /// Returns a rectangle positioned outside the element,
+        /// with the new rectangles left edge aligned with the
+        /// right edge of the element bounds, and the height of
+        /// the new rectangle equal to the height of the element.
+        /// </summary>
+        /// <param name="Width">Width of rectangle to create</param>
+        /// <returns>Rectangle aligned to left of element</returns>
+        public Rectangle AlignLeft(int Width) => new Rectangle(
+                Bounds.Left - MathHelper.Max(0, Width), Bounds.Top,
+                MathHelper.Max(0, Width), Bounds.Height);
+
+        /// <summary>
+        /// Returns a rectangle positioned outside the element,
+        /// with the new rectangles bottom edge aligned with the
+        /// top edge of the element bounds, and the width of
+        /// the new rectangle equal to the width of the element.
+        /// </summary>
+        /// <param name="Height">Height of rectangle to create</param>
+        /// <returns>Rectangle aligned to bottom of element</returns>
+        public Rectangle AlignTop(int Height) => new Rectangle(
+                Bounds.Left, Bounds.Top - MathHelper.Max(0, Height),
+                Bounds.Width, MathHelper.Max(0, Height));
+
+        /// <summary>
+        /// Returns a rectangle positioned outside the element,
+        /// with the new rectangles right edge aligned with the
+        /// left edge of the element bounds, and the height of
+        /// the new rectangle equal to the height of the element.
+        /// </summary>
+        /// <param name="Width">Width of rectangle to create</param>
+        /// <returns>Rectangle aligned to right of element</returns>
+        public Rectangle AlignRight(int Width) => new Rectangle(
+                Bounds.Right, Bounds.Top, MathHelper.Max(0, Width), Bounds.Height);
+
+        /// <summary>
+        /// Returns a rectangle positioned outside the element,
+        /// with the new rectangles top edge aligned with the
+        /// bottom edge of the element bounds, and the width of
+        /// the new rectangle equal to the width of the element.
+        /// </summary>
+        /// <param name="Height">Height of rectangle to create</param>
+        /// <returns>Rectangle aligned to bottom of element</returns>
+        public Rectangle AlignBottom(int Height) => new Rectangle(
+                Bounds.Left, Bounds.Bottom, Bounds.Width, MathHelper.Max(0, Height));
     }
 }
