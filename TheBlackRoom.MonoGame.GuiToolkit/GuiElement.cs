@@ -75,6 +75,21 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         private Padding _Margin = Padding.Empty;
 
         /// <summary>
+        /// Interior padding of the Gui Element, inset from the border (if any)
+        /// </summary>
+        public Padding Padding
+        {
+            get => _Padding;
+            set
+            {
+                if (_Padding == value) return;
+                _Padding = value;
+                OnPaddingChanged();
+            }
+        }
+        private Padding _Padding = Padding.Empty;
+
+        /// <summary>
         /// Border adornment to draw around Gui Element
         /// </summary>
         public IGuiBorder Border { get; set; } = null;
@@ -201,6 +216,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
                 if (Border != null)
                     contentBounds.Shrink(Border.BorderThickness);
 
+                //Shrink the bounds by padding
+                contentBounds.Shrink(Padding);
+
                 //If there is no content area, return
                 if (contentBounds.Width <= 0 || contentBounds.Height <= 0)
                     return Rectangle.Empty;
@@ -317,6 +335,11 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Margin property has changed
         /// </summary>
         protected virtual void OnMarginChanged() { }
+
+        /// <summary>
+        /// Occurs when the Gui Element Padding property has changed
+        /// </summary>
+        protected virtual void OnPaddingChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Parent property has changed
