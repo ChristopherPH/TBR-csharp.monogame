@@ -279,6 +279,49 @@ namespace GuiToolkitDemo
                 Border = thinBorder,
             });
 
+            //Show margin/padding
+            guiLayout.Add(new GuiDarkBlueElement()
+            {
+                Bounds = new Rectangle(775, 390, 75, 75),
+                BackColour = Color.Firebrick,
+                Border = thinBorder,
+            });
+
+            guiLayout.Add(new GuiDarkBlueElement()
+            {
+                Bounds = new Rectangle(875, 390, 75, 75),
+                BackColour = Color.Firebrick,
+                Border = thinBorder,
+                Padding = new Padding(5),
+            });
+
+            guiLayout.Add(new GuiDarkBlueElement()
+            {
+                Bounds = new Rectangle(975, 390, 75, 75),
+                BackColour = Color.Firebrick,
+                Border = thinBorder,
+                Margin = new Padding(5),
+            });
+
+            guiLayout.Add(new GuiDarkBlueElement()
+            {
+                Bounds = new Rectangle(1075, 390, 75, 75),
+                BackColour = Color.Firebrick,
+                Border = thinBorder,
+                Padding = new Padding(5),
+                Margin = new Padding(5),
+            });
+        }
+
+        private class GuiDarkBlueElement : GuiElement
+        {
+            protected override void UpdateGuiElement(GameTime gameTime) { }
+
+            protected override void DrawGuiElement(GameTime gameTime,
+                ExtendedSpriteBatch spriteBatch, Rectangle drawBounds)
+            {
+                GuiDraw.DrawBackground(spriteBatch, drawBounds, Color.DarkBlue);
+            }
         }
 
         void DrawRectangleSlices(ExtendedSpriteBatch spriteBatch)
