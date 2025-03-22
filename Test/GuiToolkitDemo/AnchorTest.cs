@@ -131,16 +131,23 @@ namespace GuiToolkitDemo
                 BackColour = Color.Teal,
             };
 
-            var border = new GuiSolidBorder(Color.DarkGray, 3);
 
             //Divide screen into 4 equal squares
             var quad_tl = guiLayout.Bounds.SliceTopPercent(0.5f, out var quad_bl);
             var quad_tr = quad_tl.SliceRightPercent(0.5f, out quad_tl);
             var quad_br = quad_bl.SliceRightPercent(0.5f, out quad_bl);
 
-            //Quadrant top left
+            GuiLayout1(guiLayout, quad_tl);
+            GuiLayout2(guiLayout, quad_tr);
+            GuiLayout3(guiLayout, quad_bl);
+            GuiLayout4(guiLayout, quad_br);
+        }
+
+        void GuiLayout1(GuiLayout guiLayout, Rectangle rect)
+        {
+            var border = new GuiSolidBorder(Color.DarkGray, 3);
+
             //Divide rectangle into 9 equal squares
-            var rect = quad_tl;
             var midleft = rect.SliceLeftPercent(0.33f, out var center);
             var topleft = midleft.SliceTopPercent(0.33f, out midleft);
             var botleft = midleft.SliceBottomPercent(0.5f, out midleft);
@@ -225,10 +232,13 @@ namespace GuiToolkitDemo
                 Border = border,
                 Margin = new Padding(5),
             }, GuiElementAnchorStyles.BottomRight);
+        }
 
-            //Quadrant top right
+        void GuiLayout2(GuiLayout guiLayout, Rectangle rect)
+        {
+            var border = new GuiSolidBorder(Color.DarkGray, 3);
+
             //Divide rectangle into 4 equal squares
-            rect = quad_tr;
             var tl = rect.SliceTopPercent(0.5f, out var bl);
             var tr = tl.SliceRightPercent(0.5f, out tl);
             var br = bl.SliceRightPercent(0.5f, out bl);
@@ -265,8 +275,10 @@ namespace GuiToolkitDemo
                 Border = border,
                 Margin = new Padding(5),
             }, GuiElementAnchorStyles.Bottom);
+        }
 
-
+        void GuiLayout3(GuiLayout guiLayout, Rectangle rect)
+        {
             //Quadrant bottom left
             var guiTableLayout = new GuiTablePanel(
                 [
@@ -284,14 +296,18 @@ namespace GuiToolkitDemo
                 ])
             {
                 Name = "content",
-                Bounds = quad_bl,
+                Bounds = rect,
                 BackColour = Color.AliceBlue,
             };
 
-            guiLayout.Add(guiTableLayout);
+            guiLayout.Add(guiTableLayout, GuiElementAnchorStyles.All);
 
             //Left bar
             guiTableLayout.Add(new GuiLabel(_textFont, "Left Bar"), 0, 1, 1, guiTableLayout.RowCount);
+        }
+
+        void GuiLayout4(GuiLayout guiLayout, Rectangle rect)
+        {
         }
     }
 }
