@@ -17,7 +17,7 @@ namespace GuiToolkitDemo
         private SpriteFont _headerFont;
         private SpriteFont _textFont;
         private Texture2D _grasstile;
-        private GuiLayout guiLayout;
+        private GuiLayout _guiLayout;
 
         public GameGuiTest()
         {
@@ -30,6 +30,8 @@ namespace GuiToolkitDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            Window.Title = "GameGui Test";
+
             _graphics.IsFullScreen = false;
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 960;
@@ -47,7 +49,7 @@ namespace GuiToolkitDemo
             _textFont = Content.Load<SpriteFont>("textFont");
             _grasstile = Content.Load<Texture2D>("grasstile");
 
-            CreateGui();
+            LoadGuiLayout(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
         }
 
         KeyboardState _LastKeyboardState = Keyboard.GetState();
@@ -67,7 +69,7 @@ namespace GuiToolkitDemo
             {
                 var p = new Point(mouseState.X, mouseState.Y);
 
-                var element = guiLayout.GetElementAt(p);
+                var element = _guiLayout.GetElementAt(p);
                 if (element != null)
                 {
                     System.Diagnostics.Debug.Print($"Clicked on {element.Name} at {p} ");
@@ -78,7 +80,7 @@ namespace GuiToolkitDemo
                 }
             }
 
-            guiLayout.Update(gameTime);
+            _guiLayout.Update(gameTime);
 
             _LastKeyboardState = keyboardState;
             _LastMouseState = mouseState;
@@ -101,79 +103,74 @@ namespace GuiToolkitDemo
                 for (int x = 0; x < 20; x++)
                     _spriteBatch.Draw(_grasstile, new Vector2(x * _grasstile.Width, y * _grasstile.Height));
 
-            guiLayout.Draw(gameTime, _spriteBatch);
+            _guiLayout.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        void CreateGui()
+        void LoadGuiLayout(int screenWidth, int screenHeight)
         {
-            Rectangle s;
-
-            //1280 x 960
-            var screenRect = new Rectangle(0, 0,
-                _graphics.PreferredBackBufferWidth,
-                _graphics.PreferredBackBufferHeight);
-
-            var backColor = new Color(Color.BlanchedAlmond, 0.5f);
-
-            //var border = new GuiSolidBorder(Color.Black, 2);
-            //var border = new Gui3DBorder(backColor, 7);
-            var border = new GuiRaisedBorder(backColor, 9);
-
-            guiLayout = new GuiLayout()
+            //Create a layout for the entire screen
+            _guiLayout = new GuiLayout()
             {
                 Name = "gui",
-                Size = new Point(_graphics.PreferredBackBufferWidth,
-                    _graphics.PreferredBackBufferHeight),
+                Size = new Point(screenWidth, screenHeight),
             };
 
-            //Left bar
-            var leftBar = new GuiPanel()
+            //Create some common themed properties
+            var backColor = new Color(Color.BlanchedAlmond, 0.5f);
+            var border = new GuiRaisedBorder(backColor, 9);
+
+            /*
+             * Character panel
+             */
+            var characterPanel = new GuiPanel()
             {
-                Name = "leftBar",
+                Name = "charPanel",
                 Bounds = new Rectangle(20, 20, 200, 600),
                 BackColour = backColor,
                 Border = border,
             };
 
-            guiLayout.Add(leftBar);
+            _guiLayout.Add(characterPanel);
 
-            leftBar.Add(new GuiLabel()
+            characterPanel.Add(new GuiLabel()
             {
                 Name = "charLabel",
-                Bounds = leftBar.DockTop(60),
+                Bounds = characterPanel.DockTop(60),
                 Text = "Character",
                 Font = _headerFont,
                 Border = border,
-                //Margin = new Padding(5),
             });
 
-            leftBar.Add(new GuiLabel()
+            characterPanel.Add(new GuiLabel()
             {
                 Name = "nameLabel",
-                Bounds = leftBar.Elements.Last().AlignBottom(40),
+                Bounds = characterPanel.Elements.Last().AlignBottom(40),
                 Text = "Name: Cloak",
                 Font = _textFont,
                 Alignment = ContentAlignment.MiddleLeft,
                 Padding = new Padding(10, 0, 0, 0),
             });
 
-            leftBar.Add(new GuiLabel()
+            characterPanel.Add(new GuiLabel()
             {
                 Name = "classLabel",
-                Bounds = leftBar.Elements.Last().AlignBottom(40),
+                Bounds = characterPanel.Elements.Last().AlignBottom(40),
                 Text = "Class: Evoker",
                 Font = _textFont,
                 Alignment = ContentAlignment.MiddleLeft,
                 Padding = new Padding(10, 0, 0, 0),
             });
 
-            //Hotkey bar
+
+            /*
+             * Hotkey bar
+             */
             var r = new Rectangle(0, 0, 800, 80);
-            s = screenRect.SliceBottom(150, out _);
+            var s = _guiLayout.Bounds.SliceBottom(150, out _);
             var t = r.AlignInside(s, ContentAlignment.MiddleCenter);
 
             var hotkeyBar = new GuiPanel()
@@ -184,7 +181,7 @@ namespace GuiToolkitDemo
                 Border = border,
             };
 
-            guiLayout.Add(hotkeyBar);
+            _guiLayout.Add(hotkeyBar);
 
             for (int i = 0; i < 10; i++)
             {

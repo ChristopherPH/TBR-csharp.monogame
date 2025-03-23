@@ -28,7 +28,7 @@ namespace GuiToolkitDemo
             // TODO: Add your initialization logic here
 
             Window.AllowUserResizing = true;
-            Window.Title = "User Resize Test";
+            Window.Title = "Anchor Test";
 
             _graphics.IsFullScreen = false;
             _graphics.PreferredBackBufferWidth = 1280;
