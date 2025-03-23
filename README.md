@@ -67,6 +67,7 @@ expected from a GUI toolkit.
 - GUI element draw methods are implemented as static methods to allowing for custom elements to have a consistent look
 - Complex GUI elements provide OwnerDraw functionality
 - GUI element collections provide element anchoring functionalty for maintaining relative element positions within the collection
+- GUI elements are cropped to their bounds (via ScissorTest)
 
 
 ### Built-In Elements:
