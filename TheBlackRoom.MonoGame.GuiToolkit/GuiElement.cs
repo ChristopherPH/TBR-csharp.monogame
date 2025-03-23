@@ -119,13 +119,46 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         }
         private GuiElement _ParentElement = null;
 
+
+        /// <summary>
+        /// Flag indicating if the Gui Element is enabled (gets updated)
+        /// </summary>
+        public bool Enabled
+        {
+            get => _Enabled;
+            set
+            {
+                if (_Enabled == value) return;
+                _Enabled = value;
+                OnEnabledChanged();
+            }
+        }
+        private bool _Enabled = true;
+
+        /// <summary>
+        /// Flag indicating if the Gui Element is visible (gets drawn)
+        /// </summary>
+        public bool Visible
+        {
+            get => _Visible;
+            set
+            {
+                if (_Visible == value) return;
+                _Visible = value;
+                OnVisibleChanged();
+            }
+        }
+        private bool _Visible = true;
+
+
         /// <summary>
         /// Updates the Gui Element
         /// </summary>
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            UpdateGuiElement(gameTime);
+            if (Enabled)
+                UpdateGuiElement(gameTime);
         }
 
         /// <summary>
@@ -142,6 +175,9 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         public void Draw(GameTime gameTime, ExtendedSpriteBatch spriteBatch)
         {
             if ((spriteBatch == null) || spriteBatch.IsDisposed || ScreenBounds.IsEmpty)
+                return;
+
+            if (!Visible)
                 return;
 
             //NOTE: This only works when using SpriteSortMode.Immediate
@@ -353,6 +389,16 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         /// Occurs when the Gui Element Padding property has changed
         /// </summary>
         protected virtual void OnPaddingChanged() { }
+
+        /// <summary>
+        /// Occurs when the Gui Element Enabled property has changed
+        /// </summary>
+        protected virtual void OnEnabledChanged() { }
+
+        /// <summary>
+        /// Occurs when the Gui Element Visible property has changed
+        /// </summary>
+        protected virtual void OnVisibleChanged() { }
 
         /// <summary>
         /// Occurs when the Gui Element Parent property has changed

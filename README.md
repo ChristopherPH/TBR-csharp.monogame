@@ -96,6 +96,7 @@ Properties:
 - Bounds, Size, Location
 - Padding, Margin
 - BackColour
+- Enabled, Visible
 
 Methods:
 - Update()
