@@ -14,6 +14,24 @@ New Elements
 - with colors and scroll
 
 
+#### Checkbox
+- Checked property
+
+
+#### Button
+- PictureBox + Label combined
+
+
+#### Line
+- Horizontal or vertical seperator
+
+
+#### Picture List
+- Same as picturebox, but stores a list of pictures and an index
+- List of pictures should be a re-usable class that can be set into any picture list
+  - Could have a draw method as well, to draw the active or given index to a rectangle
+  - Draw function should be static in GuiDraw
+
 
 New Adornments
 -----------------
@@ -51,6 +69,7 @@ Unsorted TODOs
 -----------------
 
 - Add license to all files
+- Consider adding .Tag property to elements
 
 ### Refactor
 - Rename content alignment maybe to avoid clash. But rectangle?
@@ -62,3 +81,19 @@ Unsorted TODOs
 
 ### Utility
 - Make a utility draw class that creates the needed spritebatch for drawing and calls draw
+
+### Animations
+Need to figure out how to do animations..
+- Animations chould have event fired when completed, or just automatically set visible/enabled based on animation type
+
+Types:
+- Slide in/out
+- Fade in/out
+- Flip in/out
+
+### Selections
+- Add IGuiSelection adornment
+- Add a way to cycle through selected items in a collection
+  - Something like `GuiElement SelectNextElement(GuiElement currentElement)`
+  - basically indexof() + 1 % count
+  - Is this useful? It would only work inside a collection. Maybe the layout needs to be able to do it through all descendants
