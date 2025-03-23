@@ -30,4 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiAdornment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGuiBorder.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)TODO.md" />
+  </ItemGroup>
 </Project>
