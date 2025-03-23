@@ -101,6 +101,7 @@ Properties:
 Methods:
 - Update()
 - Draw()
+- Activate()
 - HitTest()
 
 #### ... more to come

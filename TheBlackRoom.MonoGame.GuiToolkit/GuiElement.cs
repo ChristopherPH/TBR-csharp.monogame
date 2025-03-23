@@ -211,6 +211,22 @@ namespace TheBlackRoom.MonoGame.GuiToolkit
         protected abstract void DrawGuiElement(GameTime gameTime,
             ExtendedSpriteBatch spriteBatch, Rectangle drawBounds);
 
+
+        /// <summary>
+        /// Activates the Gui Element
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void Activate()
+        {
+            if (Enabled)
+                ActivateGuiElement();
+        }
+
+        /// <summary>
+        /// Occurs when the Gui Element is to be activated
+        /// </summary>
+        protected virtual void ActivateGuiElement() { }
+
         protected void SetBounds(Point location, Point size)
         {
             var oldBounds = _Bounds;
