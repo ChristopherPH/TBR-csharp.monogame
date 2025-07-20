@@ -183,6 +183,12 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             set => _listbox.SelectedIndex = value;
         }
 
+        public object SelectedItem
+        {
+            get => _listbox.SelectedItem;
+            set => _listbox.SelectedItem = value;
+        }
+
         public void SelectionUp() => _listbox.SelectPreviousItem();
         public void SelectionDown() => _listbox.SelectNextItem();
         public void SelectionTop() => _listbox.SelectFirstItem();
