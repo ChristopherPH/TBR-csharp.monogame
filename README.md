@@ -77,6 +77,7 @@ expected from a GUI toolkit.
   - Panel
   - TablePanel
 - Elements:
+  - DynamicLabel
   - Label
   - ListBox
   - PictureBox

@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Borders\Gui3DBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\GuiRaisedBorder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiEmptyElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Elements\GuiDynamicLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementColumnStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementRowStyles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Elements\Styles\GuiElementAnchorStyles.cs" />
