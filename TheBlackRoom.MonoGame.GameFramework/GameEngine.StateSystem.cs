@@ -30,6 +30,9 @@ namespace TheBlackRoom.MonoGame.GameFramework
             stateInstance.OnStateStarted(false);
         }
 
+        /// <summary>
+        /// Completes the current state (Must be called from Update() method)
+        /// </summary>
         public void CompleteCurrentState()
         {
             _completeCurrentState = true;
@@ -38,6 +41,9 @@ namespace TheBlackRoom.MonoGame.GameFramework
             //if not dispose, then add to hashset to be cleaned up later
         }
 
+        /// <summary>
+        /// Adds a new state (Must be called from Update() method)
+        /// </summary>
         public void ChangeToState(GameState State)
         {
             if (State == null)
@@ -47,6 +53,9 @@ namespace TheBlackRoom.MonoGame.GameFramework
             _stateToPush = State;
         }
 
+        /// <summary>
+        /// Completes the current state and adds a new state (Must be called from Update() method)
+        /// </summary>
         public void AddState(GameState State)
         {
             if (State == null)

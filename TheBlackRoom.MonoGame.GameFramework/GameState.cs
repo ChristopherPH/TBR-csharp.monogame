@@ -146,8 +146,19 @@ namespace TheBlackRoom.MonoGame.GameFramework
             stateTime += gameTime.ElapsedGameTime.TotalMilliseconds;
         }
 
+        /// <summary>
+        /// Completes the current state (Must be called from Update() method)
+        /// </summary>
         protected void CompleteState() => Engine?.CompleteCurrentState();
+
+        /// <summary>
+        /// Adds a new state (Must be called from Update() method)
+        /// </summary>
         protected void AddState(GameState state) => Engine?.AddState(state);
+
+        /// <summary>
+        /// Completes the current state and adds a new state (Must be called from Update() method)
+        /// </summary>
         protected void ChangeToState(GameState state) => Engine?.ChangeToState(state);
 
         public void Dispose()
