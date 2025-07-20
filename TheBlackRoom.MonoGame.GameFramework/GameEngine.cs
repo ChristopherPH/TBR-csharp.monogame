@@ -35,8 +35,9 @@ namespace TheBlackRoom.MonoGame.GameFramework
         protected virtual string SettingsFile { get; } = "settings.xml";
         protected GameEngineSettings GameEngineSettings { get; } 
         protected virtual bool StartEndSpriteBatchInDraw { get; } = true;
+        protected virtual Color BackgroundColour { get; } = Color.CornflowerBlue;
 
-        
+
         public SpriteFont DefaultFont { get; private set; }
 
         SoundEffectInstance musicDefaultInstance;
@@ -266,7 +267,7 @@ namespace TheBlackRoom.MonoGame.GameFramework
                 {
                     BeginBatchDraw();
 
-                    spriteBatch.FillRectangle(GameRectangle, Color.CornflowerBlue);
+                    spriteBatch.FillRectangle(GameRectangle, BackgroundColour);
                 }
 
                 DrawGameStates(gameTime);
