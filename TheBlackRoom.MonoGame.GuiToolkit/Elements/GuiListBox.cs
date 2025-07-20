@@ -136,7 +136,8 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
                 if (string.IsNullOrEmpty(text))
                     continue;
 
-                DrawItemInternal(spriteBatch, itemBounds, ix == _listbox.SelectedIndex, text, ForeColour, BackColour);
+                DrawItemInternal(spriteBatch, ix, itemBounds,
+                    ix == _listbox.SelectedIndex, text, ForeColour, BackColour);
             }
 
             if (!ShowScrollbar)
@@ -217,14 +218,16 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
             return item.ToString();
         }
 
-        protected virtual void DrawItemInternal(ExtendedSpriteBatch spriteBatch, Rectangle itemBounds,
-            bool selected, string itemText, Color foreColour, Color backColor)
+        protected virtual void DrawItemInternal(ExtendedSpriteBatch spriteBatch,
+            int itemIndex, Rectangle itemBounds, bool selected, string itemText,
+            Color foreColour, Color backColor)
         {
             if (OwnerDraw)
             {
                 DrawItem?.Invoke(this, new DrawItemEventArgs()
                 {
                     spriteBatch = spriteBatch,
+                    itemIndex = itemIndex,
                     itemBounds = itemBounds,
                     selected = selected,
                     itemText = itemText,
@@ -256,6 +259,7 @@ namespace TheBlackRoom.MonoGame.GuiToolkit.Elements
         public class DrawItemEventArgs : EventArgs
         {
             public ExtendedSpriteBatch spriteBatch { get; set; }
+            public int itemIndex { get; set; }
             public Rectangle itemBounds { get; set; }
             public bool selected { get; set; }
             public string itemText { get; set; }
